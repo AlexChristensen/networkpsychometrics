@@ -19,6 +19,38 @@
     --border: rgba(45, 212, 191, 0.15);
   }
 
+  :root.light {
+    --ink: #f0ede6;
+    --paper: #1a1f2e;
+    --teal: #0d9488;
+    --amber: #d97706;
+    --muted: #4b5563;
+    --dim: #e5e1d8;
+    --border: rgba(13, 148, 136, 0.2);
+  }
+
+  /* ─── THEME TOGGLE ─── */
+  #theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  #theme-toggle:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -35,7 +67,7 @@
     position: fixed;
     inset: 0;
     z-index: 0;
-    opacity: 0.45;
+    opacity: 0.65;
   }
 
   /* ─── NAV ─── */
@@ -50,6 +82,39 @@
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
     background: rgba(7, 10, 16, 0.6);
+  }
+
+  :root.light nav {
+    background: rgba(240, 237, 230, 0.75);
+  }
+
+  :root.light body {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  :root.light #about {
+    background: rgba(225, 220, 210, 0.5);
+  }
+
+  :root.light #applications {
+    background: rgba(225, 220, 210, 0.35);
+  }
+
+  :root.light footer {
+    background: rgba(240, 237, 230, 0.85);
+  }
+
+  :root.light .concept-card {
+    background: var(--ink);
+  }
+
+  :root.light .concept-card:hover {
+    background: #e0dbd0;
+  }
+
+  :root.light input, :root.light textarea {
+    color: var(--paper);
   }
 
   .logo {
@@ -125,7 +190,7 @@
     font-weight: 300;
     line-height: 0.95;
     letter-spacing: -0.01em;
-    max-width: 14ch;
+    max-width: 18ch;
     opacity: 0;
     animation: fadeUp 0.9s 0.5s ease forwards;
   }
@@ -137,7 +202,7 @@
 
   .hero-sub {
     margin-top: 2rem;
-    max-width: 48ch;
+    max-width: 60ch;
     font-size: 0.8rem;
     line-height: 1.9;
     color: var(--muted);
@@ -662,26 +727,29 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">NetPsy<span>metrics</span></div>
+  <div class="logo">Network<span>Psychometrics</span></div>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#concepts">Concepts</a></li>
     <li><a href="#applications">Applications</a></li>
     <li><a href="#cta" class="nav-cta">Get Started</a></li>
   </ul>
+  <button id="theme-toggle" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">A new framework for psychological science</div>
-  <h1>Mind as <em>Network,</em> Not Construct</h1>
+  <div class="hero-tag">Psychology is complex. Your models should be too.</div>
+  <h1>Embrace <em>Complexity</em></h1>
   <p class="hero-sub">
-    Network psychometrics reconceives psychological phenomena — personality, psychopathology, cognition — 
-    as dynamic systems of interacting variables rather than reflections of latent traits.
+    Network psychometrics reconceives psychological phenomena — personality, psychopathology, cognition —
+    as complex and dynamic systems of interacting variables.
   </p>
   <div class="hero-actions">
-    <a href="#concepts" class="btn-primary">Explore the Model</a>
-    <a href="#cta" class="btn-ghost">Request Demo</a>
+    <a href="#concepts" class="btn-primary">Recent Publications</a>
+    <!--- <a href="#cta" class="btn-ghost">Request Demo</a> --->
   </div>
 
   <div class="scroll-hint">
@@ -689,20 +757,22 @@
     Scroll to discover
   </div>
 
+<!---
   <div class="hero-metrics">
     <div class="metric">
-      <div class="metric-val">∞</div>
-      <div class="metric-label">Edge possibilities</div>
+      <div class="metric-val">—</div>
+      <div class="metric-label">Edges</div>
     </div>
     <div class="metric">
-      <div class="metric-val">N</div>
-      <div class="metric-label">Node variables</div>
+      <div class="metric-val">n</div>
+      <div class="metric-label">Nodes</div>
     </div>
     <div class="metric">
       <div class="metric-val">ρ</div>
       <div class="metric-label">Partial correlations</div>
     </div>
   </div>
+--->
 </section>
 
 <!-- ABOUT -->
@@ -868,7 +938,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let W, H, nodes = [], edges = [];
-const NODE_COUNT = 38;
+const NODE_COUNT = 100;
 const TEAL = '#2dd4bf';
 const AMBER = '#f59e0b';
 const PAPER = '#f4f0e8';
@@ -886,8 +956,8 @@ function initNodes() {
     nodes.push({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2,
       r: isCentral ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
       color: isCentral ? TEAL : (Math.random() < 0.15 ? AMBER : PAPER),
       central: isCentral,
@@ -899,8 +969,8 @@ function initNodes() {
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const d = dist(nodes[i], nodes[j]);
-      if (d < 220 && Math.random() < 0.35) {
-        edges.push({ a: i, b: j, w: (1 - d / 220) * 0.7 });
+      if (d < 500 && Math.random() < 1) {
+        edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5});
       }
     }
   }
@@ -917,15 +987,18 @@ function tick(t) {
   for (const e of edges) {
     const a = nodes[e.a], b = nodes[e.b];
     const d = dist(a, b);
-    if (d > 250) continue;
-    const alpha = e.w * (1 - d / 250) * 0.55;
+    if (d > 220) continue;
+    const alpha = e.w * (1 - d / 250) * 0.90;
     const isHighlight = a.central || b.central;
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
-    ctx.strokeStyle = isHighlight
-      ? `rgba(45,212,191,${alpha * 0.9})`
-      : `rgba(244,240,232,${alpha * 0.35})`;
+    const lightMode = document.documentElement.classList.contains('light');
+ctx.strokeStyle = isHighlight
+  ? `rgba(13,148,136,${alpha * 2})`
+  : lightMode
+    ? `rgba(26,31,46,${alpha * 1.5})`
+    : `rgba(244,240,232,${alpha * 1.5})`;
     ctx.lineWidth = isHighlight ? 1 : 0.5;
     ctx.stroke();
   }
@@ -947,10 +1020,13 @@ function tick(t) {
 
     ctx.beginPath();
     ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
-    const alpha = n.central ? 0.9 : 0.5;
-    ctx.fillStyle = n.color === TEAL ? `rgba(45,212,191,${alpha})`
-                  : n.color === AMBER ? `rgba(245,158,11,${alpha})`
-                  : `rgba(244,240,232,${alpha * 0.6})`;
+    const lightMode = document.documentElement.classList.contains('light');
+const alpha = n.central ? 1.0 : 0.65;
+ctx.fillStyle = n.color === TEAL ? `rgba(13,148,136,${alpha})`
+              : n.color === AMBER ? `rgba(245,158,11,${alpha})`
+              : lightMode
+                ? `rgba(26,31,46,${alpha * 0.75})`
+                : `rgba(244,240,232,${alpha * 0.75})`;
     ctx.fill();
 
     // Update position
@@ -981,8 +1057,21 @@ document.addEventListener('mousemove', (e) => {
       n.vy -= dy / d * 0.04;
     }
     const speed = Math.hypot(n.vx, n.vy);
-    if (speed > 1.2) { n.vx *= 0.9; n.vy *= 0.9; }
+    if (speed > 0.25) { n.vx *= 0.5; n.vy *= 0.5; }
   }
+});
+
+// ─── THEME TOGGLE ───
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const themeLabel = document.getElementById('theme-label');
+let isLight = false;
+
+themeToggle.addEventListener('click', () => {
+  isLight = !isLight;
+  document.documentElement.classList.toggle('light', isLight);
+  themeIcon.textContent = isLight ? '☾' : '☀';
+  themeLabel.textContent = isLight ? 'Dark' : 'Light';
 });
 
 // ─── SCROLL REVEAL ───
