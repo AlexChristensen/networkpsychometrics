@@ -2,162 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <script>
+    // Apply saved theme before first paint — wrapped in try/catch for all environments
+    try {
+      if (localStorage.getItem('npTheme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    } catch(e) {}
+  </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Network Psychometrics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Shared site theme -->
+<link rel="stylesheet" href="theme.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ══════════════════════════════════════════
+     INDEX-SPECIFIC STYLES
+     Shared tokens, nav, footer, buttons, etc.
+     are all in theme.css
+  ══════════════════════════════════════════ */
 
-  :root {
-    --ink: #070a10;
-    --paper: #f4f0e8;
-    --teal: #2dd4bf;
-    --amber: #f59e0b;
-    --muted: #8b98b0;
-    --dim: #111827;
-    --border: rgba(45, 212, 191, 0.15);
+  /* ─── SMOOTH THEME TRANSITIONS ─── */
+  body, nav, footer, #about, #applications, #concepts, #quote, #cta,
+  .concept-card, input, textarea {
+    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
 
-  :root.light {
-    --ink: #f0ede6;
-    --paper: #1a1f2e;
-    --teal: #0d9488;
-    --amber: #d97706;
-    --muted: #4b5563;
-    --dim: #e5e1d8;
-    --border: rgba(13, 148, 136, 0.2);
-  }
+  /* ─── LIGHT MODE: INDEX-SPECIFIC SECTION OVERRIDES ─── */
+  /* These sections use hardcoded dark rgba values so need explicit light overrides */
+  :root.light #about        { background: rgba(225, 220, 210, 0.50); }
+  :root.light #applications { background: rgba(225, 220, 210, 0.35); }
+  :root.light .concept-card       { background: var(--ink); }
+  :root.light .concept-card:hover { background: #e0dbd0; }
 
-  /* ─── THEME TOGGLE ─── */
-  #theme-toggle {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-    transition: border-color 0.3s, color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  #theme-toggle:hover {
-    border-color: var(--teal);
-    color: var(--teal);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: 'DM Mono', monospace;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: crosshair;
-  }
-
-  /* ─── CANVAS BACKGROUND ─── */
-  #canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.65;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 3rem;
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-    background: rgba(7, 10, 16, 0.6);
-  }
-
-  :root.light nav {
-    background: rgba(240, 237, 230, 0.75);
-  }
-
-  :root.light body {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  :root.light #about {
-    background: rgba(225, 220, 210, 0.5);
-  }
-
-  :root.light #applications {
-    background: rgba(225, 220, 210, 0.35);
-  }
-
-  :root.light footer {
-    background: rgba(240, 237, 230, 0.85);
-  }
-
-  :root.light .concept-card {
-    background: var(--ink);
-  }
-
-  :root.light .concept-card:hover {
-    background: #e0dbd0;
-  }
-
-  :root.light input, :root.light textarea {
-    color: var(--paper);
-  }
-
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 300;
-    letter-spacing: 0.08em;
-    color: var(--teal);
-    text-transform: uppercase;
-  }
-
-  .logo span { color: var(--paper); opacity: 0.5; }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  nav a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
-  nav a:hover { color: var(--teal); }
-
-  .nav-cta {
-    padding: 0.5rem 1.2rem;
-    border: 1px solid var(--teal);
-    color: var(--teal) !important;
-    transition: background 0.3s, color 0.3s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--teal) !important;
-    color: var(--ink) !important;
-  }
-
-  /* ─── HERO ─── */
+  /* ─── HERO (index-specific) ─── */
   #hero {
     position: relative;
     z-index: 1;
@@ -324,33 +202,33 @@
     to { left: 200%; }
   }
 
-  /* ─── SECTIONS ─── */
+  /* ─── SECTIONS (index-specific backgrounds) ─── */
   section {
     position: relative;
-    z-index: 1;
+    z-index:  1;
   }
 
   .section-inner {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 8rem 3rem;
+    margin:    0 auto;
+    padding:   8rem 3rem;
   }
 
   .section-tag {
-    font-size: 0.8rem;
+    font-size:      0.8rem;
     letter-spacing: 0.2em;
-    color: var(--teal);
+    color:          var(--teal);
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom:  1rem;
   }
 
   .section-tag::before { content: '// '; opacity: 0.5; }
 
   h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.8rem);
-    font-weight: 300;
-    line-height: 1.1;
+    font-family:   'Cormorant Garamond', serif;
+    font-size:     clamp(2.2rem, 4vw, 3.8rem);
+    font-weight:   300;
+    line-height:   1.1;
     margin-bottom: 1.5rem;
   }
 
@@ -727,11 +605,12 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Network<span>Psychometrics</span></div>
+  <a href="index.html" class="logo">Network<span>Psychometrics</span></a>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#concepts">Concepts</a></li>
     <li><a href="#applications">Applications</a></li>
+    <li><a href="publications.html">Publications</a></li>
     <li><a href="#cta" class="nav-cta">Get Started</a></li>
   </ul>
   <button id="theme-toggle" aria-label="Toggle light/dark mode">
@@ -742,13 +621,13 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-tag">Psychology is complex. Your models should be too.</div>
-  <h1>Embrace <em>Complexity</em></h1>
+  <h2>Complex Constructs Require Complex Models</h2>
   <p class="hero-sub">
     Network psychometrics reconceives psychological phenomena — personality, psychopathology, cognition —
     as complex and dynamic systems of interacting variables.
   </p>
   <div class="hero-actions">
-    <a href="#concepts" class="btn-primary">Recent Publications</a>
+    <a href="publications.html" class="btn-primary">Explore Publications</a>
     <!--- <a href="#cta" class="btn-ghost">Request Demo</a> --->
   </div>
 
@@ -928,7 +807,7 @@
     <a href="#">Documentation</a>
     <a href="https://github.com/AlexChristensen">GitHub</a>
     <a href="https://scholar.google.com/citations?user=RbatznQAAAAJ&hl=en">Google Scholar</a>
-    <a href="#">Publications</a>
+    <a href="publications.html">Publications</a>
     <a href="#">Privacy</a>
   </div>
 </footer>
@@ -942,6 +821,7 @@ let W, H, nodes = [], edges = [];
 const NODE_COUNT = 100;
 const TEAL = '#2dd4bf';
 const AMBER = '#f59e0b';
+const YELLOW = '#f7b801';
 const PAPER = '#f4f0e8';
 
 function resize() {
@@ -953,14 +833,14 @@ function initNodes() {
   nodes = [];
   edges = [];
   for (let i = 0; i < NODE_COUNT; i++) {
-    const isCentral = i < 5;
+    const isCentral = i < 7;
     nodes.push({
       x: Math.random() * W,
       y: Math.random() * H,
       vx: (Math.random() - 0.5) * 0.2,
       vy: (Math.random() - 0.5) * 0.2,
       r: isCentral ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
-      color: isCentral ? TEAL : (Math.random() < 0.15 ? AMBER : PAPER),
+      color: isCentral ? TEAL : (Math.random() < 0.30 ? AMBER : YELLOW),
       central: isCentral,
       pulse: Math.random() * Math.PI * 2,
     });
@@ -1064,15 +944,36 @@ document.addEventListener('mousemove', (e) => {
 
 // ─── THEME TOGGLE ───
 const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-const themeLabel = document.getElementById('theme-label');
-let isLight = false;
+const themeIcon   = document.getElementById('theme-icon');
+const themeLabel  = document.getElementById('theme-label');
+
+function syncThemeButton() {
+  const light = document.documentElement.classList.contains('light');
+  themeIcon.textContent  = light ? '☾' : '☀';
+  themeLabel.textContent = light ? 'Dark' : 'Light';
+  return light;
+}
+
+// Sync button on initial load (early script may have already applied .light)
+let isLight = syncThemeButton();
+
+// Re-sync on bfcache restore (back/forward navigation)
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    try {
+      const saved = localStorage.getItem('npTheme');
+      const shouldBeLight = saved === 'light';
+      document.documentElement.classList.toggle('light', shouldBeLight);
+    } catch(e) {}
+    isLight = syncThemeButton();
+  }
+});
 
 themeToggle.addEventListener('click', () => {
   isLight = !isLight;
   document.documentElement.classList.toggle('light', isLight);
-  themeIcon.textContent = isLight ? '☾' : '☀';
-  themeLabel.textContent = isLight ? 'Dark' : 'Light';
+  syncThemeButton();
+  try { localStorage.setItem('npTheme', isLight ? 'light' : 'dark'); } catch(e) {}
 });
 
 // ─── SCROLL REVEAL ───
