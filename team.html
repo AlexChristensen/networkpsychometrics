@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    try {
+      if (localStorage.getItem('npTheme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    } catch(e) {}
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team — Network Psychometrics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      position:      relative;
+      z-index:       1;
+      padding:       12rem 10vw 5rem;
+      border-bottom: 1px solid var(--border);
+      overflow:      hidden;
+    }
+
+    #header-canvas {
+      position:       absolute;
+      top:            0;
+      left:           0;
+      width:          100%;
+      height:         100vh;
+      z-index:        0;
+      opacity:        0.65;
+      pointer-events: none;
+    }
+
+    :root.light #header-canvas { opacity: 0.49; }
+
+    .page-header-content {
+      position: relative;
+      z-index:  1;
+    }
+
+    .page-header .hero-tag {
+      font-size:      0.9rem;
+      letter-spacing: 0.18em;
+      color:          var(--teal);
+      text-transform: uppercase;
+      margin-bottom:  1.5rem;
+      opacity:        0;
+      animation:      fadeUp 0.8s 0.3s ease forwards;
+    }
+
+    .page-header .hero-tag::before {
+      content:      '//';
+      margin-right: 0.6rem;
+      opacity:      0.5;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      max-width: 22ch;
+    }
+
+    .page-header .hero-sub {
+      margin-top:  2rem;
+      max-width:   60ch;
+      font-size:   1.0rem;
+      line-height: 2;
+      color:       var(--muted);
+      opacity:     0;
+      animation:   fadeUp 0.9s 0.7s ease forwards;
+    }
+
+    /* ─── TEAM SECTION ─── */
+    .team-section {
+      border-top:      1px solid var(--border);
+      background:      rgba(17, 24, 39, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    :root.light .team-section { background: rgba(225, 220, 210, 0.35); }
+
+    /* ─── THREE-COLUMN FACULTY GROUPS ─── */
+    .faculty-groups {
+      display:               grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows:    auto auto;
+      gap:                   2px;
+      background:            var(--border);
+    }
+
+    .faculty-group {
+      background:          var(--ink);
+      display:             grid;
+      grid-template-rows:  subgrid;
+      grid-row:            span 2;
+    }
+
+    :root.light .faculty-group { background: var(--ink); }
+
+    /* ─── FACULTY CARD ─── */
+    .faculty-card {
+      padding:       2.5rem 2rem 2rem;
+      border-bottom: 2px solid var(--border);
+      position:      relative;
+    }
+
+    .faculty-card::before {
+      content:    '';
+      position:   absolute;
+      top:        0; left: 0; right: 0;
+      height:     3px;
+      background: var(--teal);
+    }
+
+    .faculty-monogram {
+      width:           56px;
+      height:          56px;
+      background:      rgba(45, 212, 191, 0.06);
+      border:          1px solid var(--border);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      font-family:     'Cormorant Garamond', serif;
+      font-size:       1.4rem;
+      font-weight:     300;
+      color:           var(--teal);
+      margin-bottom:   1.4rem;
+    }
+
+    .faculty-role {
+      font-size:      0.65rem;
+      letter-spacing: 0.2em;
+      color:          var(--teal);
+      text-transform: uppercase;
+      margin-bottom:  0.35rem;
+      opacity:        0.85;
+    }
+
+    .faculty-name {
+      font-family:   'Cormorant Garamond', serif;
+      font-size:     1.5rem;
+      font-weight:   400;
+      line-height:   1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .faculty-affil {
+      font-size:      0.68rem;
+      letter-spacing: 0.1em;
+      color:          var(--muted);
+      opacity:        0.7;
+      margin-bottom:  1.1rem;
+    }
+
+    .faculty-bio {
+      font-size:   0.78rem;
+      line-height: 1.95;
+      color:       var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .faculty-bio strong {
+      color:       var(--paper);
+      font-weight: 400;
+    }
+
+    /* .member-links and .member-link defined globally in theme.css */
+
+    /* ─── STUDENT CARD ─── */
+    .student-card {
+      padding:  1.8rem 2rem;
+      position: relative;
+      margin:   0;
+    }
+
+    .student-label {
+      font-size:      0.65rem;
+      letter-spacing: 0.2em;
+      color:          var(--teal);
+      text-transform: uppercase;
+      margin-bottom:  0.35rem;
+      opacity:        0.85;
+    }
+
+    .student-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size:   1.15rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+
+    /* ─── LIGHT MODE ─── */
+    :root.light .faculty-card   { background: transparent; }
+    :root.light .student-card   { background: transparent; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .faculty-groups { grid-template-columns: 1fr; }
+      .faculty-group  { border-bottom: 1px solid var(--border); }
+    }
+
+    @media (max-width: 768px) {
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .page-header .hero-sub { font-size: 0.9rem; }
+      .faculty-card  { padding: 2rem 1.5rem 1.5rem; }
+      .student-card  { padding: 1.4rem 1.5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Network<span>Psychometrics</span></a>
+  <ul>
+    <li><a href="team.html" class="active">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+  </ul>
+  <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <button id="theme-toggle" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <canvas id="header-canvas"></canvas>
+  <div class="page-header-content">
+    <div class="hero-tag">People</div>
+    <h1>The <em>Lab</em></h1>
+    <p class="hero-sub">
+      Researchers advancing the theory and application of network psychometrics
+      across personality, psychopathology, semantics, and beyond.
+    </p>
+  </div>
+</header>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="section-inner">
+
+    <div class="faculty-groups reveal">
+
+      <!-- ══════════ ALEXANDER P. CHRISTENSEN ══════════ -->
+      <div class="faculty-group">
+        <div class="faculty-card">
+          <div class="faculty-monogram">AC</div>
+          <div class="faculty-role">Assistant Professor</div>
+          <div class="faculty-name">Alexander P. Christensen</div>
+          <div class="faculty-affil">Vanderbilt University</div>
+          <div class="member-links">
+            <a class="member-link" href="https://github.com/AlexChristensen" target="_blank" rel="noopener">GitHub</a>
+            <a class="member-link" href="https://scholar.google.com/citations?user=RbatznQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="student-label">Graduate Student</div>
+          <div class="student-name">Jeongwon Choi</div>
+          <div class="member-links" style="margin-top:0.9rem;">
+            <a class="member-link" href="https://github.com/choi-jeongwon" target="_blank" rel="noopener">GitHub</a>
+            <a class="member-link" href="https://scholar.google.com/citations?user=X7w2AJUAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ HUDSON GOLINO ══════════ -->
+      <div class="faculty-group">
+        <div class="faculty-card">
+          <div class="faculty-monogram">HG</div>
+          <div class="faculty-role">Associate Professor</div>
+          <div class="faculty-name">Hudson Golino</div>
+          <div class="faculty-affil">University of Virginia</div>
+          <div class="member-links">
+            <a class="member-link" href="https://github.com/hfgolino" target="_blank" rel="noopener">GitHub</a>
+            <a class="member-link" href="https://scholar.google.com/citations?user=Ris_otUAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="student-label">Graduate Student</div>
+          <div class="student-name">Lara Russell-Lasalandra</div>
+          <div class="member-links" style="margin-top:0.9rem;">
+            <a class="member-link" href="https://github.com/laralee" target="_blank" rel="noopener">GitHub</a>
+            <a class="member-link" href="https://scholar.google.com/citations?user=yKbSyg8AAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ LUIS EDUARDO GARRIDO ══════════ -->
+      <div class="faculty-group">
+        <div class="faculty-card">
+          <div class="faculty-monogram">LG</div>
+          <div class="faculty-role">Full Professor-Researcher</div>
+          <div class="faculty-name">Luis Eduardo Garrido</div>
+          <div class="faculty-affil">Pontificia Universidad Católica Madre y Maestra</div>
+          <div class="member-links">
+            <a class="member-link" href="https://scholar.google.com/citations?user=TQjVJ4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+        <div class="student-card">
+          <div class="student-label">Graduate Student</div>
+          <div class="student-name">Leuny Ortiz</div>
+        </div>
+      </div>
+
+    </div><!-- /faculty-groups -->
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Network Psychometrics</p>
+  <div class="footer-links">
+    <a href="#">Documentation</a>
+    <a href="https://github.com/AlexChristensen">GitHub</a>
+    <a href="https://scholar.google.com/citations?user=RbatznQAAAAJ&hl=en">Google Scholar</a>
+    <a href="publications.html">Publications</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script>
+// ─── MOBILE NAV TOGGLE ───
+(function () {
+  var btn = document.getElementById('nav-toggle');
+  var nav = document.querySelector('nav');
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '\u2715' : '\u2630';
+  });
+  nav.querySelectorAll('ul a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      nav.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = '\u2630';
+    });
+  });
+})();
+
+// ─── THEME TOGGLE ───
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon   = document.getElementById('theme-icon');
+const themeLabel  = document.getElementById('theme-label');
+
+function syncThemeButton() {
+  const light = document.documentElement.classList.contains('light');
+  themeIcon.textContent  = light ? '☾' : '☀';
+  themeLabel.textContent = light ? 'Dark' : 'Light';
+  return light;
+}
+
+let isLight = syncThemeButton();
+
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    try {
+      const saved = localStorage.getItem('npTheme');
+      const shouldBeLight = saved === 'light';
+      document.documentElement.classList.toggle('light', shouldBeLight);
+    } catch(e) {}
+    isLight = syncThemeButton();
+  }
+});
+
+themeToggle.addEventListener('click', () => {
+  isLight = !isLight;
+  document.documentElement.classList.toggle('light', isLight);
+  syncThemeButton();
+  try { localStorage.setItem('npTheme', isLight ? 'light' : 'dark'); } catch(e) {}
+});
+
+// ─── HEADER NETWORK CANVAS ───
+(function () {
+  const canvas = document.getElementById('header-canvas');
+  const ctx = canvas.getContext('2d');
+  const header = document.querySelector('.page-header');
+  let W, H, nodes = [], edges = [];
+  const NODE_COUNT = 100;
+  const TEAL = '#2dd4bf', AMBER = '#f59e0b', YELLOW = '#f7b801';
+  const NP_STATE_KEY = 'npNetState';
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function initNodes() {
+    nodes = []; edges = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      const c = i < 5;
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2,
+        r: c ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
+        color: c ? TEAL : (Math.random() < 0.30 ? AMBER : YELLOW),
+        central: c, pulse: Math.random() * Math.PI * 2,
+      });
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+        if (d < 500) edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5 });
+      }
+    }
+  }
+
+  function saveState() {
+    try {
+      sessionStorage.setItem(NP_STATE_KEY, JSON.stringify(
+        nodes.map(n => ({ nx: n.x/W, ny: n.y/H, vx: n.vx, vy: n.vy,
+                          color: n.color, central: n.central, r: n.r, pulse: n.pulse }))
+      ));
+    } catch(e) {}
+  }
+
+  function tryLoadState() {
+    try {
+      const raw = sessionStorage.getItem(NP_STATE_KEY);
+      if (!raw) return false;
+      const saved = JSON.parse(raw);
+      if (!Array.isArray(saved) || !saved.length) return false;
+      nodes = saved.map(s => ({
+        x: s.nx * W, y: s.ny * H, vx: s.vx, vy: s.vy,
+        color: s.color, central: s.central, r: s.r, pulse: s.pulse
+      }));
+      edges = [];
+      for (let i = 0; i < nodes.length; i++)
+        for (let j = i + 1; j < nodes.length; j++) {
+          const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+          if (d < 500) edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5 });
+        }
+      return true;
+    } catch(e) { return false; }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    const lm = document.documentElement.classList.contains('light');
+    for (const e of edges) {
+      const a = nodes[e.a], b = nodes[e.b];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d > 220) continue;
+      const alpha = e.w * (1 - d / 250) * 0.90;
+      const hi = a.central || b.central;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = hi ? `rgba(13,148,136,${alpha * 2})`
+        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 1.5})`;
+      ctx.lineWidth = hi ? 1 : 0.5;
+      ctx.stroke();
+    }
+    for (const n of nodes) {
+      n.pulse += 0.02;
+      const glow = n.central ? (1 + Math.sin(n.pulse) * 0.3) : 1;
+      if (n.central) {
+        const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4 * glow);
+        g.addColorStop(0, 'rgba(45,212,191,0.25)'); g.addColorStop(1, 'rgba(45,212,191,0)');
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r * 4 * glow, 0, Math.PI * 2);
+        ctx.fillStyle = g; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
+      const al = n.central ? 1.0 : 0.65;
+      ctx.fillStyle = n.color === TEAL ? `rgba(13,148,136,${al})`
+        : n.color === AMBER ? `rgba(245,158,11,${al})`
+        : lm ? `rgba(26,31,46,${al * 0.75})` : `rgba(244,240,232,${al * 0.75})`;
+      ctx.fill();
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  if (!tryLoadState()) initNodes();
+  window.addEventListener('resize', () => {
+    const oldW = W, oldH = H;
+    resize();
+    nodes.forEach(n => { n.x = n.x / oldW * W; n.y = n.y / oldH * H; });
+  });
+  window.addEventListener('pagehide', saveState);
+  requestAnimationFrame(tick);
+
+  header.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    for (const n of nodes) {
+      const dx = mx - n.x, dy = my - n.y, d = Math.hypot(dx, dy);
+      if (d < 120) { n.vx -= dx / d * 0.04; n.vy -= dy / d * 0.04; }
+      const sp = Math.hypot(n.vx, n.vy);
+      if (sp > 0.25) { n.vx *= 0.5; n.vy *= 0.5; }
+    }
+  });
+})();
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.transitionDelay = `${i * 0.05}s`;
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

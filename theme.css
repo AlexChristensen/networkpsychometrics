@@ -108,6 +108,10 @@ blockquote::before {
   opacity:  0.65;
 }
 
+:root.light #canvas {
+  opacity: 0.49;
+}
+
 /* ─── NAV ─── */
 nav {
   position:        fixed;
@@ -194,6 +198,46 @@ nav a.active { color: var(--teal); }
   color:        var(--teal);
 }
 
+/* ─── HAMBURGER / MOBILE NAV TOGGLE ─── */
+#nav-toggle {
+  display:     none;
+  background:  transparent;
+  border:      1px solid var(--border);
+  color:       var(--muted);
+  font-size:   1.1rem;
+  line-height: 1;
+  padding:     0.35rem 0.65rem;
+  cursor:      pointer;
+  transition:  border-color 0.3s, color 0.3s;
+}
+#nav-toggle:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ─── OUTLINE LINK BUTTONS (shared site style) ─── */
+.member-links {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.5rem;
+}
+
+.member-link {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.3rem;
+  font-size:       0.68rem;
+  letter-spacing:  0.14em;
+  text-transform:  uppercase;
+  text-decoration: none;
+  padding:         0.24rem 0.65rem;
+  border:          1px solid var(--border);
+  color:           var(--muted);
+  transition:      border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.member-link:hover { border-color: var(--teal); color: var(--teal); }
+
+:root.light .member-link       { border-color: rgba(26,31,46,0.2); }
+:root.light .member-link:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
 /* ─── BUTTONS ─── */
 .btn-primary {
   padding:        0.9rem 2.2rem;
@@ -219,20 +263,23 @@ nav a.active { color: var(--teal); }
 .btn-ghost {
   padding:        0.9rem 2.2rem;
   background:     transparent;
-  color:          var(--paper);
+  color:          var(--muted);
   font-family:    'DM Mono', monospace;
   font-size:      0.9rem;
   font-weight:    400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border:         1px solid rgba(244, 240, 232, 0.2);
+  border:         1px solid var(--border);
   cursor:         pointer;
-  transition:     border-color 0.3s, color 0.3s;
+  transition:     border-color 0.3s, color 0.3s, background 0.3s;
   text-decoration: none;
   display:        inline-block;
 }
 
-.btn-ghost:hover { border-color: var(--paper); }
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+:root.light .btn-ghost       { border-color: rgba(26,31,46,0.2); }
+:root.light .btn-ghost:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
 
 /* ─── SECTION LAYOUT ─── */
 section {
@@ -352,6 +399,15 @@ footer p {
   white-space:    nowrap;
 }
 
+/* ─── INLINE HYPERLINKS (dark mode only) ─── */
+:root:not(.light) a:not([class]) {
+  color: #5eead4;
+  transition: color 0.2s;
+}
+:root:not(.light) a:not([class]):hover {
+  color: var(--teal);
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -400,6 +456,30 @@ footer p {
 .filter-btn.active {
   border-color: var(--teal);
   color:        var(--teal);
+}
+
+.filter-btn[data-filter="all"]:hover,
+.filter-btn[data-filter="all"].active {
+  border-color: var(--paper);
+  color:        var(--paper);
+}
+
+.filter-btn[data-filter="preprint"]:hover,
+.filter-btn[data-filter="preprint"].active {
+  border-color: var(--amber);
+  color:        var(--amber);
+}
+
+.filter-btn[data-filter="chapter"]:hover,
+.filter-btn[data-filter="chapter"].active {
+  border-color: #f08080;
+  color:        #f08080;
+}
+
+.filter-btn[data-filter="software"]:hover,
+.filter-btn[data-filter="software"].active {
+  border-color: #e76f51;
+  color:        #e76f51;
 }
 
 /* ─── TOPICS DROPDOWN ─── */
@@ -487,6 +567,34 @@ footer p {
   color:        #fff;
 }
 
+:root.light .filter-btn[data-filter="all"]:hover,
+:root.light .filter-btn[data-filter="all"].active {
+  background:   var(--paper);
+  border-color: var(--paper);
+  color:        #fff;
+}
+
+:root.light .filter-btn[data-filter="preprint"]:hover,
+:root.light .filter-btn[data-filter="preprint"].active {
+  background:   var(--amber);
+  border-color: var(--amber);
+  color:        #fff;
+}
+
+:root.light .filter-btn[data-filter="chapter"]:hover,
+:root.light .filter-btn[data-filter="chapter"].active {
+  background:   #f08080;
+  border-color: #f08080;
+  color:        #fff;
+}
+
+:root.light .filter-btn[data-filter="software"]:hover,
+:root.light .filter-btn[data-filter="software"].active {
+  background:   #e76f51;
+  border-color: #e76f51;
+  color:        #fff;
+}
+
 :root.light .filter-dropdown-btn {
   border-color: rgba(26,31,46,0.2);
   color:        var(--muted);
@@ -494,8 +602,9 @@ footer p {
 
 :root.light .filter-dropdown-btn:hover,
 :root.light .filter-dropdown-btn.active {
+  background:   var(--teal);
   border-color: var(--teal);
-  color:        var(--teal);
+  color:        #fff;
 }
 
 :root.light .filter-dropdown-menu {
@@ -514,6 +623,19 @@ footer p {
   color:        #fff;
 }
 
+:root.light .filter-dropdown-item[data-topic="aesthetics"]:hover,
+:root.light .filter-dropdown-item[data-topic="aesthetics"].active          { background: #b5e48c; color: #111827; }
+:root.light .filter-dropdown-item[data-topic="creativity"]:hover,
+:root.light .filter-dropdown-item[data-topic="creativity"].active          { background: #f9c74f; color: #111827; }
+:root.light .filter-dropdown-item[data-topic="neuroscience"]:hover,
+:root.light .filter-dropdown-item[data-topic="neuroscience"].active        { background: #fec3a6; color: #111827; }
+:root.light .filter-dropdown-item[data-topic="personality"]:hover,
+:root.light .filter-dropdown-item[data-topic="personality"].active         { background: #b56576; color: #fff;    }
+:root.light .filter-dropdown-item[data-topic="psychometric-networks"]:hover,
+:root.light .filter-dropdown-item[data-topic="psychometric-networks"].active { background: #c77dff; color: #111827; }
+:root.light .filter-dropdown-item[data-topic="semantic-networks"]:hover,
+:root.light .filter-dropdown-item[data-topic="semantic-networks"].active   { background: #94d2bd; color: #111827; }
+
 /* ─── LIGHT MODE SECTION OVERRIDES ─── */
 :root.light body        { background: var(--ink); color: var(--paper); }
 :root.light #about      { background: rgba(225, 220, 210, 0.50); }
@@ -522,8 +644,31 @@ footer p {
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
-  nav ul { display: none; }
+
+  #nav-toggle { display: block; }
+
+  nav ul {
+    display:         none;
+    position:        absolute;
+    top:             100%;
+    left:            0; right: 0;
+    flex-direction:  column;
+    gap:             0;
+    background:      rgba(7, 10, 16, 0.97);
+    border-top:      1px solid var(--border);
+    backdrop-filter: blur(16px);
+    padding:         1rem 0;
+    z-index:         99;
+  }
+  nav.nav-open ul { display: flex; }
+  nav ul li a     { display: block; padding: 0.85rem 1.5rem; font-size: 0.85rem; }
+  :root.light nav.nav-open ul { background: rgba(240, 237, 230, 0.97); }
+
   .section-inner { padding: 5rem 1.5rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+}
+
+@media (max-width: 1024px) {
+  .section-inner { padding: 6rem 2.5rem; }
 }
