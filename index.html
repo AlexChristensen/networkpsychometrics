@@ -22,15 +22,6 @@
      are all in theme.css
   ══════════════════════════════════════════ */
 
-  /* ─── SMOOTH THEME TRANSITIONS ─── */
-  #about, #applications, #concepts, #quote, #cta, .concept-card {
-    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-  }
-
-  /* ─── LIGHT MODE: INDEX-SPECIFIC SECTION OVERRIDES ─── */
-  :root.light .concept-card       { background: var(--ink); }
-  :root.light .concept-card:hover { background: #e0dbd0; }
-
   /* ─── HERO (index-specific) ─── */
   #hero {
     position: relative;
@@ -116,7 +107,7 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: var(--muted);
+    color: var(--teal);
     font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -125,9 +116,10 @@
   }
 
   .scroll-line {
-    width: 40px;
-    height: 1px;
-    background: var(--muted);
+    width: 70px;
+    height: 1.5px;
+    background: var(--teal);
+    color: var(--dim);
     position: relative;
     overflow: hidden;
   }
@@ -138,272 +130,20 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: var(--teal);
-    animation: scanline 2s 2s infinite;
-  }
-
-  /* ─── ABOUT ─── */
-  #about {
-    border-top: 1px solid var(--border);
-    background: rgba(17, 24, 39, 0.5);
-    backdrop-filter: blur(4px);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .about-text p {
-    font-size: 0.78rem;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 1.2rem;
-  }
-
-  .about-text p strong {
-    color: var(--paper);
-    font-weight: 400;
-  }
-
-  .about-visual {
-    position: relative;
-    aspect-ratio: 1;
-    max-width: 420px;
-  }
-
-  .ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    animation: rotate 20s linear infinite;
-  }
-
-  .ring:nth-child(1) { inset: 0; animation-duration: 25s; }
-  .ring:nth-child(2) { inset: 15%; animation-duration: 18s; animation-direction: reverse; border-color: rgba(245, 158, 11, 0.1); }
-  .ring:nth-child(3) { inset: 30%; animation-duration: 12s; border-color: rgba(45, 212, 191, 0.25); }
-
-  .ring::after {
-    content: '';
-    position: absolute;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--teal);
-    top: -3px; left: 50%;
-    box-shadow: 0 0 12px var(--teal);
-  }
-
-  .ring:nth-child(2)::after { background: var(--amber); box-shadow: 0 0 12px var(--amber); }
-  .ring:nth-child(3)::after { width: 8px; height: 8px; top: -4px; }
-
-  .ring-center {
-    position: absolute;
-    inset: 43%;
-    border-radius: 50%;
-    background: var(--teal);
-    box-shadow: 0 0 40px var(--teal);
-    opacity: 0.3;
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  /* ─── CONCEPTS ─── */
-  #concepts { border-top: 1px solid var(--border); }
-
-  .concepts-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 4rem;
-  }
-
-  .concepts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: var(--border);
-  }
-
-  .concept-card {
-    background: var(--ink);
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.4s;
-  }
-
-  .concept-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(45,212,191,0.05), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-
-  .concept-card:hover { background: #0d1420; }
-  .concept-card:hover::before { opacity: 1; }
-
-  .concept-num {
-    font-size: 0.6rem;
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    margin-bottom: 1.5rem;
-    opacity: 0.7;
-  }
-
-  .concept-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
-    line-height: 1.2;
-  }
-
-  .concept-desc {
-    font-size: 0.8rem;
-    line-height: 1.9;
-    color: var(--muted);
-  }
-
-  .concept-icon {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    opacity: 0.08;
-    transition: opacity 0.4s;
-  }
-
-  .concept-card:hover .concept-icon { opacity: 0.15; }
-
-  /* ─── APPLICATIONS ─── */
-  #applications {
-    border-top: 1px solid var(--border);
-    background: rgba(17, 24, 39, 0.4);
-  }
-
-  .app-list {
-    margin-top: 4rem;
-    display: grid;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-
-  .app-item {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-    cursor: default;
-  }
-
-  .app-item:last-child { border-bottom: none; }
-  .app-item:hover { background: rgba(45, 212, 191, 0.04); }
-
-  .app-num {
-    font-size: 0.8rem;
-    color: var(--teal);
-    opacity: 0.6;
-    letter-spacing: 0.15em;
-  }
-
-  .app-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-  }
-
-  .app-desc {
-    font-size: 0.8rem;
-    color: var(--muted);
-    max-width: 40ch;
-    line-height: 1.8;
-    text-align: right;
-  }
-
-  /* ─── QUOTE ─── */
-  #quote {
-    border-top: 1px solid var(--border);
-  }
-
-  .quote-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 8rem 3rem;
-    text-align: center;
-  }
-
-  .quote-source {
-    margin-top: 2rem;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  /* ─── CTA ─── */
-  #cta {
-    border-top: 1px solid var(--border);
-    background: linear-gradient(to bottom, transparent, rgba(45, 212, 191, 0.04));
-  }
-
-  .cta-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 8rem 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .cta-text h2 { margin-bottom: 1rem; }
-
-  .cta-text p {
-    font-size: 0.75rem;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .cta-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    background: var(--dim);
+    animation: scanline 2.5s 2.5s infinite;
   }
 
   /* ─── TABLET ─── */
   @media (max-width: 1024px) {
-    .concepts-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-sub      { font-size: 1rem; }
-    .app-item      { grid-template-columns: 60px 1fr; }
-    .app-desc      { display: none; }
+    .hero-sub { font-size: 1rem; }
   }
 
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
-    #hero          { padding: 0 1.5rem; padding-top: 6rem; min-height: 100svh; }
-    .hero-sub      { font-size: 0.95rem; }
-    .hero-actions  { flex-direction: column; align-items: flex-start; }
-    .about-grid    { grid-template-columns: 1fr; }
-    .about-visual  { display: none; }
-    .concepts-grid { grid-template-columns: 1fr; }
-    .cta-inner     { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-metrics  { display: none; }
-    .app-item      { grid-template-columns: 60px 1fr; }
-    .app-desc      { display: none; }
-    .form-row      { grid-template-columns: 1fr; }
+    #hero         { padding: 0 1.5rem; padding-top: 6rem; min-height: 100svh; }
+    .hero-sub     { font-size: 0.95rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -458,152 +198,6 @@
     </div>
   </div>
 --->
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="section-tag">What is it</div>
-        <h2>Symptoms Cause Each Other</h2>
-        <p>
-          Traditional psychometrics assumes that observed symptoms — <strong>sleeplessness, low mood, fatigue</strong> — are passive reflections of an underlying disorder. Network psychometrics inverts this assumption.
-        </p>
-        <p>
-          In the network approach, symptoms are <strong>causally interconnected</strong>. Insomnia causes fatigue; fatigue causes concentration difficulties; concentration difficulties worsen depressive rumination. The disorder <em>is</em> the network.
-        </p>
-        <p>
-          Developed from graph theory and statistical physics, this paradigm offers new tools for understanding <strong>individual differences, comorbidity, treatment pathways,</strong> and the topology of the psyche.
-        </p>
-      </div>
-      <div class="about-visual reveal">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring-center"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONCEPTS -->
-<section id="concepts">
-  <div class="section-inner">
-    <div class="concepts-header reveal">
-      <div>
-        <div class="section-tag">Core framework</div>
-        <h2>Six Fundamental<br>Concepts</h2>
-      </div>
-    </div>
-    <div class="concepts-grid reveal">
-      <div class="concept-card">
-        <div class="concept-num">01</div>
-        <div class="concept-title">Nodes</div>
-        <p class="concept-desc">Psychological variables — symptoms, traits, cognitive features — treated as active entities in a causal system rather than passive indicators of an unseen factor.</p>
-        <div class="concept-icon">◉</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-num">02</div>
-        <div class="concept-title">Edges</div>
-        <p class="concept-desc">Pairwise associations between nodes, typically estimated via partial correlations (EBIC-GLASSO) or Bayesian methods, representing genuine conditional dependencies.</p>
-        <div class="concept-icon">─</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-num">03</div>
-        <div class="concept-title">Centrality</div>
-        <p class="concept-desc">Measures such as strength, betweenness, and closeness identify the most influential variables — potential leverage points for intervention and treatment.</p>
-        <div class="concept-icon">★</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-num">04</div>
-        <div class="concept-title">Communities</div>
-        <p class="concept-desc">Clustering algorithms detect tightly connected subgroups within a network, revealing natural substructures that may correspond to symptom dimensions or facets.</p>
-        <div class="concept-icon">⬡</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-num">05</div>
-        <div class="concept-title">Stability</div>
-        <p class="concept-desc">Accuracy and stability of network estimates are evaluated through bootstrapping and case-dropping procedures, ensuring reproducible inference from finite samples.</p>
-        <div class="concept-icon">⧖</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-num">06</div>
-        <div class="concept-title">Dynamics</div>
-        <p class="concept-desc">Temporal networks capture how variables influence one another over time — transforming static snapshots into longitudinal causal portraits of psychological processes.</p>
-        <div class="concept-icon">↻</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- APPLICATIONS -->
-<section id="applications">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-tag">Where it applies</div>
-      <h2>From Theory<br>to Clinical Reality</h2>
-    </div>
-    <div class="app-list reveal">
-      <div class="app-item">
-        <div class="app-num">01</div>
-        <div class="app-name">Psychopathology Modeling</div>
-        <div class="app-desc">Map comorbidity through shared bridge symptoms rather than overlapping latent factors.</div>
-      </div>
-      <div class="app-item">
-        <div class="app-num">02</div>
-        <div class="app-name">Personality Science</div>
-        <div class="app-desc">Represent Big Five facets and their interactions as integrated, emergent network structures.</div>
-      </div>
-      <div class="app-item">
-        <div class="app-num">03</div>
-        <div class="app-name">Treatment Planning</div>
-        <div class="app-desc">Target central, high-betweenness symptoms to maximally disrupt pathological network states.</div>
-      </div>
-      <div class="app-item">
-        <div class="app-num">04</div>
-        <div class="app-name">Idiographic Assessment</div>
-        <div class="app-desc">Build individual-level networks from Experience Sampling data for precision mental healthcare.</div>
-      </div>
-      <div class="app-item">
-        <div class="app-num">05</div>
-        <div class="app-name">Psychometric Test Design</div>
-        <div class="app-desc">Evaluate item interdependencies and structural validity through network topology metrics.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<section id="quote">
-  <div class="quote-inner reveal">
-    <blockquote>
-      The network approach treats the covariance structure of psychological variables as a direct object of study — not as a nuisance to be explained away by a latent cause.
-    </blockquote>
-    <p class="quote-source">— Borsboom & Cramer, Annual Review of Clinical Psychology, 2013</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-inner">
-    <div class="cta-text reveal">
-      <div class="section-tag">Get involved</div>
-      <h2>Start Mapping the Mind</h2>
-      <p>Whether you're a researcher, clinician, or data scientist, our platform provides tools for estimating, visualizing, and interpreting psychological networks from your own data.</p>
-      <p>Access our R packages, Python bindings, interactive visualization suite, and training resources — all designed for reproducible network science.</p>
-    </div>
-    <div class="cta-form reveal">
-      <div class="form-row">
-        <input type="text" placeholder="First name">
-        <input type="text" placeholder="Last name">
-      </div>
-      <input type="email" placeholder="Institutional email">
-      <input type="text" placeholder="Research focus (e.g., depression, personality)">
-      <textarea placeholder="Tell us about your project or question..."></textarea>
-      <button class="btn-primary" style="border:none;cursor:pointer;text-align:center;">Send Request →</button>
-    </div>
-  </div>
 </section>
 
 <!-- FOOTER -->
@@ -819,19 +413,25 @@ themeToggle.addEventListener('click', () => {
   try { localStorage.setItem('npTheme', isLight ? 'light' : 'dark'); } catch(e) {}
 });
 
-// ─── SCROLL REVEAL ───
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      entry.target.style.transitionDelay = `${i * 0.05}s`;
-      entry.target.classList.add('visible');
-      io.unobserve(entry.target);
-    }
+// ─── SCROLL HINT FADE ───
+(function () {
+  const hint = document.querySelector('.scroll-hint');
+  if (!hint) return;
+  const line = hint.querySelector('.scroll-line');
+  function onScroll() {
+    const progress = Math.max(0, 1 - window.scrollY / 200);
+    hint.style.opacity = progress;
+    if (line) line.style.width = (40 * progress) + 'px';
+  }
+  hint.addEventListener('animationend', function handler() {
+    hint.removeEventListener('animationend', handler);
+    hint.style.animation = 'none';
+    hint.style.opacity = '1';
+    hint.style.transform = 'translateY(0)';
+    hint.style.transition = 'opacity 0.4s ease';
+    window.addEventListener('scroll', onScroll, { passive: true });
   });
-}, { threshold: 0.12 });
-
-reveals.forEach(el => io.observe(el));
+})();
 
 // ─── MOBILE NAV TOGGLE ───
 (function () {
@@ -851,23 +451,6 @@ reveals.forEach(el => io.observe(el));
   });
 })();
 
-// ─── CONCEPT CARD STAGGER ───
-const cards = document.querySelectorAll('.concept-card');
-const cardIO = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) {
-    cards.forEach((card, i) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = `opacity 0.6s ${i * 0.1}s ease, transform 0.6s ${i * 0.1}s ease`;
-      setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 50);
-    });
-    cardIO.disconnect();
-  }
-}, { threshold: 0.1 });
-if (cards[0]) cardIO.observe(cards[0].closest('section'));
 </script>
 </body>
 </html>

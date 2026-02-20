@@ -65,7 +65,7 @@
 
     .page-header .hero-sub {
       margin-top:  2rem;
-      max-width:   60ch;
+      max-width:   80ch;
       font-size:   1.0rem;
       line-height: 2;
       color:       var(--muted);
@@ -116,18 +116,26 @@
     }
 
     .faculty-monogram {
-      width:           56px;
-      height:          56px;
+      width:           100px;
+      height:          100px;
       background:      rgba(45, 212, 191, 0.06);
       border:          1px solid var(--border);
       display:         flex;
       align-items:     center;
       justify-content: center;
       font-family:     'Cormorant Garamond', serif;
-      font-size:       1.4rem;
+      font-size:       2rem;
       font-weight:     300;
       color:           var(--teal);
       margin-bottom:   1.4rem;
+      overflow:        hidden;
+    }
+
+    .faculty-monogram img {
+      width:            100%;
+      height:           100%;
+      object-fit:       cover;
+      display:          block;
     }
 
     .faculty-role {
@@ -232,10 +240,9 @@
   <canvas id="header-canvas"></canvas>
   <div class="page-header-content">
     <div class="hero-tag">People</div>
-    <h1>The <em>Lab</em></h1>
+    <h1>The <em>Team</em></h1>
     <p class="hero-sub">
-      Researchers advancing the theory and application of network psychometrics
-      across personality, psychopathology, semantics, and beyond.
+      Advancing theory and application of network psychometrics across personality, psychopathology, semantics, and beyond
     </p>
   </div>
 </header>
@@ -249,7 +256,9 @@
       <!-- ══════════ ALEXANDER P. CHRISTENSEN ══════════ -->
       <div class="faculty-group">
         <div class="faculty-card">
-          <div class="faculty-monogram">AC</div>
+          <div class="faculty-monogram">
+            <img src="team/alexander-christensen.jpg" alt="Alexander P. Christensen" style="object-position: center 60%;">
+          </div>
           <div class="faculty-role">Assistant Professor</div>
           <div class="faculty-name">Alexander P. Christensen</div>
           <div class="faculty-affil">Vanderbilt University</div>
@@ -271,7 +280,9 @@
       <!-- ══════════ HUDSON GOLINO ══════════ -->
       <div class="faculty-group">
         <div class="faculty-card">
-          <div class="faculty-monogram">HG</div>
+          <div class="faculty-monogram">
+            <img src="team/hudson-golino.jpg" alt="Hudson Golino" style="object-position: center 8%;">
+          </div>
           <div class="faculty-role">Associate Professor</div>
           <div class="faculty-name">Hudson Golino</div>
           <div class="faculty-affil">University of Virginia</div>
@@ -293,7 +304,9 @@
       <!-- ══════════ LUIS EDUARDO GARRIDO ══════════ -->
       <div class="faculty-group">
         <div class="faculty-card">
-          <div class="faculty-monogram">LG</div>
+          <div class="faculty-monogram">
+            <img src="team/luis-eduardo-garrido.png" alt="Luis Eduardo Garrido" style="object-position: center 25%;">
+          </div>
           <div class="faculty-role">Full Professor-Researcher</div>
           <div class="faculty-name">Luis Eduardo Garrido</div>
           <div class="faculty-affil">Pontificia Universidad Católica Madre y Maestra</div>
