@@ -186,30 +186,6 @@
     .pub-badge.software { border-color: rgba(231,111,81,0.4);   color: #e76f51;      }
 
 
-    /* ─── TOPIC TAGS ─── */
-    .pub-topics {
-      display:    flex;
-      flex-wrap:  wrap;
-      gap:        0.6rem;
-      margin-top: 0.5rem;
-    }
-
-    .pub-tag {
-      display:        inline-block;
-      font-size:      0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding:        0.22rem 0.65rem;
-      border:         1px solid;
-    }
-
-    .pub-tag.aesthetics          { color: #b5e48c; border-color: rgba(181,228,140,0.4); }
-    .pub-tag.personality         { color: #b56576; border-color: rgba(181,101,118,0.4); }
-    .pub-tag.psychometric-networks { color: #c77dff; border-color: rgba(199,125,255,0.4); }
-    .pub-tag.semantic-networks   { color: #94d2bd; border-color: rgba(148,210,189,0.4); }
-    .pub-tag.creativity          { color: #f9c74f; border-color: rgba(249,199,79,0.4); }
-    .pub-tag.neuroscience        { color: #fec3a6; border-color: rgba(254,195,166,0.4); }
-
     /* ─── LIGHT MODE ─── */
     :root.light .pub-section { background: rgba(225,220,210,0.35); }
     /* ─── LIGHT MODE: filled type badges ─── */
@@ -217,14 +193,6 @@
     :root.light .pub-badge.preprint { background: var(--amber); color: #fff;    border-color: transparent; }
     :root.light .pub-badge.chapter  { background: #f08080;      color: #fff;    border-color: transparent; }
     :root.light .pub-badge.software { background: #e76f51;      color: #fff;    border-color: transparent; }
-
-    /* ─── LIGHT MODE: filled topic tags ─── */
-    :root.light .pub-tag.aesthetics            { background: #b5e48c; color: #1a3a1a; border-color: transparent; }
-    :root.light .pub-tag.personality           { background: #b56576; color: #fff;    border-color: transparent; }
-    :root.light .pub-tag.psychometric-networks { background: #c77dff; color: #1a0a2e; border-color: transparent; }
-    :root.light .pub-tag.semantic-networks     { background: #94d2bd; color: #0a2a25; border-color: transparent; }
-    :root.light .pub-tag.creativity            { background: #f9c74f; color: #2a1a00; border-color: transparent; }
-    :root.light .pub-tag.neuroscience          { background: #fec3a6; color: #2a0f00; border-color: transparent; }
 
     /* ─── LIGHT MODE: link pills ─── */
     :root.light .pub-link              { border-color: rgba(26,31,46,0.2); color: var(--muted); }
@@ -281,23 +249,7 @@
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="journal">Journal Articles</button>
       <button class="filter-btn" data-filter="preprint">Preprints</button>
-      <button class="filter-btn" data-filter="chapter">Book Chapters</button>
       <button class="filter-btn" data-filter="software">Software</button>
-
-      <div class="filter-dropdown" id="topic-dropdown">
-        <button class="filter-dropdown-btn" id="topic-dropdown-btn">
-          <span id="topic-label">Topics</span><span class="filter-dropdown-arrow">▼</span>
-        </button>
-        <div class="filter-dropdown-menu" id="topic-dropdown-menu">
-          <button class="filter-dropdown-item active" data-topic="all" data-color="">All Topics</button>
-          <button class="filter-dropdown-item" data-topic="aesthetics" data-color="#b5e48c">Aesthetics</button>
-          <button class="filter-dropdown-item" data-topic="creativity" data-color="#f9c74f">Creativity</button>
-          <button class="filter-dropdown-item" data-topic="neuroscience" data-color="#fec3a6">Neuroscience</button>
-          <button class="filter-dropdown-item" data-topic="personality" data-color="#b56576">Personality</button>
-          <button class="filter-dropdown-item" data-topic="psychometric-networks" data-color="#c77dff">Psychometric Networks</button>
-          <button class="filter-dropdown-item" data-topic="semantic-networks" data-color="#94d2bd">Semantic Networks</button>
-</div>
-      </div>
 
       <div class="filter-dropdown" id="year-dropdown">
         <button class="filter-dropdown-btn" id="year-dropdown-btn">
@@ -315,7 +267,20 @@
           <button class="filter-dropdown-item" data-year-filter="2019">2019</button>
           <button class="filter-dropdown-item" data-year-filter="2018">2018</button>
           <button class="filter-dropdown-item" data-year-filter="2017">2017</button>
-          <button class="filter-dropdown-item" data-year-filter="2016">2016</button>
+        </div>
+      </div>
+
+      <div class="filter-dropdown" id="member-dropdown">
+        <button class="filter-dropdown-btn" id="member-dropdown-btn">
+          <span id="member-label">Team Member</span><span class="filter-dropdown-arrow">▼</span>
+        </button>
+        <div class="filter-dropdown-menu" id="member-dropdown-menu">
+          <button class="filter-dropdown-item active" data-member-filter="all">All Members</button>
+          <button class="filter-dropdown-item" data-member-filter="Christensen, A. P.">Christensen, A. P.</button>
+          <button class="filter-dropdown-item" data-member-filter="Choi, J.">Choi, J.</button>
+          <button class="filter-dropdown-item" data-member-filter="Garrido, L. E.">Garrido, L. E.</button>
+          <button class="filter-dropdown-item" data-member-filter="Golino, H.">Golino, H.</button>
+          <button class="filter-dropdown-item" data-member-filter="Russell-Lasalandra, L. L.">Russell-Lasalandra, L. L.</button>
         </div>
       </div>
     </div>
@@ -324,7 +289,7 @@
     <div class="pub-year-group reveal" data-year="2026">
       <div class="pub-year">2026</div>
 
-                 <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -337,11 +302,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="software" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="software">
         <div class="pub-bar software"></div>
         <div class="pub-content">
           <div class="pub-badge software">Software</div>
@@ -355,7 +319,89 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Graña, D. F., Kreitchmann, R. S., Sorrel, M. A., Garrido, L. E., &amp; Abad, F. J.</span>
+            (2026).
+            <span class="title">Dimensionality assessment in forced-choice questionnaires: First steps toward an exploratory framework.</span>
+            <span class="journal">Educational and Psychological Measurement</span>,
+            <em>86</em>(1), 54–81.
+            <a href="https://doi.org/10.1177/00131644251358226" target="_blank" rel="noopener">https://doi.org/10.1177/00131644251358226</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Bailey, N. A., Golino, H. F., &amp; Allen, J. P.</span>
+            (2026).
+            <span class="title">Autonomy and relatedness in mother-adolescent interactions: An investigation using Exploratory Graph Analysis.</span>
+            <span class="journal">Family Process</span>,
+            <em>65</em>(1), e70116.
+            <a href="https://doi.org/10.1111/famp.70116" target="_blank" rel="noopener">https://doi.org/10.1111/famp.70116</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Pereira, R. B., Manfro, P. H., Viduani, A., Cosenza, V., Buchweitz, C., Piccin, J., et al.</span>
+            (2026).
+            <span class="title">What retrospective and dynamic assessments tell us about youth depression: A network analysis perspective.</span>
+            <span class="journal">Journal of Affective Disorders</span>,
+            <em>399</em>, 121099.
+            <a href="https://doi.org/10.1016/j.jad.2025.121099" target="_blank" rel="noopener">https://doi.org/10.1016/j.jad.2025.121099</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="preprint">
+        <div class="pub-bar preprint"></div>
+        <div class="pub-content">
+          <div class="pub-badge preprint">Preprint</div>
+          <p class="pub-apa">
+            <span class="authors">Golino, H.</span>
+            (2026).
+            <span class="title">Optimizing the landscape of LLM embeddings with Dynamic Exploratory Graph Analysis for generative psychometrics: A Monte Carlo study.</span>
+            <em>arXiv.</em>
+            <a href="https://arxiv.org/abs/2601.17010" target="_blank" rel="noopener">https://arxiv.org/abs/2601.17010</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="preprint">
+        <div class="pub-bar preprint"></div>
+        <div class="pub-content">
+          <div class="pub-badge preprint">Preprint</div>
+          <p class="pub-apa">
+            <span class="authors">Garrido, L. E., Russell-Lasalandra, L. L., &amp; Golino, H.</span>
+            (2026).
+            <span class="title">Estimating dimensional structure in generative psychometrics: Comparing PCA and network methods using large language model item embeddings.</span>
+            <em>PsyArXiv.</em>
+            <a href="https://doi.org/10.31234/osf.io/2s7pw_v1" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/2s7pw_v1</a>
+          </p>
+          <div class="pub-links">
+          </div>
         </div>
       </div>
 
@@ -365,7 +411,7 @@
     <div class="pub-year-group reveal" data-year="2025">
       <div class="pub-year">2025</div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -379,29 +425,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P., Cardillo, E. R., &amp; Chatterjee, A.</span>
-            (2025).
-            <span class="title">Can art promote understanding? A review of the psychology and neuroscience of aesthetic cognitivism.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>19</em>(1), 1–13.
-            <a href="https://doi.org/10.1037/aca0000541" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000541</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -415,11 +442,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -433,11 +459,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -450,11 +475,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -468,11 +492,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -486,11 +509,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -504,11 +526,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -521,46 +542,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Darda, K. M., Estrada Gonzalez, V., Christensen, A. P., Bobrow, I., Krimm, A., et al.</span>
-            (2025).
-            <span class="title">A comparison of art engagement in museums and through digital media.</span>
-            <span class="journal">Scientific Reports</span>,
-            <em>15</em>(1), 8972.
-            <a href="https://doi.org/10.1038/s41598-025-93630-0" target="_blank" rel="noopener">https://doi.org/10.1038/s41598-025-93630-0</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Olea, C., Christensen, A. P., Fazio, L., Cutting, L., Lieb, M., Phelan, J., &amp; Wise, A.</span>
-            (2025).
-            <span class="title">Evaluating phishing email efficacy.</span>
-            <span class="journal">Proceedings of the 2025 Computers and People Research Conference</span>,
-            1–8.
-            <a href="https://doi.org/10.1145/3716489.3728437" target="_blank" rel="noopener">https://doi.org/10.1145/3716489.3728437</a>
-          </p>
-          <div class="pub-links">
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -573,29 +558,10 @@
           </p>
                     <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Décaillet, M., Christensen, A. P., Besuchet, L., Huguenin-Virchaux, C., et al.</span>
-            (2025).
-            <span class="title">Characterization of language abilities and semantic networks in very preterm children at school-age.</span>
-            <span class="journal">PLoS ONE</span>,
-            <em>20</em>(1), e0317535.
-            <a href="https://doi.org/10.1371/journal.pone.0317535" target="_blank" rel="noopener">https://doi.org/10.1371/journal.pone.0317535</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -608,7 +574,38 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Kaiser, T., Herzog, P., Brakemeier, E. L., &amp; Golino, H.</span>
+            (2025).
+            <span class="title">Must we always go idiographic?: Information-theoretic approaches to testing structural ergodicity in temporal symptom networks.</span>
+            <span class="journal">Cognitive Therapy and Research</span>.
+            <a href="https://doi.org/10.1007/s10608-025-10672-4" target="_blank" rel="noopener">https://doi.org/10.1007/s10608-025-10672-4</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="preprint">
+        <div class="pub-bar preprint"></div>
+        <div class="pub-content">
+          <div class="pub-badge preprint">Preprint</div>
+          <p class="pub-apa">
+            <span class="authors">De Duro, E. S., Veltri, G. A., Golino, H., &amp; Stella, M.</span>
+            (2025).
+            <span class="title">Measuring and identifying factors of individuals' trust in Large Language Models.</span>
+            <em>arXiv.</em>
+            <a href="https://arxiv.org/abs/2502.21028" target="_blank" rel="noopener">https://arxiv.org/abs/2502.21028</a>
+          </p>
+          <div class="pub-links">
+          </div>
         </div>
       </div>
 
@@ -618,7 +615,7 @@
     <div class="pub-year-group reveal" data-year="2024">
       <div class="pub-year">2024</div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -632,11 +629,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -650,11 +646,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -668,11 +663,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -686,11 +680,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -703,65 +696,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Estrada Gonzalez, V., Meletaki, V., Walker, M., Payano Sosa, J., Stamper, A., &amp; Christensen, A. P.</span>
-            (2024).
-            <span class="title">Art therapy masks reflect emotional changes in military personnel with PTSS.</span>
-            <span class="journal">Scientific Reports</span>,
-            <em>14</em>(1), 7192.
-            <a href="https://doi.org/10.1038/s41598-024-57128-5" target="_blank" rel="noopener">https://doi.org/10.1038/s41598-024-57128-5</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Putney, H., Silver, S., Silvia, P. J., Christensen, A. P., &amp; Cotter, K. N.</span>
-            (2024).
-            <span class="title">Why does creativity foster well-being? Autonomy, competence, and relatedness during everyday creative activities.</span>
-            <span class="journal">Journal of Research in Personality</span>,
-            <em>113</em>, 104552.
-            <a href="https://doi.org/10.1016/j.jrp.2024.104552" target="_blank" rel="noopener">https://doi.org/10.1016/j.jrp.2024.104552</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Cotter, K. N., &amp; Christensen, A. P.</span>
-            (2024).
-            <span class="title">Time is a funny thing: Response times and humor quality in a creative joke production task.</span>
-            <span class="journal">Creativity. Theories–Research-Applications</span>,
-            <em>11</em>(1), 1–17.
-            <a href="https://doi.org/10.2478/ctra-2024-0001" target="_blank" rel="noopener">https://doi.org/10.2478/ctra-2024-0001</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -774,11 +712,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -791,11 +728,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -808,11 +744,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -825,11 +760,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -842,7 +776,23 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Maertens, R., Götz, F. M., Golino, H. F., Roozenbeek, J., Schneider, C. R., Stanzel, A., et al.</span>
+            (2024).
+            <span class="title">The Misinformation Susceptibility Test (MIST): A psychometrically validated measure of news veracity discernment.</span>
+            <span class="journal">Behavior Research Methods</span>,
+            <em>56</em>(3), 1863–1899.
+            <a href="https://doi.org/10.3758/s13428-023-02124-2" target="_blank" rel="noopener">https://doi.org/10.3758/s13428-023-02124-2</a>
+          </p>
+          <div class="pub-links">
+          </div>
         </div>
       </div>
 
@@ -852,43 +802,7 @@
     <div class="pub-year-group reveal" data-year="2023">
       <div class="pub-year">2023</div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Bellaiche, L., Shahi, R., Turpin, M. H., Ragnhildstveit, A., Sprockett, S., Barr, N., &amp; Christensen, A. P.</span>
-            (2023).
-            <span class="title">Humans versus AI: Whether and why we prefer human-created compared to AI-created artwork.</span>
-            <span class="journal">Cognitive Research: Principles and Implications</span>,
-            <em>8</em>(1), 42.
-            <a href="https://doi.org/10.1186/s41235-023-00499-6" target="_blank" rel="noopener">https://doi.org/10.1186/s41235-023-00499-6</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P., &amp; Kenett, Y. N.</span>
-            (2023).
-            <span class="title">Semantic network analysis (SemNA): A tutorial on preprocessing, estimating, and analyzing semantic networks.</span>
-            <span class="journal">Psychological Methods</span>,
-            <em>28</em>(4), 860–879.
-            <a href="https://doi.org/10.1037/met0000463" target="_blank" rel="noopener">https://doi.org/10.1037/met0000463</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -902,11 +816,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -920,29 +833,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Luchini, S., Kenett, Y. N., Zeitlen, D. C., Christensen, A. P., Ellis, D. M., &amp; Brewer, G. A., et al.</span>
-            (2023).
-            <span class="title">Convergent thinking and insight problem solving relate to semantic memory network structure.</span>
-            <span class="journal">Thinking Skills and Creativity</span>,
-            101277.
-            <a href="https://doi.org/10.1016/j.tsc.2023.101277" target="_blank" rel="noopener">https://doi.org/10.1016/j.tsc.2023.101277</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -956,11 +850,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks creativity">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -974,29 +867,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span><span class="pub-tag creativity">Creativity</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Darda, K. M., Christensen, A. P., &amp; Chatterjee, A.</span>
-            (2023).
-            <span class="title">Does the frame of an artwork matter? Cultural framing and aesthetic judgments for abstract and representational art.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>17</em>(4), 428–450.
-            <a href="https://doi.org/10.1037/aca0000569" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000569</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1010,136 +884,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Seaman, K. L., Christensen, A. P., Senn, K. D., Cooper, J. A., &amp; Cassidy, B. S.</span>
-            (2023).
-            <span class="title">Age-related differences in the social associative learning of trust information.</span>
-            <span class="journal">Neurobiology of Aging</span>,
-            <em>125</em>, 32–40.
-            <a href="https://doi.org/10.1016/j.neurobiolaging.2023.01.011" target="_blank" rel="noopener">https://doi.org/10.1016/j.neurobiolaging.2023.01.011</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag neuroscience">Neuroscience</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Bellaiche, L., Smith, A. P., Barr, N., Christensen, A. P., &amp; Williams, C., et al.</span>
-            (2023).
-            <span class="title">Back to the basics: Abstract painting as an index of creativity.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>35</em>(4), 698–713.
-            <a href="https://doi.org/10.1080/10400419.2023.2243100" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2023.2243100</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Cotter, K. N., &amp; Christensen, A. P.</span>
-            (2023).
-            <span class="title">Creative omnivores: An experience sampling study of the variety and diversity of everyday creative activities.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>35</em>(3), 427–437.
-            <a href="https://doi.org/10.1080/10400419.2023.2226453" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2023.2226453</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Ceh, S. M., Christensen, A. P., Lebuda, I., &amp; Benedek, M.</span>
-            (2023).
-            <span class="title">#creativity: Exploring lay conceptualizations of creativity with Twitter hashtags.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>36</em>(4), 640–655.
-            <a href="https://doi.org/10.1080/10400419.2023.2214472" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2023.2214472</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag semantic-networks">Semantic Networks</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Sassenberg, T. A., Condon, D. M., Christensen, A. P., &amp; DeYoung, C. G.</span>
-            (2023).
-            <span class="title">Imagination as a facet of Openness/Intellect: A new scale differentiating experiential simulation and conceptual innovation.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>35</em>(4), 583–595.
-            <a href="https://doi.org/10.1080/10400419.2023.2177810" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2023.2177810</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag creativity">Creativity</span></div>
         </div>
       </div>
 
       <div class="pub-item" data-type="journal">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Bushati, B., Kedia, G., Rotter, D., Christensen, A. P., Krammer, G., &amp; Corcoran, K.</span>
-            (2023).
-            <span class="title">Friends as a language learning resource in multilingual primary school classrooms.</span>
-            <span class="journal">Social Psychology of Education</span>,
-            <em>26</em>(3), 833–855.
-            <a href="https://doi.org/10.1007/s11218-023-09770-6" target="_blank" rel="noopener">https://doi.org/10.1007/s11218-023-09770-6</a>
-          </p>
-          <div class="pub-links">
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Lawn, E. C. R., Laham, S., Zhao, K., Christensen, A. P., &amp; Smillie, L. D.</span>
-            (2023).
-            <span class="title">Where the head meets the heart: 'Enlightened' compassion lies between Big Five Openness/Intellect and Agreeableness.</span>
-            <span class="journal">Collabra: Psychology</span>,
-            <em>9</em>(1).
-            <a href="https://doi.org/10.1525/collabra.74468" target="_blank" rel="noopener">https://doi.org/10.1525/collabra.74468</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1153,7 +901,39 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="preprint">
+        <div class="pub-bar preprint"></div>
+        <div class="pub-content">
+          <div class="pub-badge preprint">Preprint</div>
+          <p class="pub-apa">
+            <span class="authors">Shi, D., Christensen, A. P., Day, E. A., Golino, H., &amp; Garrido, L. E.</span>
+            (2023).
+            <span class="title">A Bayesian approach for dimensionality assessment in psychological networks.</span>
+            <em>PsyArXiv.</em>
+            <a href="https://doi.org/10.31234/osf.io/9rcev" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/9rcev</a>
+          </p>
+          <div class="pub-links">
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
+        <div class="pub-content">
+          <div class="pub-badge journal">Journal Article</div>
+          <p class="pub-apa">
+            <span class="authors">Brown, G. P., Delgadillo, J., &amp; Golino, H.</span>
+            (2023).
+            <span class="title">Distinguishing the dimensions of the original dysfunctional attitude scale in an archival clinical sample.</span>
+            <span class="journal">Cognitive Therapy and Research</span>,
+            <em>47</em>(1), 69–83.
+            <a href="https://doi.org/10.1007/s10608-022-10333-w" target="_blank" rel="noopener">https://doi.org/10.1007/s10608-022-10333-w</a>
+          </p>
+          <div class="pub-links">
+          </div>
         </div>
       </div>
 
@@ -1163,7 +943,7 @@
     <div class="pub-year-group reveal" data-year="2022">
       <div class="pub-year">2022</div>
 
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1177,65 +957,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Wahlheim, C. N., Christensen, A. P., Reagh, Z. M., &amp; Cassidy, B. S.</span>
-            (2022).
-            <span class="title">Intrinsic functional connectivity in the default mode network predicts mnemonic discrimination: A connectome-based modeling approach.</span>
-            <span class="journal">Hippocampus</span>,
-            <em>32</em>(1), 21–37.
-            <a href="https://doi.org/10.1002/hipo.23393" target="_blank" rel="noopener">https://doi.org/10.1002/hipo.23393</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag neuroscience">Neuroscience</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Cotter, K. N., Chen, D. F., Christensen, A. P., Kim, K. Y., &amp; Silvia, P. J.</span>
-            (2022).
-            <span class="title">Measuring art knowledge: Item response theory and differential item functioning analysis of the Aesthetic Fluency Scale.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>17</em>(3), 358–369.
-            <a href="https://doi.org/10.1037/aca0000397" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000397</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Weinberger, A. B., Garside, E. W., Christensen, A. P., &amp; Chatterjee, A.</span>
-            (2022).
-            <span class="title">Effects of expertise on psychological responses to buildings and natural landscapes.</span>
-            <span class="journal">Journal of Environmental Psychology</span>,
-            <em>84</em>, 101903.
-            <a href="https://doi.org/10.1016/j.jenvp.2022.101903" target="_blank" rel="noopener">https://doi.org/10.1016/j.jenvp.2022.101903</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1249,29 +974,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Frith, E., Gerver, C. R., Benedek, M., Christensen, A. P., &amp; Beaty, R. E.</span>
-            (2022).
-            <span class="title">Neural representations of conceptual fixation during creative imagination.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>34</em>(1), 106–172.
-            <a href="https://doi.org/10.1080/10400419.2021.2008699" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2021.2008699</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1285,7 +991,6 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
@@ -1295,7 +1000,7 @@
     <div class="pub-year-group reveal" data-year="2021">
       <div class="pub-year">2021</div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1309,11 +1014,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1327,11 +1031,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1345,11 +1048,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1363,11 +1065,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1381,173 +1082,27 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity neuroscience">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
           <p class="pub-apa">
-            <span class="authors">Frith, E., Elbich, D., Christensen, A. P., Rosenberg, M. D., Chen, Q., Silvia, P., Seli, P., &amp; Beaty, R. E.</span>
+            <span class="authors">Flores-Kanter, P. E., Garrido, L. E., Moretti, L. S., &amp; Medrano, L. A.</span>
             (2021).
-            <span class="title">Intelligence and creativity share a common cognitive and neural basis.</span>
-            <span class="journal">Journal of Experimental Psychology: General</span>,
-            <em>150</em>(4), 609–632.
-            <a href="https://doi.org/10.1037/xge0000958" target="_blank" rel="noopener">https://doi.org/10.1037/xge0000958</a>
+            <span class="title">A modern network approach to revisiting the Positive and Negative Affective Schedule (PANAS) construct validity.</span>
+            <span class="journal">Journal of Clinical Psychology</span>,
+            <em>77</em>(10), 2370–2404.
+            <a href="https://doi.org/10.1002/jclp.23191" target="_blank" rel="noopener">https://doi.org/10.1002/jclp.23191</a>
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Frith, E., Kane, M. J., Welhaf, M. S., Christensen, A. P., Silvia, P. J., &amp; Beaty, R. E.</span>
-            (2021).
-            <span class="title">Keeping creativity under control: Contributions of attention control and fluid intelligence to divergent thinking.</span>
-            <span class="journal">Creativity Research Journal</span>,
-            <em>32</em>(2), 138–157.
-            <a href="https://doi.org/10.1080/10400419.2020.1855906" target="_blank" rel="noopener">https://doi.org/10.1080/10400419.2020.1855906</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Denervaud, S., Christensen, A. P., Kenett, Y. N., &amp; Beaty, R. E.</span>
-            (2021).
-            <span class="title">Education shapes the structure of semantic memory and impacts creative thinking.</span>
-            <span class="journal">npj Science of Learning</span>,
-            <em>6</em>(1), 35.
-            <a href="https://doi.org/10.1038/s41539-021-00113-8" target="_blank" rel="noopener">https://doi.org/10.1038/s41539-021-00113-8</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Weinberger, A. B., Christensen, A. P., Coburn, A., &amp; Chatterjee, A.</span>
-            (2021).
-            <span class="title">Psychological responses to buildings and natural landscapes.</span>
-            <span class="journal">Journal of Environmental Psychology</span>,
-            <em>77</em>, 101676.
-            <a href="https://doi.org/10.1016/j.jenvp.2021.101676" target="_blank" rel="noopener">https://doi.org/10.1016/j.jenvp.2021.101676</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Pelowski, M., Hur, Y. J., Cotter, K. N., Ishizu, T., Christensen, A. P., Leder, H., et al.</span>
-            (2021).
-            <span class="title">Quantifying the if, the when, and the what of the sublime: A survey and latent class analysis of incidence, emotions, and distinct varieties of personal sublime experiences.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>15</em>(2), 216–240.
-            <a href="https://doi.org/10.1037/aca0000273" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000273</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Christensen, A. P., &amp; Cotter, K. N.</span>
-            (2021).
-            <span class="title">Right-wing authoritarians aren't very funny: RWA, personality, and creative humor production.</span>
-            <span class="journal">Personality and Individual Differences</span>,
-            <em>170</em>, 110421.
-            <a href="https://doi.org/10.1016/j.paid.2020.110421" target="_blank" rel="noopener">https://doi.org/10.1016/j.paid.2020.110421</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Greengross, G., Cotter, K. N., Christensen, A. P., &amp; Gredlein, J. M.</span>
-            (2021).
-            <span class="title">If you're funny and you know it: Personality, gender, and people's ratings of their attempts at humor.</span>
-            <span class="journal">Journal of Research in Personality</span>,
-            <em>92</em>, 104089.
-            <a href="https://doi.org/10.1016/j.jrp.2021.104089" target="_blank" rel="noopener">https://doi.org/10.1016/j.jrp.2021.104089</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Lloyd-Cox, J., Christensen, A. P., Silvia, P. J., &amp; Beaty, R. E.</span>
-            (2021).
-            <span class="title">Seeing outside the box: Salient associations disrupt visual idea generation.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>15</em>(4), 575–583.
-            <a href="https://doi.org/10.1037/aca0000371" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000371</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Rodriguez, R. M., Cotter, K. N., &amp; Christensen, A. P.</span>
-            (2021).
-            <span class="title">Aesthetic preference for glossy materials: An attempted replication and extension.</span>
-            <span class="journal">Behavioral Sciences</span>,
-            <em>11</em>(4), 44.
-            <a href="https://doi.org/10.3390/bs11040044" target="_blank" rel="noopener">https://doi.org/10.3390/bs11040044</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -1560,11 +1115,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -1577,42 +1131,9 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="personality">
-        <div class="pub-bar preprint"></div>
-        <div class="pub-content">
-          <div class="pub-badge preprint">Preprint</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P.</span>
-            (2021).
-            <span class="title">Personality structure after the Big Five.</span>
-            <em>PsyArXiv.</em>
-            <a href="https://www.ejp-blog.com/blog/2021/3/2/personality-structure-after-the-big-five" target="_blank" rel="noopener">https://www.ejp-blog.com/blog/2021/3/2/personality-structure-after-the-big-five</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="preprint" data-topic="">
-        <div class="pub-bar preprint"></div>
-        <div class="pub-content">
-          <div class="pub-badge preprint">Preprint</div>
-          <p class="pub-apa">
-            <span class="authors">Beck, E. D., Workman, C. I., &amp; Christensen, A. P.</span>
-            (2021).
-            <span class="title">CRediT where Credit is Due: A comment on Leising et al. (2021).</span>
-            <em>PsyArXiv.</em>
-            <a href="https://doi.org/10.5964/ps.9227" target="_blank" rel="noopener">https://doi.org/10.5964/ps.9227</a>
-          </p>
-          <div class="pub-links">
-          </div>
-        </div>
-      </div>
 
     </div><!-- /2021 -->
 
@@ -1620,7 +1141,7 @@
     <div class="pub-year-group reveal" data-year="2020">
       <div class="pub-year">2020</div>
 
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1634,11 +1155,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1652,29 +1172,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., &amp; Christensen, A. P.</span>
-            (2020).
-            <span class="title">Looking up at the curious personality: Individual differences in curiosity and openness to experience.</span>
-            <span class="journal">Current Opinion in Behavioral Sciences</span>,
-            <em>35</em>, 1–6.
-            <a href="https://doi.org/10.1016/j.cobeha.2020.05.013" target="_blank" rel="noopener">https://doi.org/10.1016/j.cobeha.2020.05.013</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1688,83 +1189,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Beaty, R. E., Chen, Q., Christensen, A. P., Kenett, Y. N., Silvia, P. J., Benedek, M., &amp; Schacter, D. L.</span>
-            (2020).
-            <span class="title">Default network contributions to episodic and semantic processing during divergent creative thinking: A representational similarity analysis.</span>
-            <span class="journal">NeuroImage</span>,
-            <em>209</em>, 116499.
-            <a href="https://doi.org/10.1016/j.neuroimage.2019.116499" target="_blank" rel="noopener">https://doi.org/10.1016/j.neuroimage.2019.116499</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Shin, H., Cotter, K. N., Christensen, A. P., &amp; Silvia, P. J.</span>
-            (2020).
-            <span class="title">Creative fixation is no laughing matter: The effects of funny and unfunny examples on humor production.</span>
-            <span class="journal">The Journal of Creative Behavior</span>,
-            <em>54</em>(2), 487–494.
-            <a href="https://doi.org/10.1002/jocb.383" target="_blank" rel="noopener">https://doi.org/10.1002/jocb.383</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Seaman, K., Christensen, A. P., Senn, K., Cooper, J., &amp; Cassidy, B. S.</span>
-            (2020).
-            <span class="title">Social associative learning and trust formation across adulthood.</span>
-            <span class="journal">Innovation in Aging</span>,
-            <em>4</em>(Suppl 1), 558.
-            <a href="https://doi.org/10.1093/geroni/igaa057.1834" target="_blank" rel="noopener">https://doi.org/10.1093/geroni/igaa057.1834</a>
-          </p>
-          <div class="pub-links">
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="chapter" data-topic="personality">
-        <div class="pub-bar chapter"></div>
-        <div class="pub-content">
-          <div class="pub-badge chapter">Book Chapter</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P.</span>
-            (2020).
-            <span class="title">Openness to experience.</span>
-            In A. Kostic &amp; D. Chadee (Eds.),
-            <span class="journal">The Palgrave Encyclopedia of the Possible</span>.
-            Palgrave Macmillan.
-            <a href="https://doi.org/10.1007/978-3-319-98390-5_113-1" target="_blank" rel="noopener">https://doi.org/10.1007/978-3-319-98390-5_113-1</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -1778,11 +1206,10 @@
           <div class="pub-links">
             <a href="#" class="pub-link preprint-ln"><span class="pub-link-icon">↗</span> Preprint</a>
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -1795,7 +1222,6 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
@@ -1805,7 +1231,7 @@
     <div class="pub-year-group reveal" data-year="2019">
       <div class="pub-year">2019</div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1819,29 +1245,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Benedek, M., Christensen, A. P., Fink, A., &amp; Beaty, R. E.</span>
-            (2019).
-            <span class="title">Creativity assessment in neuroscience research.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>13</em>(2), 218–226.
-            <a href="https://doi.org/10.1037/aca0000215" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000215</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1855,47 +1262,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Cotter, K. N., Christensen, A. P., &amp; Silvia, P. J.</span>
-            (2019).
-            <span class="title">Understanding inner music: A dimensional approach to musical imagery.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>13</em>(4), 489–503.
-            <a href="https://doi.org/10.1037/aca0000195" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000195</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Cotter, K. N., Prince, A. N., Christensen, A. P., &amp; Silvia, P. J.</span>
-            (2019).
-            <span class="title">Feeling like crying when listening to music: Exploring musical and contextual features.</span>
-            <span class="journal">Empirical Studies of the Arts</span>,
-            <em>37</em>(2), 119–137.
-            <a href="https://doi.org/10.1177/0276237418805692" target="_blank" rel="noopener">https://doi.org/10.1177/0276237418805692</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="software" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="software">
         <div class="pub-bar software"></div>
         <div class="pub-content">
           <div class="pub-badge software">Software</div>
@@ -1908,43 +1278,24 @@
           <div class="pub-links">
             <a href="https://doi.org/10.32614/CRAN.package.EGAnet" class="pub-link code"><span class="pub-link-icon">⌥</span> GitHub</a>
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="chapter" data-topic="">
-        <div class="pub-bar chapter"></div>
-        <div class="pub-content">
-          <div class="pub-badge chapter">Book Chapter</div>
-          <p class="pub-apa">
-            <span class="authors">Cotter, K. N., Christensen, A. P., &amp; Silvia, P. J.</span>
-            (2019).
-            <span class="title">Creativity's role in everyday life.</span>
-            In J. C. Kaufman &amp; R. J. Sternberg (Eds.),
-            <span class="journal">The Cambridge Handbook of Creativity</span>
-            (2nd ed., pp. 640–651). Cambridge University Press.
-            <a href="https://doi.org/10.1017/9781316979839.032" target="_blank" rel="noopener">https://doi.org/10.1017/9781316979839.032</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="creativity neuroscience">
-        <div class="pub-bar preprint"></div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
         <div class="pub-content">
-          <div class="pub-badge preprint">Preprint</div>
+          <div class="pub-badge journal">Journal Article</div>
           <p class="pub-apa">
-            <span class="authors">Christensen, A. P., Benedek, M., Silvia, P. J., &amp; Beaty, R. E.</span>
+            <span class="authors">Kjellström, S., &amp; Golino, H.</span>
             (2019).
-            <span class="title">Executive and default network connectivity reflects conceptual interference during creative imagery generation.</span>
-            <em>PsyArXiv.</em>
-            <a href="https://doi.org/10.31234/osf.io/n438d" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/n438d</a>
+            <span class="title">Mining concepts of health responsibility using text mining and exploratory graph analysis.</span>
+            <span class="journal">Scandinavian Journal of Occupational Therapy</span>,
+            <em>26</em>(6), 395–410.
+            <a href="https://doi.org/10.1080/11038128.2018.1455896" target="_blank" rel="noopener">https://doi.org/10.1080/11038128.2018.1455896</a>
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
         </div>
       </div>
 
@@ -1954,25 +1305,7 @@
     <div class="pub-year-group reveal" data-year="2018">
       <div class="pub-year">2018</div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Beaty, R. E., Kenett, Y. N., Christensen, A. P., Rosenberg, M. D., Benedek, M., et al.</span>
-            (2018).
-            <span class="title">Robust prediction of individual creative ability from brain functional connectivity.</span>
-            <span class="journal">Proceedings of the National Academy of Sciences</span>,
-            <em>115</em>(5), 1087–1092.
-            <a href="https://doi.org/10.1073/pnas.1713532115" target="_blank" rel="noopener">https://doi.org/10.1073/pnas.1713532115</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
@@ -1986,83 +1319,10 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="journal" data-topic="personality creativity neuroscience">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Beaty, R. E., Chen, Q., Christensen, A. P., Qiu, J., Silvia, P. J., &amp; Schacter, D. L.</span>
-            (2018).
-            <span class="title">Brain networks of the imaginative mind: Dynamic functional connectivity of default and cognitive control networks relates to openness to experience.</span>
-            <span class="journal">Human Brain Mapping</span>,
-            <em>39</em>(2), 811–821.
-            <a href="https://doi.org/10.1002/hbm.23884" target="_blank" rel="noopener">https://doi.org/10.1002/hbm.23884</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="semantic-networks personality creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P., Kenett, Y. N., Cotter, K. N., Beaty, R. E., &amp; Silvia, P. J.</span>
-            (2018).
-            <span class="title">Remotely close associations: Openness to experience and semantic memory structure.</span>
-            <span class="journal">European Journal of Personality</span>,
-            <em>32</em>(4), 480–492.
-            <a href="https://doi.org/10.1002/per.2157" target="_blank" rel="noopener">https://doi.org/10.1002/per.2157</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag semantic-networks">Semantic Networks</span><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Christensen, A. P., Silvia, P. J., Nusbaum, E. C., &amp; Beaty, R. E.</span>
-            (2018).
-            <span class="title">Clever people: Intelligence and humor production ability.</span>
-            <span class="journal">Psychology of Aesthetics, Creativity, and the Arts</span>,
-            <em>12</em>(2), 136–143.
-            <a href="https://doi.org/10.1037/aca0000109" target="_blank" rel="noopener">https://doi.org/10.1037/aca0000109</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Christensen, A. P., Cotter, K. N., Jackson, T. A., &amp; Galyean, C. B.</span>
-            (2018).
-            <span class="title">Do people have a thing for bling? Examining aesthetic preferences for shiny objects.</span>
-            <span class="journal">Empirical Studies of the Arts</span>,
-            <em>36</em>(1), 101–113.
-            <a href="https://doi.org/10.1177/0276237417712808" target="_blank" rel="noopener">https://doi.org/10.1177/0276237417712808</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="software" data-topic="psychometric-networks">
+      <div class="pub-item" data-type="software">
         <div class="pub-bar software"></div>
         <div class="pub-content">
           <div class="pub-badge software">Software</div>
@@ -2077,11 +1337,10 @@
           <div class="pub-links">
             <a href="https://github.com/AlexChristensen" class="pub-link code"><span class="pub-link-icon">⌥</span> GitHub</a>
           </div>
-          <div class="pub-topics"><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="preprint" data-topic="personality psychometric-networks">
+      <div class="pub-item" data-type="preprint">
         <div class="pub-bar preprint"></div>
         <div class="pub-content">
           <div class="pub-badge preprint">Preprint</div>
@@ -2094,7 +1353,6 @@
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag psychometric-networks">Psychometric Networks</span></div>
         </div>
       </div>
 
@@ -2104,86 +1362,41 @@
     <div class="pub-year-group reveal" data-year="2017">
       <div class="pub-year">2017</div>
 
-      <div class="pub-item" data-type="journal" data-topic="creativity neuroscience">
+      <div class="pub-item" data-type="journal">
         <div class="pub-bar"></div>
         <div class="pub-content">
           <div class="pub-badge journal">Journal Article</div>
           <p class="pub-apa">
-            <span class="authors">Beaty, R. E., Christensen, A. P., Benedek, M., Silvia, P. J., &amp; Schacter, D. L.</span>
+            <span class="authors">Golino, H. F., &amp; Epskamp, S.</span>
             (2017).
-            <span class="title">Creative constraints: Brain activity and network dynamics underlying semantic interference during idea production.</span>
-            <span class="journal">NeuroImage</span>,
-            <em>148</em>, 189–196.
-            <a href="https://doi.org/10.1016/j.neuroimage.2017.01.012" target="_blank" rel="noopener">https://doi.org/10.1016/j.neuroimage.2017.01.012</a>
+            <span class="title">Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research.</span>
+            <span class="journal">PLOS ONE</span>,
+            <em>12</em>(6), e0174035.
+            <a href="https://doi.org/10.1371/journal.pone.0174035" target="_blank" rel="noopener">https://doi.org/10.1371/journal.pone.0174035</a>
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span><span class="pub-tag neuroscience">Neuroscience</span></div>
         </div>
       </div>
 
-      <div class="pub-item" data-type="chapter" data-topic="creativity">
-        <div class="pub-bar chapter"></div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-bar"></div>
         <div class="pub-content">
-          <div class="pub-badge chapter">Book Chapter</div>
+          <div class="pub-badge journal">Journal Article</div>
           <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Cotter, K. N., &amp; Christensen, A. P.</span>
+            <span class="authors">Golino, H. F., &amp; Demetriou, A.</span>
             (2017).
-            <span class="title">The creative self in context: Experience sampling and the ecology of everyday creativity.</span>
-            In M. Karwowski &amp; J. C. Kaufman (Eds.),
-            <span class="journal">The Creative Self</span>
-            (pp. 275–288). Academic Press.
-            <a href="https://doi.org/10.1016/B978-0-12-809790-8.00015-7" target="_blank" rel="noopener">https://doi.org/10.1016/B978-0-12-809790-8.00015-7</a>
+            <span class="title">Estimating the dimensionality of intelligence like data using exploratory graph analysis.</span>
+            <span class="journal">Intelligence</span>,
+            <em>62</em>, 54–70.
+            <a href="https://doi.org/10.1016/j.intell.2017.02.007" target="_blank" rel="noopener">https://doi.org/10.1016/j.intell.2017.02.007</a>
           </p>
           <div class="pub-links">
           </div>
-          <div class="pub-topics"><span class="pub-tag creativity">Creativity</span></div>
         </div>
       </div>
 
     </div><!-- /2017 -->
-
-    <!-- ══════════ 2016 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2016">
-      <div class="pub-year">2016</div>
-
-      <div class="pub-item" data-type="journal" data-topic="aesthetics personality">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Cotter, K. N., Christensen, A. P., &amp; Silvia, P. J.</span>
-            (2016).
-            <span class="title">Musical minds: Personality, schizotypy, and involuntary musical imagery.</span>
-            <span class="journal">Psychomusicology: Music, Mind, and Brain</span>,
-            <em>26</em>(3), 220–225.
-            <a href="https://doi.org/10.1037/pmu0000158" target="_blank" rel="noopener">https://doi.org/10.1037/pmu0000158</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag aesthetics">Aesthetics</span><span class="pub-tag personality">Personality</span></div>
-        </div>
-      </div>
-
-      <div class="pub-item" data-type="journal" data-topic="personality creativity">
-        <div class="pub-bar"></div>
-        <div class="pub-content">
-          <div class="pub-badge journal">Journal Article</div>
-          <p class="pub-apa">
-            <span class="authors">Silvia, P. J., Christensen, A. P., &amp; Cotter, K. N.</span>
-            (2016).
-            <span class="title">Commentary: The development of creativity — Ability, motivation, and potential.</span>
-            <span class="journal">New Directions for Child and Adolescent Development</span>,
-            <em>2016</em>(151), 111–119.
-            <a href="https://doi.org/10.1002/cad.20147" target="_blank" rel="noopener">https://doi.org/10.1002/cad.20147</a>
-          </p>
-          <div class="pub-links">
-          </div>
-          <div class="pub-topics"><span class="pub-tag personality">Personality</span><span class="pub-tag creativity">Creativity</span></div>
-        </div>
-      </div>
-
-    </div><!-- /2016 -->
 
   </div><!-- /.section-inner -->
 </section>
@@ -2394,15 +1607,15 @@ const filterBtns  = document.querySelectorAll('.filter-btn');
 const pubItems    = document.querySelectorAll('.pub-item');
 const yearGroups  = document.querySelectorAll('.pub-year-group');
 
-let activeType  = 'all';
-let activeTopic = 'all';
-let activeYear  = 'all';
+let activeType   = 'all';
+let activeYear   = 'all';
+let activeMember = 'all';
 
 function applyFilters() {
   pubItems.forEach(item => {
-    const typeMatch  = activeType  === 'all' || item.dataset.type === activeType;
-    const topicMatch = activeTopic === 'all' || (item.dataset.topic || '').split(' ').includes(activeTopic);
-    item.style.display = (typeMatch && topicMatch) ? 'grid' : 'none';
+    const typeMatch   = activeType   === 'all' || item.dataset.type === activeType;
+    const memberMatch = activeMember === 'all' || (item.querySelector('.authors')?.textContent || '').includes(activeMember);
+    item.style.display = (typeMatch && memberMatch) ? 'grid' : 'none';
   });
 
   yearGroups.forEach(group => {
@@ -2427,69 +1640,6 @@ filterBtns.forEach(btn => {
   });
 });
 
-// ─── TOPIC DROPDOWN ───
-const topicDropdown    = document.getElementById('topic-dropdown');
-const topicDropdownBtn = document.getElementById('topic-dropdown-btn');
-const topicLabel       = document.getElementById('topic-label');
-const topicArrow       = topicDropdownBtn.querySelector('.filter-dropdown-arrow');
-const topicItems       = document.querySelectorAll('#topic-dropdown-menu .filter-dropdown-item');
-
-topicDropdownBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = topicDropdown.classList.toggle('open');
-  if (isOpen) yearDropdown.classList.remove('open');
-});
-
-document.addEventListener('click', () => {
-  topicDropdown.classList.remove('open');
-});
-
-function getContrastColor(hex) {
-  const r = parseInt(hex.slice(1,3), 16);
-  const g = parseInt(hex.slice(3,5), 16);
-  const b = parseInt(hex.slice(5,7), 16);
-  return (0.299*r + 0.587*g + 0.114*b) / 255 > 0.55 ? '#111827' : '#fff';
-}
-
-function setTopicColor(color) {
-  const isLight = document.documentElement.classList.contains('light');
-  if (color) {
-    topicDropdownBtn.style.borderColor = color;
-    if (isLight) {
-      topicDropdownBtn.style.background = color;
-      const text = getContrastColor(color);
-      topicDropdownBtn.style.color = text;
-      topicArrow.style.color       = text;
-    } else {
-      topicDropdownBtn.style.background = '';
-      topicDropdownBtn.style.color      = color;
-      topicArrow.style.color            = color;
-    }
-  } else {
-    topicDropdownBtn.style.color       = '';
-    topicDropdownBtn.style.borderColor = '';
-    topicDropdownBtn.style.background  = '';
-    topicArrow.style.color             = '';
-  }
-}
-
-topicItems.forEach(item => {
-  item.addEventListener('click', (e) => {
-    e.stopPropagation();
-    topicItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    activeTopic = item.dataset.topic;
-
-    const color = item.dataset.color || '';
-    topicLabel.textContent = activeTopic === 'all' ? 'Topics' : item.textContent.trim();
-    topicDropdownBtn.classList.toggle('active', activeTopic !== 'all');
-    setTopicColor(color);
-
-    topicDropdown.classList.remove('open');
-    applyFilters();
-  });
-});
-
 // ─── YEAR DROPDOWN ───
 const yearDropdown    = document.getElementById('year-dropdown');
 const yearDropdownBtn = document.getElementById('year-dropdown-btn');
@@ -2500,7 +1650,7 @@ const yearItems       = document.querySelectorAll('#year-dropdown-menu .filter-d
 yearDropdownBtn.addEventListener('click', (e) => {
   e.stopPropagation();
   const isOpen = yearDropdown.classList.toggle('open');
-  if (isOpen) topicDropdown.classList.remove('open');
+  if (isOpen) memberDropdown.classList.remove('open');
 });
 
 document.addEventListener('click', () => {
@@ -2537,6 +1687,57 @@ yearItems.forEach(item => {
     }
 
     yearDropdown.classList.remove('open');
+    applyFilters();
+  });
+});
+
+// ─── MEMBER DROPDOWN ───
+const memberDropdown    = document.getElementById('member-dropdown');
+const memberDropdownBtn = document.getElementById('member-dropdown-btn');
+const memberLabel       = document.getElementById('member-label');
+const memberArrow       = memberDropdownBtn.querySelector('.filter-dropdown-arrow');
+const memberItems       = document.querySelectorAll('#member-dropdown-menu .filter-dropdown-item');
+
+memberDropdownBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = memberDropdown.classList.toggle('open');
+  if (isOpen) yearDropdown.classList.remove('open');
+});
+
+document.addEventListener('click', () => {
+  memberDropdown.classList.remove('open');
+});
+
+memberItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+    memberItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    activeMember = item.dataset.memberFilter;
+
+    memberLabel.textContent = activeMember === 'all' ? 'Team Member' : activeMember;
+    const isFiltered = activeMember !== 'all';
+    const isLight = document.documentElement.classList.contains('light');
+    memberDropdownBtn.classList.toggle('active', isFiltered);
+    if (isFiltered) {
+      memberDropdownBtn.style.borderColor = 'var(--teal)';
+      if (isLight) {
+        memberDropdownBtn.style.background = 'var(--teal)';
+        memberDropdownBtn.style.color      = '#fff';
+        memberArrow.style.color            = '#fff';
+      } else {
+        memberDropdownBtn.style.background = '';
+        memberDropdownBtn.style.color      = 'var(--teal)';
+        memberArrow.style.color            = 'var(--teal)';
+      }
+    } else {
+      memberDropdownBtn.style.color       = '';
+      memberDropdownBtn.style.borderColor = '';
+      memberDropdownBtn.style.background  = '';
+      memberArrow.style.color             = '';
+    }
+
+    memberDropdown.classList.remove('open');
     applyFilters();
   });
 });
