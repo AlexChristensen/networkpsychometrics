@@ -22,6 +22,15 @@
      are all in theme.css
   ══════════════════════════════════════════ */
 
+  /* ─── SCROLL SNAP ─── */
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  #hero, #aims, #methods, #latest-work {
+    scroll-snap-align: start;
+  }
+
   /* ─── HERO (index-specific) ─── */
   #hero {
     position: relative;
@@ -106,7 +115,7 @@
 
   .hero-sub {
     margin-top: 2rem;
-    max-width: 60ch;
+    max-width: 50ch;
     font-size: 1.4rem;
     line-height: 1.9;
     color: var(--muted);
@@ -205,23 +214,23 @@
      SECTION BACKGROUNDS (index-specific)
   ══════════════════════════════════════════ */
   #aims {
-    background:      rgba(7, 10, 16, 0.15);
-    backdrop-filter: blur(10px);
+    background:      rgba(7, 10, 16, 0.05);
+    backdrop-filter: blur(5px);
   }
   #methods {
-    background:      rgba(7, 10, 16, 0.28);
-    backdrop-filter: blur(16px);
+    background:      rgba(7, 10, 16, 0.05);
+    backdrop-filter: blur(5px);
     border-top:    1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
   #latest-work {
-    background:      rgba(7, 10, 16, 0.15);
-    backdrop-filter: blur(10px);
+    background:      rgba(7, 10, 16, 0.05);
+    backdrop-filter: blur(5px);
   }
 
   :root.light #aims,
-  :root.light #latest-work { background: rgba(240, 237, 230, 0.25); }
-  :root.light #methods      { background: rgba(220, 216, 207, 0.40); }
+  :root.light #latest-work { background: rgba(240, 237, 230, 0.10); }
+  :root.light #methods      { background: rgba(220, 216, 207, 0.25); }
 
   /* ─── OUR AIMS ─── */
   .aims-intro {
@@ -482,6 +491,7 @@
   <ul>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
+    <li><a href="software.html">Software</a></li>
   </ul>
   <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
   <button id="theme-toggle" aria-label="Toggle light/dark mode">
@@ -498,7 +508,7 @@
     <span><span class="complex-spacer" aria-hidden="true">Complex </span>Models</span>
   </h2>
   <p class="hero-sub">
-    Reconceiving psychological constructs as complex and dynamic systems emerging from interacting variables.
+    Network psychometrics reconceives psychological constructs as complex and dynamic systems emerging from interactions between variables
   </p>
   <div class="hero-actions">
     <a href="team.html" class="btn-ghost">Meet the Team</a>

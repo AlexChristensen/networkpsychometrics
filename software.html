@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    try {
+      if (localStorage.getItem('npTheme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    } catch(e) {}
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software — Network Psychometrics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+
+    /* ─── SOFTWARE GRID ─── */
+    .software-grid {
+      display:               grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:                   2px;
+      background:            var(--border);
+    }
+
+    .software-card {
+      background: var(--ink);
+      padding:    2.5rem 2rem 2.5rem;
+      position:   relative;
+    }
+
+    .software-card::before {
+      content:    '';
+      position:   absolute;
+      top:        0; left: 0; right: 0;
+      height:     3px;
+      background: var(--teal);
+    }
+
+    /* ─── HEX STICKER / MONOGRAM ─── */
+    .pkg-hex {
+      width:         110px;
+      height:        110px;
+      margin-bottom: 1.6rem;
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      flex-shrink:   0;
+    }
+
+    .pkg-hex img {
+      width:      100%;
+      height:     100%;
+      object-fit: contain;
+    }
+
+    .pkg-hex-mono {
+      width:           110px;
+      height:          110px;
+      background:      rgba(45, 212, 191, 0.06);
+      border:          1px solid var(--border);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      font-family:     'Cormorant Garamond', serif;
+      font-size:       2.4rem;
+      font-weight:     300;
+      color:           var(--teal);
+      margin-bottom:   1.6rem;
+      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    }
+
+    /* ─── PACKAGE META ─── */
+    .pkg-name {
+      font-family:   'Cormorant Garamond', serif;
+      font-size:     2.2rem;
+      font-weight:   400;
+      line-height:   1.1;
+      margin-bottom: 0.25rem;
+      color:         var(--paper);
+    }
+
+    .pkg-version {
+      font-size:      0.90rem;
+      letter-spacing: 0.12em;
+      color:          var(--teal);
+      opacity:        0.6;
+      margin-bottom:  1.2rem;
+    }
+
+    .pkg-desc {
+      font-size:  1rem;
+      line-height: 1.9;
+      color:       var(--muted);
+      margin-bottom: 1.6rem;
+      max-width:   52ch;
+    }
+
+    .pkg-desc strong {
+      color:       var(--paper);
+      font-weight: 400;
+    }
+
+    /* ─── LINK PILLS ─── */
+    .pkg-links {
+      display:   flex;
+      flex-wrap: wrap;
+      gap:       0.5rem;
+    }
+
+    .pkg-link {
+      display:         inline-flex;
+      align-items:     center;
+      gap:             0.3rem;
+      font-size:       0.82rem;
+      letter-spacing:  0.14em;
+      text-transform:  uppercase;
+      text-decoration: none;
+      padding:         0.28rem 0.75rem;
+      border:          1px solid var(--border);
+      color:           var(--muted);
+      transition:      border-color 0.3s, color 0.3s, background 0.3s;
+    }
+
+    /* Standard link order: Website → CRAN → GitHub → Paper/Preprint */
+    .pkg-link:hover               { border-color: var(--teal);  color: var(--teal);  }
+    .pkg-link.website:hover       { border-color: var(--teal);  color: var(--teal);  }
+    .pkg-link.cran:hover          { border-color: var(--paper); color: var(--paper); }
+    .pkg-link.github:hover        { border-color: #e76f51;      color: #e76f51;      }
+    .pkg-link.paper:hover         { border-color: var(--amber); color: var(--amber); }
+
+    .pkg-link-icon { opacity: 0.7; font-size: 0.72rem; }
+
+    /* ─── PACKAGE STATS BADGES ─── */
+    .pkg-stats {
+      display:    flex;
+      flex-wrap:  wrap;
+      gap:        0.4rem;
+      margin-top: 1.2rem;
+      opacity:    0.90;
+    }
+
+    .pkg-stats img {
+      height:        20px;
+      border-radius: 2px;
+    }
+
+    /* ─── LIGHT MODE ─── */
+    :root.light .software-card { background: var(--ink); }
+
+    :root.light .pkg-link              { border-color: rgba(26,31,46,0.2); color: var(--muted); }
+    :root.light .pkg-link:hover        { background: var(--teal);  border-color: var(--teal);  color: #fff; }
+    :root.light .pkg-link.cran:hover   { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+    :root.light .pkg-link.github:hover { background: #e76f51;      border-color: #e76f51;      color: #fff; }
+    :root.light .pkg-link.paper:hover  { background: var(--amber); border-color: var(--amber); color: #fff; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .software-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .software-card { padding: 2rem 1.5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Network<span>Psychometrics</span></a>
+  <ul>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="software.html" class="active">Software</a></li>
+  </ul>
+  <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <button id="theme-toggle" aria-label="Toggle light/dark mode">
+    <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <canvas id="header-canvas"></canvas>
+  <div class="page-header-content">
+    <div class="hero-tag">Tools</div>
+    <h1>Open-Source <em>Software</em></h1>
+    <p class="hero-sub">
+      R packages and frameworks for network psychometrics, generative AI, and psychological measurement
+    </p>
+  </div>
+</header>
+
+<!-- SOFTWARE -->
+<section class="team-section">
+  <div class="section-inner">
+
+    <div class="software-grid reveal">
+
+      <!-- ══════════ AI-GENIE ══════════ -->
+      <div class="software-card">
+        <div class="pkg-hex-mono">AI</div>
+        <div class="pkg-name">AI-GENIE</div>
+        <div class="pkg-version">Automatic Item Generation &amp; Network-Integrated Evaluation</div>
+        <p class="pkg-desc">
+          A generative psychometrics framework for <strong>automatic item generation and validation</strong>
+          via network-integrated evaluation. AI-GENIE uses large language models to generate psychometric
+          items and network methods to evaluate their dimensional structure, enabling scalable and
+          theory-driven scale development.
+        </p>
+        <div class="pkg-links">
+          <a href="https://github.com/laralee/AI-GENIE" class="pkg-link github" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> GitHub
+          </a>
+          <a href="https://doi.org/10.31234/osf.io/fgbj4" class="pkg-link paper" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">↗</span> Preprint
+          </a>
+        </div>
+      </div>
+
+      <!-- ══════════ EGAnet ══════════ -->
+      <div class="software-card">
+        <div class="pkg-hex">
+          <img src="software/EGAnet.png" alt="EGAnet hex sticker">
+        </div>
+        <div class="pkg-name">EGAnet</div>
+        <div class="pkg-version">Exploratory Graph Analysis</div>
+        <p class="pkg-desc">
+          The leading framework for <strong>network-based dimensionality assessment</strong> in psychology.
+          EGAnet implements Exploratory Graph Analysis and a suite of related methods — network loadings,
+          bootstrap stability, entropy fit indices, dynamic EGA, and more — for estimating latent structure
+          in multivariate psychological data.
+        </p>
+        <div class="pkg-links">
+          <a href="https://r-ega.net" class="pkg-link website" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">↗</span> Website
+          </a>
+          <a href="https://doi.org/10.32614/CRAN.package.EGAnet" class="pkg-link cran" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> CRAN
+          </a>
+          <a href="https://github.com/hfgolino/EGAnet" class="pkg-link github" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> GitHub
+          </a>
+        </div>
+        <div class="pkg-stats">
+          <a href="https://CRAN.R-project.org/package=EGAnet" target="_blank" rel="noopener"><img src="https://www.r-pkg.org/badges/version/EGAnet?color=2dd4bf" alt="CRAN version"></a>
+          <a href="https://r-ega.net" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/grand-total/EGAnet?color=2dd4bf" alt="Total downloads"></a>
+          <a href="https://r-ega.net" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/EGAnet?color=2dd4bf" alt="Downloads per month"></a>
+        </div>
+      </div>
+
+      <!-- ══════════ NetworkToolbox ══════════ -->
+      <div class="software-card">
+        <div class="pkg-hex-mono">NT</div>
+        <div class="pkg-name">NetworkToolbox</div>
+        <div class="pkg-version">Brain, Cognitive &amp; Psychometric Network Analysis</div>
+        <p class="pkg-desc">
+          A comprehensive toolkit providing <strong>methods and measures for network analysis</strong>
+          across brain, cognitive, and psychometric research. NetworkToolbox implements filtering
+          approaches, centrality indices, community detection, and network comparison tools,
+          with a focus on applied psychological and neuroscientific research.
+        </p>
+        <div class="pkg-links">
+          <a href="https://github.com/AlexChristensen" class="pkg-link github" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> GitHub
+          </a>
+          <a href="https://doi.org/10.32614/RJ-2018-065" class="pkg-link paper" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">↗</span> Paper
+          </a>
+        </div>
+        <div class="pkg-stats">
+          <a href="https://CRAN.R-project.org/package=NetworkToolbox" target="_blank" rel="noopener"><img src="https://www.r-pkg.org/badges/version/NetworkToolbox?color=2dd4bf" alt="CRAN version"></a>
+          <a href="https://github.com/AlexChristensen" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/grand-total/NetworkToolbox?color=2dd4bf" alt="Total downloads"></a>
+          <a href="https://github.com/AlexChristensen" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/NetworkToolbox?color=2dd4bf" alt="Downloads per month"></a>
+        </div>
+      </div>
+
+      <!-- ══════════ transforEmotion ══════════ -->
+      <div class="software-card">
+        <div class="pkg-hex">
+          <img src="software/transforEmotion.png" alt="transforEmotion hex sticker">
+        </div>
+        <div class="pkg-name">transforEmotion</div>
+        <div class="pkg-version">Transformer-Based Emotion Analysis</div>
+        <p class="pkg-desc">
+          An open-source framework for <strong>emotion analysis using generative AI</strong>.
+          transforEmotion leverages transformer-based large language models for zero-shot emotion
+          coding in text and video data, and integrates Dynamic Exploratory Graph Analysis to
+          uncover the latent structure of emotion dynamics across time.
+        </p>
+        <div class="pkg-links">
+          <a href="https://doi.org/10.32614/CRAN.package.transforEmotion" class="pkg-link cran" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> CRAN
+          </a>
+          <a href="https://github.com/hfgolino/transforEmotion" class="pkg-link github" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">⌥</span> GitHub
+          </a>
+          <a href="https://doi.org/10.5117/CCR2026.2.2.TOMA" class="pkg-link paper" target="_blank" rel="noopener">
+            <span class="pkg-link-icon">↗</span> Paper
+          </a>
+        </div>
+        <div class="pkg-stats">
+          <a href="https://CRAN.R-project.org/package=transforEmotion" target="_blank" rel="noopener"><img src="https://www.r-pkg.org/badges/version/transforEmotion?color=2dd4bf" alt="CRAN version"></a>
+          <a href="https://github.com/hfgolino/transforEmotion" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/grand-total/transforEmotion?color=2dd4bf" alt="Total downloads"></a>
+          <a href="https://github.com/hfgolino/transforEmotion" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/transforEmotion?color=2dd4bf" alt="Downloads per month"></a>
+        </div>
+      </div>
+
+    </div><!-- /software-grid -->
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Network Psychometrics</p>
+  <div class="footer-links">
+    <a href="#">Documentation</a>
+    <a href="https://github.com/AlexChristensen">GitHub</a>
+    <a href="https://scholar.google.com/citations?user=RbatznQAAAAJ&hl=en">Google Scholar</a>
+    <a href="publications.html">Publications</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script>
+// ─── MOBILE NAV TOGGLE ───
+(function () {
+  var btn = document.getElementById('nav-toggle');
+  var nav = document.querySelector('nav');
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '\u2715' : '\u2630';
+  });
+  nav.querySelectorAll('ul a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      nav.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = '\u2630';
+    });
+  });
+})();
+
+// ─── THEME TOGGLE ───
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon   = document.getElementById('theme-icon');
+const themeLabel  = document.getElementById('theme-label');
+
+function syncThemeButton() {
+  const light = document.documentElement.classList.contains('light');
+  themeIcon.textContent  = light ? '☾' : '☀';
+  themeLabel.textContent = light ? 'Dark' : 'Light';
+  return light;
+}
+
+let isLight = syncThemeButton();
+
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    try {
+      const saved = localStorage.getItem('npTheme');
+      const shouldBeLight = saved === 'light';
+      document.documentElement.classList.toggle('light', shouldBeLight);
+    } catch(e) {}
+    isLight = syncThemeButton();
+  }
+});
+
+themeToggle.addEventListener('click', () => {
+  isLight = !isLight;
+  document.documentElement.classList.toggle('light', isLight);
+  syncThemeButton();
+  try { localStorage.setItem('npTheme', isLight ? 'light' : 'dark'); } catch(e) {}
+});
+
+// ─── HEADER NETWORK CANVAS ───
+(function () {
+  const canvas = document.getElementById('header-canvas');
+  const ctx = canvas.getContext('2d');
+  const header = document.querySelector('.page-header');
+  let W, H, nodes = [], edges = [];
+  const NODE_COUNT = 100;
+  const TEAL = '#2dd4bf', AMBER = '#f59e0b', YELLOW = '#f7b801';
+  const NP_STATE_KEY = 'npNetState';
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function initNodes() {
+    nodes = []; edges = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      const c = i < 5;
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2,
+        r: c ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
+        color: c ? TEAL : (Math.random() < 0.30 ? AMBER : YELLOW),
+        central: c, pulse: Math.random() * Math.PI * 2,
+      });
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+        if (d < 500) edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5 });
+      }
+    }
+  }
+
+  function saveState() {
+    try {
+      sessionStorage.setItem(NP_STATE_KEY, JSON.stringify(
+        nodes.map(n => ({ nx: n.x/W, ny: n.y/H, vx: n.vx, vy: n.vy,
+                          color: n.color, central: n.central, r: n.r, pulse: n.pulse }))
+      ));
+    } catch(e) {}
+  }
+
+  function tryLoadState() {
+    try {
+      const raw = sessionStorage.getItem(NP_STATE_KEY);
+      if (!raw) return false;
+      const saved = JSON.parse(raw);
+      if (!Array.isArray(saved) || !saved.length) return false;
+      nodes = saved.map(s => ({
+        x: s.nx * W, y: s.ny * H, vx: s.vx, vy: s.vy,
+        color: s.color, central: s.central, r: s.r, pulse: s.pulse
+      }));
+      edges = [];
+      for (let i = 0; i < nodes.length; i++)
+        for (let j = i + 1; j < nodes.length; j++) {
+          const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+          if (d < 500) edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5 });
+        }
+      return true;
+    } catch(e) { return false; }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    const lm = document.documentElement.classList.contains('light');
+    for (const e of edges) {
+      const a = nodes[e.a], b = nodes[e.b];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d > 220) continue;
+      const alpha = e.w * (1 - d / 250) * 0.90;
+      const hi = a.central || b.central;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = hi ? `rgba(13,148,136,${alpha * 2})`
+        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 1.5})`;
+      ctx.lineWidth = hi ? 1 : 0.5;
+      ctx.stroke();
+    }
+    for (const n of nodes) {
+      n.pulse += 0.02;
+      const glow = n.central ? (1 + Math.sin(n.pulse) * 0.3) : 1;
+      if (n.central) {
+        const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4 * glow);
+        g.addColorStop(0, 'rgba(45,212,191,0.25)'); g.addColorStop(1, 'rgba(45,212,191,0)');
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r * 4 * glow, 0, Math.PI * 2);
+        ctx.fillStyle = g; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
+      const al = n.central ? 1.0 : 0.65;
+      ctx.fillStyle = n.color === TEAL ? `rgba(13,148,136,${al})`
+        : n.color === AMBER ? `rgba(245,158,11,${al})`
+        : lm ? `rgba(26,31,46,${al * 0.75})` : `rgba(244,240,232,${al * 0.75})`;
+      ctx.fill();
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  if (!tryLoadState()) initNodes();
+  window.addEventListener('resize', () => {
+    const oldW = W, oldH = H;
+    resize();
+    nodes.forEach(n => { n.x = n.x / oldW * W; n.y = n.y / oldH * H; });
+  });
+  window.addEventListener('pagehide', saveState);
+  requestAnimationFrame(tick);
+
+  header.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    for (const n of nodes) {
+      const dx = mx - n.x, dy = my - n.y, d = Math.hypot(dx, dy);
+      if (d < 120) { n.vx -= dx / d * 0.04; n.vy -= dy / d * 0.04; }
+      const sp = Math.hypot(n.vx, n.vy);
+      if (sp > 0.25) { n.vx *= 0.5; n.vy *= 0.5; }
+    }
+  });
+})();
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.transitionDelay = `${i * 0.05}s`;
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
