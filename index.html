@@ -33,8 +33,63 @@
     padding: 0 10vw;
   }
 
+  /* ─── COMPLEX STACK EFFECT ─── */
+  #hero h2 {
+    display:        flex;
+    flex-direction: column;
+    align-items:    flex-start;
+  }
+
+  #hero h2 > span:first-child {
+    transform: translateY(0.45em);
+  }
+
+  #hero h2 > span:last-child {
+    transform: translateY(-0.45em);
+  }
+
+  .complex-stack {
+    position: relative;
+    display: inline-block;
+    color:       var(--teal);
+    font-style:  normal;
+  }
+
+  .complex-spacer {
+    visibility: hidden;
+  }
+
+  .complex-stack::before,
+  .complex-stack::after {
+    content: 'Complex';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+
+    font-family:    'Cormorant Garamond', serif;
+    font-size:      1em;
+    font-weight:    300;
+    color:          rgba(255, 255, 255, 0.24);
+    pointer-events: none;
+    user-select:    none;
+  }
+
+  :root.light .complex-stack::before,
+  :root.light .complex-stack::after {
+    color: rgba(7, 10, 16, 0.12);
+  }
+
+  .complex-stack::before {
+    bottom: 60%;
+  }
+
+  .complex-stack::after {
+    top: 60%;
+  }
+
   .hero-tag {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     letter-spacing: 0.2em;
     color: var(--teal);
     text-transform: uppercase;
@@ -52,7 +107,7 @@
   .hero-sub {
     margin-top: 2rem;
     max-width: 60ch;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 1.9;
     color: var(--muted);
     opacity: 0;
@@ -92,7 +147,7 @@
   }
 
   .metric-label {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     color: var(--muted);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -108,7 +163,7 @@
     align-items: center;
     gap: 0.8rem;
     color: var(--teal);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     opacity: 0;
@@ -136,15 +191,285 @@
 
   /* ─── TABLET ─── */
   @media (max-width: 1024px) {
-    .hero-sub { font-size: 1rem; }
+    .hero-sub { font-size: 1.2rem; }
   }
 
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
     #hero         { padding: 0 1.5rem; padding-top: 6rem; min-height: 100svh; }
-    .hero-sub     { font-size: 0.95rem; }
+    .hero-sub     { font-size: 1.1rem; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ══════════════════════════════════════════
+     SECTION BACKGROUNDS (index-specific)
+  ══════════════════════════════════════════ */
+  #aims {
+    background:      rgba(7, 10, 16, 0.15);
+    backdrop-filter: blur(10px);
+  }
+  #methods {
+    background:      rgba(7, 10, 16, 0.28);
+    backdrop-filter: blur(16px);
+    border-top:    1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  #latest-work {
+    background:      rgba(7, 10, 16, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  :root.light #aims,
+  :root.light #latest-work { background: rgba(240, 237, 230, 0.25); }
+  :root.light #methods      { background: rgba(220, 216, 207, 0.40); }
+
+  /* ─── OUR AIMS ─── */
+  .aims-intro {
+    max-width:   55ch;
+    font-size:   1.0rem;
+    line-height: 1.95;
+    color:       var(--muted);
+    margin-bottom: 4rem;
+  }
+
+  .aims-grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   2px;
+    background:            var(--border);
+  }
+
+  .aim-card {
+    background: var(--ink);
+    padding:    3rem 2.5rem 2.75rem;
+    position:   relative;
+    overflow:   hidden;
+    transition: background 0.4s;
+  }
+
+  .aim-card::before {
+    content:          '';
+    position:         absolute;
+    top: 0; left: 0; right: 0;
+    height:           2px;
+    background:       var(--teal);
+    transform:        scaleX(0);
+    transform-origin: left;
+    transition:       transform 0.75s ease;
+  }
+
+  .aim-card.visible::before { transform: scaleX(1); }
+
+  .aim-number {
+    font-family:    'Cormorant Garamond', serif;
+    font-size:      7rem;
+    font-weight:    300;
+    color:          var(--teal);
+    opacity:        0.07;
+    line-height:    1;
+    margin-bottom:  -2.4rem;
+    letter-spacing: -0.04em;
+    user-select:    none;
+    pointer-events: none;
+  }
+
+  .aim-title {
+    font-family:   'Cormorant Garamond', serif;
+    font-size:     1.9rem;
+    font-weight:   400;
+    line-height:   1.22;
+    color:         var(--paper);
+    margin-bottom: 1.1rem;
+  }
+
+  .aim-body {
+    font-size:   0.92rem;
+    line-height: 1.95;
+    color:       var(--muted);
+  }
+
+  /* ─── METHODS ─── */
+  .methods-header {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     flex-end;
+    gap:             3rem;
+    margin-bottom:   3.5rem;
+  }
+
+  .methods-sub {
+    font-size:   0.95rem;
+    line-height: 1.9;
+    color:       var(--muted);
+    max-width:   52ch;
+    text-align:  right;
+  }
+
+  .methods-grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   1px;
+    background:            var(--border);
+  }
+
+  .method-card {
+    background:  var(--ink);
+    padding:     2rem 2rem 2.25rem;
+    border-left: 2px solid transparent;
+    transition:  border-color 0.3s, background 0.3s;
+  }
+
+  .method-card:hover {
+    border-left-color: var(--teal);
+    background:        rgba(45, 212, 191, 0.03);
+  }
+
+  .method-tag {
+    font-size:      0.72rem;
+    letter-spacing: 0.26em;
+    color:          var(--teal);
+    text-transform: uppercase;
+    margin-bottom:  0.65rem;
+    opacity:        0.72;
+  }
+
+  .method-name {
+    font-family:   'Cormorant Garamond', serif;
+    font-size:     1.6rem;
+    font-weight:   400;
+    color:         var(--paper);
+    margin-bottom: 0.75rem;
+    line-height:   1.3;
+  }
+
+  .method-desc {
+    font-size:   0.9rem;
+    line-height: 1.9;
+    color:       var(--muted);
+  }
+
+  /* ─── LATEST WORK ─── */
+  .latest-header {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     flex-end;
+    margin-bottom:   3rem;
+  }
+
+  .work-grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   2px;
+    background:            var(--border);
+  }
+
+  .work-card {
+    background:     var(--ink);
+    display:        flex;
+    flex-direction: column;
+    transition:     background 0.3s;
+  }
+
+  .work-card:hover { background: rgba(45, 212, 191, 0.025); }
+
+  .work-fig {
+    margin:          0;
+    padding:         1.5rem;
+    border-bottom:   1px solid var(--border);
+    background:      rgba(45, 212, 191, 0.02);
+    aspect-ratio:    4 / 3;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    overflow:        hidden;
+  }
+
+  .work-fig svg { width: 100%; height: 100%; }
+
+  .work-body {
+    padding:        1.75rem 1.75rem 2rem;
+    display:        flex;
+    flex-direction: column;
+    flex:           1;
+  }
+
+  .work-badge {
+    display:        inline-block;
+    font-size:      0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding:        0.18rem 0.55rem;
+    margin-bottom:  0.85rem;
+    border:         1px solid;
+    align-self:     flex-start;
+  }
+
+  .work-badge.journal  { border-color: rgba(45,212,191,0.35);  color: var(--teal);  }
+  .work-badge.preprint { border-color: rgba(245,158,11,0.35);  color: var(--amber); }
+
+  .work-title {
+    font-family:   'Cormorant Garamond', serif;
+    font-size:     1.4rem;
+    font-weight:   400;
+    line-height:   1.45;
+    color:         var(--paper);
+    margin-bottom: 0.9rem;
+    flex:          1;
+  }
+
+  .work-authors {
+    font-size:     0.85rem;
+    color:         var(--muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.28rem;
+  }
+
+  .work-journal {
+    font-family:   'Cormorant Garamond', serif;
+    font-size:     1.1rem;
+    font-style:    italic;
+    color:         var(--teal);
+    margin-bottom: 1.25rem;
+  }
+
+  .work-link {
+    font-size:       0.82rem;
+    letter-spacing:  0.14em;
+    text-transform:  uppercase;
+    text-decoration: none;
+    color:           var(--muted);
+    display:         inline-flex;
+    align-items:     center;
+    gap:             0.45rem;
+    transition:      color 0.3s;
+  }
+
+  .work-link:hover   { color: var(--teal); }
+  .work-link::after  { content: '→'; font-size: 0.8rem; }
+
+  /* ─── LIGHT MODE OVERRIDES ─── */
+  :root.light .aim-card,
+  :root.light .method-card,
+  :root.light .work-card  { background: var(--dim); }
+  :root.light .work-fig   { background: rgba(13, 148, 136, 0.04); }
+
+  /* ─── NEW SECTIONS: RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .aims-grid,
+    .methods-grid,
+    .work-grid      { grid-template-columns: 1fr; }
+    .methods-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .methods-sub    { text-align: left; }
+  }
+
+  @media (max-width: 768px) {
+    .latest-header  { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .aim-card       { padding: 2.25rem 1.75rem 2rem; }
+    .method-card    { padding: 1.75rem 1.5rem 2rem; }
+    .work-fig       { aspect-ratio: 16 / 9; }
+  }
+
+
 </style>
 </head>
 <body>
@@ -167,7 +492,11 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-tag">Psychology is complex. Your models should be too.</div>
-  <h2>Complex Constructs Require Complex Models</h2>
+  <h2>
+    <span><span class="complex-spacer" aria-hidden="true">Complex </span>Constructs</span>
+    <span class="complex-stack">Complex</span>
+    <span><span class="complex-spacer" aria-hidden="true">Complex </span>Models</span>
+  </h2>
   <p class="hero-sub">
     Network psychometrics reconceives psychological phenomena — personality, psychopathology, cognition —
     as complex and dynamic systems of interacting variables.
@@ -182,6 +511,347 @@
     Scroll to discover
   </div>
 
+</section>
+
+<!-- ══════════════════════════════════════════
+     OUR AIMS
+══════════════════════════════════════════ -->
+<section id="aims">
+  <div class="section-inner">
+    <p class="section-tag">Mission</p>
+    <div class="reveal">
+      <h2>Our Aims</h2>
+      <p class="aims-intro">
+        We are building a psychometrics that matches the complexity of the mind —
+        moving from variables as mirrors of latent causes to variables as actors
+        within dynamic, interacting systems.
+      </p>
+    </div>
+    <div class="aims-grid">
+
+      <div class="aim-card reveal">
+        <div class="aim-number">01</div>
+        <h3 class="aim-title">Reconceive<br>Psychological Structure</h3>
+        <p class="aim-body">
+          We model personality, psychopathology, and cognition as complex,
+          dynamic systems of interacting variables — not passive reflections
+          of hidden latent causes. This theoretical shift reframes what it
+          means to measure a mind.
+        </p>
+      </div>
+
+      <div class="aim-card reveal">
+        <div class="aim-number">02</div>
+        <h3 class="aim-title">Build Rigorous<br>Psychometric Methods</h3>
+        <p class="aim-body">
+          We develop and validate network-based approaches to dimensionality
+          assessment, factor loading estimation, and measurement invariance —
+          grounded in statistical theory and stress-tested via large-scale
+          Monte Carlo simulation.
+        </p>
+      </div>
+
+      <div class="aim-card reveal">
+        <div class="aim-number">03</div>
+        <h3 class="aim-title">Open Tools for<br>Open Science</h3>
+        <p class="aim-body">
+          We translate our methods into freely available, actively maintained
+          R software packages — enabling researchers everywhere to apply
+          network psychometric techniques to their own data, regardless
+          of institutional resources.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     METHODS
+══════════════════════════════════════════ -->
+<section id="methods">
+  <div class="section-inner">
+    <p class="section-tag">Approach</p>
+    <div class="methods-header reveal">
+      <h2>Methods</h2>
+      <p class="methods-sub">
+        Our toolkit spans dimensionality assessment, structural modeling,
+        and generative AI — all grounded in the mathematics of networks
+        and validated through large-scale simulation.
+      </p>
+    </div>
+    <div class="methods-grid">
+
+      <div class="method-card reveal">
+        <div class="method-tag">Core</div>
+        <div class="method-name">Exploratory Graph Analysis</div>
+        <p class="method-desc">
+          A network-based framework for estimating the number of latent
+          dimensions in multivariate psychological data, using community
+          detection on regularized partial correlation networks.
+        </p>
+      </div>
+
+      <div class="method-card reveal">
+        <div class="method-tag">Stability</div>
+        <div class="method-name">Bootstrap EGA</div>
+        <p class="method-desc">
+          A resampling framework that evaluates the structural stability
+          and replicability of EGA-estimated dimensions, quantifying
+          confidence in both community assignments and item membership.
+        </p>
+      </div>
+
+      <div class="method-card reveal">
+        <div class="method-tag">Loadings</div>
+        <div class="method-name">Network Loadings</div>
+        <p class="method-desc">
+          Factor-loading analogues derived directly from network topology,
+          enabling direct quantitative comparison between network psychometric
+          and traditional factor-analytic findings.
+        </p>
+      </div>
+
+      <div class="method-card reveal">
+        <div class="method-tag">Model Fit</div>
+        <div class="method-name">Total Entropy Fit Index</div>
+        <p class="method-desc">
+          An information-theoretic fit index evaluating how well a proposed
+          network structure accounts for observed data, applicable across
+          SEM, factor, and network frameworks.
+        </p>
+      </div>
+
+      <div class="method-card reveal">
+        <div class="method-tag">Longitudinal</div>
+        <div class="method-name">Dynamic EGA</div>
+        <p class="method-desc">
+          An extension of EGA to time-series and intensive longitudinal data,
+          recovering idiographic psychological structure that evolves
+          dynamically within individual people over time.
+        </p>
+      </div>
+
+      <div class="method-card reveal">
+        <div class="method-tag">Generative AI</div>
+        <div class="method-name">Generative Psychometrics</div>
+        <p class="method-desc">
+          Leveraging large language model embeddings and network community
+          detection to automatically generate, evaluate, and validate
+          psychological scale items at scale.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LATEST WORK
+══════════════════════════════════════════ -->
+<section id="latest-work">
+  <div class="section-inner">
+    <p class="section-tag">Research</p>
+    <div class="latest-header reveal">
+      <h2>Latest Work</h2>
+      <a href="publications.html" class="btn-ghost">View All Publications</a>
+    </div>
+    <div class="work-grid">
+
+      <!-- ── Card 1: SBM / Network accuracy ── -->
+      <article class="work-card reveal">
+        <figure class="work-fig">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- ── within-A edges (teal community) ── -->
+            <line x1="62" y1="58" x2="38" y2="82"  stroke="#2dd4bf" stroke-width="1.2" opacity="0.38"/>
+            <line x1="62" y1="58" x2="80" y2="100" stroke="#2dd4bf" stroke-width="1.2" opacity="0.38"/>
+            <line x1="62" y1="58" x2="98" y2="60"  stroke="#2dd4bf" stroke-width="1.2" opacity="0.38"/>
+            <line x1="38" y1="82" x2="80" y2="100" stroke="#2dd4bf" stroke-width="0.8" opacity="0.22"/>
+            <line x1="80" y1="100"x2="98" y2="60"  stroke="#2dd4bf" stroke-width="0.8" opacity="0.22"/>
+            <line x1="38" y1="82" x2="98" y2="60"  stroke="#2dd4bf" stroke-width="0.8" opacity="0.18"/>
+            <!-- ── within-B edges (amber community) ── -->
+            <line x1="238" y1="58" x2="262" y2="82"  stroke="#f59e0b" stroke-width="1.2" opacity="0.38"/>
+            <line x1="238" y1="58" x2="220" y2="100" stroke="#f59e0b" stroke-width="1.2" opacity="0.38"/>
+            <line x1="238" y1="58" x2="202" y2="60"  stroke="#f59e0b" stroke-width="1.2" opacity="0.38"/>
+            <line x1="262" y1="82" x2="220" y2="100" stroke="#f59e0b" stroke-width="0.8" opacity="0.22"/>
+            <line x1="220" y1="100"x2="202" y2="60"  stroke="#f59e0b" stroke-width="0.8" opacity="0.22"/>
+            <line x1="262" y1="82" x2="202" y2="60"  stroke="#f59e0b" stroke-width="0.8" opacity="0.18"/>
+            <!-- ── within-C edges (yellow community) ── -->
+            <line x1="150" y1="160"x2="122" y2="185" stroke="#f7b801" stroke-width="1.2" opacity="0.38"/>
+            <line x1="150" y1="160"x2="178" y2="185" stroke="#f7b801" stroke-width="1.2" opacity="0.38"/>
+            <line x1="122" y1="185"x2="178" y2="185" stroke="#f7b801" stroke-width="0.8" opacity="0.22"/>
+            <line x1="150" y1="160"x2="135" y2="195" stroke="#f7b801" stroke-width="0.7" opacity="0.16"/>
+            <line x1="150" y1="160"x2="165" y2="195" stroke="#f7b801" stroke-width="0.7" opacity="0.16"/>
+            <!-- ── between-community edges (sparse, muted) ── -->
+            <line x1="98"  y1="60" x2="202" y2="60"  stroke="#8b98b0" stroke-width="0.6" opacity="0.13"/>
+            <line x1="80"  y1="100"x2="122" y2="185" stroke="#8b98b0" stroke-width="0.6" opacity="0.13"/>
+            <line x1="220" y1="100"x2="178" y2="185" stroke="#8b98b0" stroke-width="0.6" opacity="0.13"/>
+            <!-- ── nodes A (teal) ── -->
+            <circle cx="62"  cy="58"  r="7"   fill="#2dd4bf" opacity="0.92"/>
+            <circle cx="38"  cy="82"  r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="80"  cy="100" r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="98"  cy="60"  r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <!-- ── nodes B (amber) ── -->
+            <circle cx="238" cy="58"  r="7"   fill="#f59e0b" opacity="0.92"/>
+            <circle cx="262" cy="82"  r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="220" cy="100" r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="202" cy="60"  r="4"   fill="#f59e0b" opacity="0.65"/>
+            <!-- ── nodes C (yellow) ── -->
+            <circle cx="150" cy="160" r="6"   fill="#f7b801" opacity="0.88"/>
+            <circle cx="122" cy="185" r="3.5" fill="#f7b801" opacity="0.65"/>
+            <circle cx="178" cy="185" r="3.5" fill="#f7b801" opacity="0.65"/>
+            <circle cx="135" cy="195" r="3"   fill="#f7b801" opacity="0.45"/>
+            <circle cx="165" cy="195" r="3"   fill="#f7b801" opacity="0.45"/>
+            <!-- ── labels ── -->
+            <text x="18"  y="212" font-size="7.5" fill="#8b98b0" font-family="monospace" opacity="0.55">Local</text>
+            <text x="126" y="212" font-size="7.5" fill="#8b98b0" font-family="monospace" opacity="0.55" text-anchor="middle">Mesoscale</text>
+            <text x="255" y="212" font-size="7.5" fill="#8b98b0" font-family="monospace" opacity="0.55">Global</text>
+          </svg>
+          <figcaption>Placeholder: three-community SBM network figure</figcaption>
+        </figure>
+        <div class="work-body">
+          <span class="work-badge preprint">Preprint</span>
+          <h3 class="work-title">Network accuracy across local, mesoscale, and global structures using Stochastic Block Models</h3>
+          <p class="work-authors">Christensen, A. P., &amp; Choi, J. (2026)</p>
+          <p class="work-journal">PsyArXiv</p>
+          <a href="https://doi.org/10.31234/osf.io/9d4nm_v2" class="work-link" target="_blank" rel="noopener">Read Paper</a>
+        </div>
+      </article>
+
+      <!-- ── Card 2: EGA dimensionality / generative psychometrics ── -->
+      <article class="work-card reveal">
+        <figure class="work-fig">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- ── community ellipse outlines ── -->
+            <ellipse cx="88"  cy="112" rx="60" ry="72"
+                     fill="#2dd4bf" fill-opacity="0.03"
+                     stroke="#2dd4bf" stroke-width="0.7"
+                     stroke-dasharray="5,4" opacity="0.45"/>
+            <ellipse cx="212" cy="112" rx="60" ry="72"
+                     fill="#f59e0b" fill-opacity="0.03"
+                     stroke="#f59e0b" stroke-width="0.7"
+                     stroke-dasharray="5,4" opacity="0.45"/>
+            <!-- ── within-dim1 edges ── -->
+            <line x1="88" y1="112" x2="60"  y2="72"  stroke="#2dd4bf" stroke-width="1.1" opacity="0.35"/>
+            <line x1="88" y1="112" x2="48"  y2="118" stroke="#2dd4bf" stroke-width="1.1" opacity="0.35"/>
+            <line x1="88" y1="112" x2="68"  y2="158" stroke="#2dd4bf" stroke-width="1.1" opacity="0.35"/>
+            <line x1="88" y1="112" x2="120" y2="70"  stroke="#2dd4bf" stroke-width="1.1" opacity="0.35"/>
+            <line x1="88" y1="112" x2="122" y2="152" stroke="#2dd4bf" stroke-width="1.1" opacity="0.35"/>
+            <line x1="60"  y1="72"  x2="48"  y2="118" stroke="#2dd4bf" stroke-width="0.7" opacity="0.2"/>
+            <line x1="68"  y1="158" x2="122" y2="152" stroke="#2dd4bf" stroke-width="0.7" opacity="0.2"/>
+            <line x1="60"  y1="72"  x2="120" y2="70"  stroke="#2dd4bf" stroke-width="0.7" opacity="0.2"/>
+            <!-- ── within-dim2 edges ── -->
+            <line x1="212" y1="112" x2="240" y2="72"  stroke="#f59e0b" stroke-width="1.1" opacity="0.35"/>
+            <line x1="212" y1="112" x2="252" y2="118" stroke="#f59e0b" stroke-width="1.1" opacity="0.35"/>
+            <line x1="212" y1="112" x2="232" y2="158" stroke="#f59e0b" stroke-width="1.1" opacity="0.35"/>
+            <line x1="212" y1="112" x2="180" y2="70"  stroke="#f59e0b" stroke-width="1.1" opacity="0.35"/>
+            <line x1="212" y1="112" x2="178" y2="152" stroke="#f59e0b" stroke-width="1.1" opacity="0.35"/>
+            <line x1="240" y1="72"  x2="252" y2="118" stroke="#f59e0b" stroke-width="0.7" opacity="0.2"/>
+            <line x1="232" y1="158" x2="178" y2="152" stroke="#f59e0b" stroke-width="0.7" opacity="0.2"/>
+            <line x1="240" y1="72"  x2="180" y2="70"  stroke="#f59e0b" stroke-width="0.7" opacity="0.2"/>
+            <!-- ── cross-dimension edges (sparse) ── -->
+            <line x1="120" y1="70"  x2="180" y2="70"  stroke="#8b98b0" stroke-width="0.5" opacity="0.18"/>
+            <line x1="122" y1="152" x2="178" y2="152" stroke="#8b98b0" stroke-width="0.5" opacity="0.18"/>
+            <!-- ── nodes dim 1 (teal) ── -->
+            <circle cx="88"  cy="112" r="7.5" fill="#2dd4bf" opacity="0.95"/>
+            <circle cx="60"  cy="72"  r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="48"  cy="118" r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="68"  cy="158" r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="120" cy="70"  r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <circle cx="122" cy="152" r="4"   fill="#2dd4bf" opacity="0.65"/>
+            <!-- ── nodes dim 2 (amber) ── -->
+            <circle cx="212" cy="112" r="7.5" fill="#f59e0b" opacity="0.95"/>
+            <circle cx="240" cy="72"  r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="252" cy="118" r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="232" cy="158" r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="180" cy="70"  r="4"   fill="#f59e0b" opacity="0.65"/>
+            <circle cx="178" cy="152" r="4"   fill="#f59e0b" opacity="0.65"/>
+            <!-- ── labels ── -->
+            <text x="58"  y="212" font-size="7.5" fill="#2dd4bf" font-family="monospace" opacity="0.65" text-anchor="middle">Dim 1</text>
+            <text x="242" y="212" font-size="7.5" fill="#f59e0b" font-family="monospace" opacity="0.65" text-anchor="middle">Dim 2</text>
+          </svg>
+          <figcaption>Placeholder: two-factor EGA dimensionality figure</figcaption>
+        </figure>
+        <div class="work-body">
+          <span class="work-badge preprint">Preprint</span>
+          <h3 class="work-title">Estimating dimensional structure in generative psychometrics: Comparing PCA and network methods using large language model item embeddings</h3>
+          <p class="work-authors">Garrido, L. E., Russell-Lasalandra, L. L., &amp; Golino, H. (2026)</p>
+          <p class="work-journal">PsyArXiv</p>
+          <a href="https://doi.org/10.31234/osf.io/2s7pw_v1" class="work-link" target="_blank" rel="noopener">Read Paper</a>
+        </div>
+      </article>
+
+      <!-- ── Card 3: LLM embeddings / Monte Carlo ── -->
+      <article class="work-card reveal">
+        <figure class="work-fig">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- ── axes ── -->
+            <line x1="30" y1="188" x2="278" y2="188" stroke="#8b98b0" stroke-width="0.7" opacity="0.4"/>
+            <line x1="30" y1="188" x2="30"  y2="18"  stroke="#8b98b0" stroke-width="0.7" opacity="0.4"/>
+            <!-- ── axis ticks ── -->
+            <line x1="30" y1="148" x2="25" y2="148" stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <line x1="30" y1="108" x2="25" y2="108" stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <line x1="30" y1="68"  x2="25" y2="68"  stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <line x1="105" y1="188" x2="105" y2="193" stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <line x1="180" y1="188" x2="180" y2="193" stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <line x1="255" y1="188" x2="255" y2="193" stroke="#8b98b0" stroke-width="0.5" opacity="0.3"/>
+            <!-- ── cluster 1: EGA (teal, upper-center) ── -->
+            <circle cx="128" cy="65"  r="3.2" fill="#2dd4bf" opacity="0.78"/>
+            <circle cx="145" cy="52"  r="3.2" fill="#2dd4bf" opacity="0.78"/>
+            <circle cx="162" cy="68"  r="3.2" fill="#2dd4bf" opacity="0.78"/>
+            <circle cx="152" cy="80"  r="3.2" fill="#2dd4bf" opacity="0.78"/>
+            <circle cx="135" cy="78"  r="3.2" fill="#2dd4bf" opacity="0.78"/>
+            <circle cx="170" cy="56"  r="2.6" fill="#2dd4bf" opacity="0.55"/>
+            <circle cx="118" cy="72"  r="2.6" fill="#2dd4bf" opacity="0.55"/>
+            <circle cx="155" cy="42"  r="2.6" fill="#2dd4bf" opacity="0.55"/>
+            <circle cx="172" cy="78"  r="2.6" fill="#2dd4bf" opacity="0.55"/>
+            <circle cx="140" cy="88"  r="2.2" fill="#2dd4bf" opacity="0.40"/>
+            <circle cx="122" cy="55"  r="2.2" fill="#2dd4bf" opacity="0.40"/>
+            <!-- ── cluster 2: PCA (amber, right) ── -->
+            <circle cx="220" cy="115" r="3.2" fill="#f59e0b" opacity="0.78"/>
+            <circle cx="238" cy="102" r="3.2" fill="#f59e0b" opacity="0.78"/>
+            <circle cx="248" cy="122" r="3.2" fill="#f59e0b" opacity="0.78"/>
+            <circle cx="230" cy="132" r="3.2" fill="#f59e0b" opacity="0.78"/>
+            <circle cx="252" cy="108" r="3.2" fill="#f59e0b" opacity="0.78"/>
+            <circle cx="212" cy="130" r="2.6" fill="#f59e0b" opacity="0.55"/>
+            <circle cx="242" cy="140" r="2.6" fill="#f59e0b" opacity="0.55"/>
+            <circle cx="260" cy="95"  r="2.6" fill="#f59e0b" opacity="0.55"/>
+            <circle cx="218" cy="100" r="2.6" fill="#f59e0b" opacity="0.55"/>
+            <circle cx="255" cy="132" r="2.2" fill="#f59e0b" opacity="0.40"/>
+            <!-- ── cluster 3: Null (yellow, lower-left) ── -->
+            <circle cx="72"  cy="138" r="3.2" fill="#f7b801" opacity="0.68"/>
+            <circle cx="58"  cy="152" r="3.2" fill="#f7b801" opacity="0.68"/>
+            <circle cx="82"  cy="158" r="3.2" fill="#f7b801" opacity="0.68"/>
+            <circle cx="95"  cy="142" r="3.2" fill="#f7b801" opacity="0.68"/>
+            <circle cx="68"  cy="125" r="3.2" fill="#f7b801" opacity="0.68"/>
+            <circle cx="48"  cy="140" r="2.6" fill="#f7b801" opacity="0.50"/>
+            <circle cx="62"  cy="168" r="2.6" fill="#f7b801" opacity="0.50"/>
+            <circle cx="98"  cy="158" r="2.6" fill="#f7b801" opacity="0.50"/>
+            <circle cx="88"  cy="122" r="2.2" fill="#f7b801" opacity="0.38"/>
+            <circle cx="50"  cy="120" r="2.2" fill="#f7b801" opacity="0.38"/>
+            <!-- ── legend ── -->
+            <circle cx="40"  cy="208" r="3.2" fill="#2dd4bf" opacity="0.85"/>
+            <text   x="48"  y="211.5" font-size="7" fill="#8b98b0" font-family="monospace" opacity="0.7">EGA</text>
+            <circle cx="90"  cy="208" r="3.2" fill="#f59e0b" opacity="0.85"/>
+            <text   x="98"  y="211.5" font-size="7" fill="#8b98b0" font-family="monospace" opacity="0.7">PCA</text>
+            <circle cx="135" cy="208" r="3.2" fill="#f7b801" opacity="0.85"/>
+            <text   x="143" y="211.5" font-size="7" fill="#8b98b0" font-family="monospace" opacity="0.7">Null</text>
+            <!-- ── axis labels ── -->
+            <text x="154" y="207" font-size="7" fill="#8b98b0" font-family="monospace" opacity="0.45" text-anchor="middle">Embedding Dim 1</text>
+          </svg>
+          <figcaption>Placeholder: LLM embedding scatter plot figure</figcaption>
+        </figure>
+        <div class="work-body">
+          <span class="work-badge preprint">Preprint</span>
+          <h3 class="work-title">Optimizing the landscape of LLM embeddings with Dynamic Exploratory Graph Analysis for generative psychometrics: A Monte Carlo study</h3>
+          <p class="work-authors">Golino, H. (2026)</p>
+          <p class="work-journal">arXiv</p>
+          <a href="https://arxiv.org/abs/2601.17010" class="work-link" target="_blank" rel="noopener">Read Paper</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -405,7 +1075,7 @@ themeToggle.addEventListener('click', () => {
   function onScroll() {
     const progress = Math.max(0, 1 - window.scrollY / 200);
     hint.style.opacity = progress;
-    if (line) line.style.width = (40 * progress) + 'px';
+    if (line) line.style.width = (80 * progress) + 'px';
   }
   hint.addEventListener('animationend', function handler() {
     hint.removeEventListener('animationend', handler);
@@ -415,6 +1085,21 @@ themeToggle.addEventListener('click', () => {
     hint.style.transition = 'opacity 0.4s ease';
     window.addEventListener('scroll', onScroll, { passive: true });
   });
+})();
+
+// ─── SCROLL REVEAL ───
+(function () {
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${i * 0.06}s`;
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
 })();
 
 // ─── MOBILE NAV TOGGLE ───

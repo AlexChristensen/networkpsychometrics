@@ -15,73 +15,6 @@
   <link rel="stylesheet" href="theme.css">
   <style>
 
-    /* ─── PAGE HEADER ─── */
-    .page-header {
-      position:      relative;
-      z-index:       1;
-      padding:       12rem 10vw 5rem;
-      border-bottom: 1px solid var(--border);
-      overflow:      hidden;
-    }
-
-    #header-canvas {
-      position:       absolute;
-      top:            0;
-      left:           0;
-      width:          100%;
-      height:         100vh;
-      z-index:        0;
-      opacity:        0.65;
-      pointer-events: none;
-    }
-
-    :root.light #header-canvas { opacity: 0.49; }
-
-    .page-header-content {
-      position: relative;
-      z-index:  1;
-    }
-
-    .page-header .hero-tag {
-      font-size:      0.9rem;
-      letter-spacing: 0.18em;
-      color:          var(--teal);
-      text-transform: uppercase;
-      margin-bottom:  1.5rem;
-      opacity:        0;
-      animation:      fadeUp 0.8s 0.3s ease forwards;
-    }
-
-    .page-header .hero-tag::before {
-      content:      '//';
-      margin-right: 0.6rem;
-      opacity:      0.5;
-    }
-
-    .page-header h1 {
-      font-size: clamp(2.8rem, 6vw, 6rem);
-      max-width: 22ch;
-    }
-
-    .page-header .hero-sub {
-      margin-top:  2rem;
-      max-width:   80ch;
-      font-size:   1.0rem;
-      line-height: 2;
-      color:       var(--muted);
-      opacity:     0;
-      animation:   fadeUp 0.9s 0.7s ease forwards;
-    }
-
-    /* ─── TEAM SECTION ─── */
-    .team-section {
-      border-top:      1px solid var(--border);
-      background:      rgba(17, 24, 39, 0.5);
-      backdrop-filter: blur(4px);
-    }
-
-    :root.light .team-section { background: rgba(225, 220, 210, 0.35); }
-
     /* ─── THREE-COLUMN FACULTY GROUPS ─── */
     .faculty-groups {
       display:               grid;
@@ -139,7 +72,7 @@
     }
 
     .faculty-affil {
-      font-size:      0.65rem;
+      font-size:      0.8rem;
       letter-spacing: 0.2em;
       color:          var(--teal);
       text-transform: uppercase;
@@ -149,14 +82,14 @@
 
     .faculty-name {
       font-family:   'Cormorant Garamond', serif;
-      font-size:     1.5rem;
+      font-size:     1.9rem;
       font-weight:   400;
       line-height:   1.2;
       margin-bottom: 0.3rem;
     }
 
     .faculty-role {
-      font-size:      0.68rem;
+      font-size:      0.85rem;
       letter-spacing: 0.1em;
       color:          var(--muted);
       opacity:        0.7;
@@ -164,7 +97,7 @@
     }
 
     .faculty-bio {
-      font-size:   0.78rem;
+      font-size:   0.95rem;
       line-height: 1.95;
       color:       var(--muted);
       margin-bottom: 1.4rem;
@@ -185,7 +118,7 @@
     }
 
     .student-label {
-      font-size:      0.65rem;
+      font-size:      0.8rem;
       letter-spacing: 0.2em;
       color:          var(--teal);
       text-transform: uppercase;
@@ -195,7 +128,7 @@
 
     .student-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size:   1.15rem;
+      font-size:   1.45rem;
       font-weight: 400;
       line-height: 1.3;
     }
@@ -212,8 +145,6 @@
     }
 
     @media (max-width: 768px) {
-      .page-header { padding: 8rem 1.5rem 3rem; }
-      .page-header .hero-sub { font-size: 0.9rem; }
       .faculty-card  { padding: 2rem 1.5rem 1.5rem; }
       .student-card  { padding: 1.4rem 1.5rem; }
     }

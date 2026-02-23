@@ -16,11 +16,11 @@
 /* ─── DESIGN TOKENS ─── */
 :root {
   --ink:    #070a10;
-  --paper:  #f4f0e8;
+  --paper:  #faf7f2;
+  --muted:  #95ADB4;
   --teal:   #2dd4bf;
   --amber:  #f59e0b;
   --yellow: #f7b801;
-  --muted:  #8b98b0;
   --dim:    #111827;
   --border: rgba(45, 212, 191, 0.15);
 }
@@ -65,14 +65,15 @@ h1 {
   animation:     fadeUp 0.9s 0.5s ease forwards;
 }
 
-h1 em {
+h1 em,
+h2 em {
   font-style: italic;
   color: var(--teal);
 }
 
 h2 {
   font-family:  'Cormorant Garamond', serif;
-  font-size:    clamp(2.2rem, 4vw, 3.8rem);
+  font-size:    clamp(2.8rem, 5vw, 5rem);
   font-weight:  300;
   line-height:  1.1;
   margin-bottom: 1.5rem;
@@ -112,6 +113,64 @@ blockquote::before {
   opacity: 0.49;
 }
 
+/* ─── PAGE HEADER (inner pages) ─── */
+.page-header {
+  position:      relative;
+  z-index:       1;
+  padding:       12rem 10vw 5rem;
+  border-bottom: 1px solid var(--border);
+  overflow:      hidden;
+}
+
+#header-canvas {
+  position:       absolute;
+  top:            0;
+  left:           0;
+  width:          100%;
+  height:         100vh;
+  z-index:        0;
+  opacity:        0.65;
+  pointer-events: none;
+}
+
+:root.light #header-canvas { opacity: 0.49; }
+
+.page-header-content {
+  position: relative;
+  z-index:  1;
+}
+
+.page-header .hero-tag {
+  font-size:      1.05rem;
+  letter-spacing: 0.18em;
+  color:          var(--teal);
+  text-transform: uppercase;
+  margin-bottom:  1.5rem;
+  opacity:        0;
+  animation:      fadeUp 0.8s 0.3s ease forwards;
+}
+
+.page-header .hero-tag::before {
+  content:      '//';
+  margin-right: 0.6rem;
+  opacity:      0.5;
+}
+
+.page-header h1 {
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  max-width: 22ch;
+}
+
+.page-header .hero-sub {
+  margin-top:  2rem;
+  max-width:   80ch;
+  font-size:   1.2rem;
+  line-height: 2;
+  color:       var(--muted);
+  opacity:     0;
+  animation:   fadeUp 0.8s 0.5s ease forwards;
+}
+
 /* ─── NAV ─── */
 nav {
   position:        fixed;
@@ -132,17 +191,19 @@ nav {
 
 .logo {
   font-family:     'Cormorant Garamond', serif;
-  font-size:       1.1rem;
+  font-size:       1.3rem;
   font-weight:     300;
   letter-spacing:  0.08em;
-  color:           var(--teal);
+  color:           #ffffff;
   text-transform:  uppercase;
   text-decoration: none;
 }
 
+:root.light .logo { color: #000000; }
+
 .logo span {
-  color:   var(--paper);
-  opacity: 0.5;
+  color:   var(--teal);
+  opacity: 1;
 }
 
 nav ul {
@@ -154,7 +215,7 @@ nav ul {
 nav a {
   text-decoration: none;
   color:           var(--muted);
-  font-size:       0.9rem;
+  font-size:       1.05rem;
   letter-spacing:  0.15em;
   text-transform:  uppercase;
   transition:      color 0.3s;
@@ -182,7 +243,7 @@ nav a.active { color: var(--teal); }
   border:         1px solid var(--border);
   color:          var(--muted);
   font-family:    'DM Mono', monospace;
-  font-size:      0.62rem;
+  font-size:      0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding:        0.4rem 0.8rem;
@@ -223,7 +284,7 @@ nav a.active { color: var(--teal); }
   display:         inline-flex;
   align-items:     center;
   gap:             0.3rem;
-  font-size:       0.68rem;
+  font-size:       0.85rem;
   letter-spacing:  0.14em;
   text-transform:  uppercase;
   text-decoration: none;
@@ -244,7 +305,7 @@ nav a.active { color: var(--teal); }
   background:     var(--teal);
   color:          var(--ink);
   font-family:    'DM Mono', monospace;
-  font-size:      0.9rem;
+  font-size:      1.05rem;
   font-weight:    500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -265,7 +326,7 @@ nav a.active { color: var(--teal); }
   background:     transparent;
   color:          var(--muted);
   font-family:    'DM Mono', monospace;
-  font-size:      0.9rem;
+  font-size:      1.05rem;
   font-weight:    400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -294,7 +355,7 @@ section {
 }
 
 .section-tag {
-  font-size:      0.8rem;
+  font-size:      0.95rem;
   letter-spacing: 0.2em;
   color:          var(--teal);
   text-transform: uppercase;
@@ -306,6 +367,19 @@ section {
   opacity: 0.5;
 }
 
+/* ─── INNER-PAGE CONTENT SECTIONS ─── */
+.pub-section,
+.team-section {
+  border-top:      1px solid var(--border);
+  background:      rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+:root.light .pub-section,
+:root.light .team-section {
+  background: rgba(225, 220, 210, 0.35);
+}
+
 /* ─── FORM ELEMENTS ─── */
 input, textarea {
   background:  transparent;
@@ -313,7 +387,7 @@ input, textarea {
   padding:     0.9rem 1.2rem;
   color:       var(--paper);
   font-family: 'DM Mono', monospace;
-  font-size:   0.72rem;
+  font-size:   0.9rem;
   font-weight: 300;
   outline:     none;
   transition:  border-color 0.3s;
@@ -349,7 +423,7 @@ footer {
 :root.light footer { background: rgba(240, 237, 230, 0.85); }
 
 footer p {
-  font-size:      0.6rem;
+  font-size:      0.75rem;
   color:          var(--muted);
   letter-spacing: 0.1em;
 }
@@ -360,7 +434,7 @@ footer p {
 }
 
 .footer-links a {
-  font-size:      0.6rem;
+  font-size:      0.75rem;
   color:          var(--muted);
   text-decoration: none;
   letter-spacing: 0.12em;
@@ -386,7 +460,7 @@ footer p {
 /* ─── TOOLTIP / EDGE LABEL ─── */
 .edge-label {
   position:       fixed;
-  font-size:      0.58rem;
+  font-size:      0.72rem;
   color:          var(--teal);
   letter-spacing: 0.1em;
   pointer-events: none;
@@ -444,7 +518,7 @@ footer p {
   border:         1px solid var(--border);
   color:          var(--muted);
   font-family:    'DM Mono', monospace;
-  font-size:      0.75rem;
+  font-size:      0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding:        0.45rem 1.1rem;
@@ -490,7 +564,7 @@ footer p {
   border:         1px solid var(--border);
   color:          var(--muted);
   font-family:    'DM Mono', monospace;
-  font-size:      0.75rem;
+  font-size:      0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding:        0.45rem 1.1rem;
@@ -535,7 +609,7 @@ footer p {
   border-bottom:  1px solid var(--border);
   color:          var(--muted);
   font-family:    'DM Mono', monospace;
-  font-size:      0.75rem;
+  font-size:      0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding:        0.6rem 1.1rem;
@@ -661,10 +735,12 @@ footer p {
     z-index:         99;
   }
   nav.nav-open ul { display: flex; }
-  nav ul li a     { display: block; padding: 0.85rem 1.5rem; font-size: 0.85rem; }
+  nav ul li a     { display: block; padding: 0.85rem 1.5rem; font-size: 1.0rem; }
   :root.light nav.nav-open ul { background: rgba(240, 237, 230, 0.97); }
 
   .section-inner { padding: 5rem 1.5rem; }
+  .page-header            { padding: 8rem 1.5rem 3rem; }
+  .page-header .hero-sub  { font-size: 1.05rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
 }

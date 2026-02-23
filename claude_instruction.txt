@@ -1,0 +1,28 @@
+.complex-stack {
+  position: relative;
+  display: inline-block;
+}
+
+.complex-stack::before,
+.complex-stack::after {
+  content: 'Complex';
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  font-family:    'Cormorant Garamond', serif;
+  font-size:      1em;
+  font-weight:    300;
+  color:          transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  user-select:    none;
+}
+
+.complex-stack::before {
+  bottom: 100%; /* one line directly above */
+}
+
+.complex-stack::after {
+  top: 100%; /* one line directly below */
+}
