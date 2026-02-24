@@ -17,7 +17,7 @@
   <style>
 
     /* ─── PUB LAYOUT ─── */
-    .pub-year-group { margin-bottom: 5rem; }
+    .pub-year-group { margin-bottom: 5rem; scroll-margin-top: 5rem; }
 
     .pub-year {
       font-family:    'Cormorant Garamond', serif;
@@ -143,6 +143,66 @@
       .filter-bar             { gap: 0.4rem; }
     }
 
+    /* ─── SECTION QUICK-LINKS ─── */
+    .section-nav {
+      position:        fixed;
+      right:           2rem;
+      top:             50%;
+      transform:       translateY(-50%);
+      z-index:         50;
+      display:         flex;
+      flex-direction:  column;
+      gap:             1.1rem;
+      pointer-events:  auto;
+    }
+
+    .section-nav a {
+      display:         flex;
+      align-items:     center;
+      justify-content: flex-end;
+      gap:             0.7rem;
+      text-decoration: none;
+      cursor:          pointer;
+    }
+
+    .section-nav .sn-label {
+      font-size:      0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color:          var(--teal);
+      opacity:        1;
+      transform:      translateX(0);
+      transition:     color 0.25s ease;
+      white-space:    nowrap;
+      pointer-events: none;
+    }
+
+    .section-nav .sn-dot {
+      width:         6px;
+      height:        6px;
+      border-radius: 50%;
+      border:        1.5px solid var(--teal);
+      background:    var(--teal);
+      transition:    background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      flex-shrink:   0;
+    }
+
+    .section-nav a:hover .sn-label { color: var(--teal); opacity: 0.8; }
+    .section-nav a:hover .sn-dot   { transform: scale(1.2); }
+
+    .section-nav a.sn-active .sn-dot {
+      background:   var(--amber);
+      border-color: var(--amber);
+      transform:    scale(1.4);
+    }
+    .section-nav a.sn-active .sn-label {
+      color: var(--amber);
+    }
+
+    @media (max-width: 768px) {
+      .section-nav { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -161,12 +221,26 @@
   </button>
 </nav>
 
+<!-- SECTION QUICK-LINKS -->
+<aside class="section-nav" aria-label="Publication years">
+  <a href="#y2026"><span class="sn-label">2026</span><span class="sn-dot"></span></a>
+  <a href="#y2025"><span class="sn-label">2025</span><span class="sn-dot"></span></a>
+  <a href="#y2024"><span class="sn-label">2024</span><span class="sn-dot"></span></a>
+  <a href="#y2023"><span class="sn-label">2023</span><span class="sn-dot"></span></a>
+  <a href="#y2022"><span class="sn-label">2022</span><span class="sn-dot"></span></a>
+  <a href="#y2021"><span class="sn-label">2021</span><span class="sn-dot"></span></a>
+  <a href="#y2020"><span class="sn-label">2020</span><span class="sn-dot"></span></a>
+  <a href="#y2019"><span class="sn-label">2019</span><span class="sn-dot"></span></a>
+  <a href="#y2018"><span class="sn-label">2018</span><span class="sn-dot"></span></a>
+  <a href="#y2017"><span class="sn-label">2017</span><span class="sn-dot"></span></a>
+</aside>
+
 <!-- PAGE HEADER -->
 <header class="page-header">
   <canvas id="header-canvas"></canvas>
   <div class="page-header-content">
     <div class="hero-tag">Output</div>
-    <h1>Publications &amp; <em>Software</em></h1>
+    <h1>Publications</h1>
     <p class="hero-sub">
       Peer-reviewed articles and preprints
     </p>
@@ -219,7 +293,7 @@
     </div>
 
     <!-- ══════════ 2026 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2026">
+    <div id="y2026" class="pub-year-group reveal" data-year="2026">
       <div class="pub-year">2026</div>
 
       <div class="pub-item" data-type="journal">
@@ -341,7 +415,7 @@
     </div><!-- /2026 -->
 
     <!-- ══════════ 2025 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2025">
+    <div id="y2025" class="pub-year-group reveal" data-year="2025">
       <div class="pub-year">2025</div>
 
       <div class="pub-item" data-type="journal">
@@ -545,7 +619,7 @@
     </div><!-- /2025 -->
 
     <!-- ══════════ 2024 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2024">
+    <div id="y2024" class="pub-year-group reveal" data-year="2024">
       <div class="pub-year">2024</div>
 
       <div class="pub-item" data-type="journal">
@@ -732,7 +806,7 @@
     </div><!-- /2024 -->
 
     <!-- ══════════ 2023 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2023">
+    <div id="y2023" class="pub-year-group reveal" data-year="2023">
       <div class="pub-year">2023</div>
 
       <div class="pub-item" data-type="journal">
@@ -873,7 +947,7 @@
     </div><!-- /2023 -->
 
     <!-- ══════════ 2022 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2022">
+    <div id="y2022" class="pub-year-group reveal" data-year="2022">
       <div class="pub-year">2022</div>
 
       <div class="pub-item" data-type="journal">
@@ -930,7 +1004,7 @@
     </div><!-- /2022 -->
 
     <!-- ══════════ 2021 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2021">
+    <div id="y2021" class="pub-year-group reveal" data-year="2021">
       <div class="pub-year">2021</div>
 
       <div class="pub-item" data-type="preprint">
@@ -1071,7 +1145,7 @@
     </div><!-- /2021 -->
 
     <!-- ══════════ 2020 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2020">
+    <div id="y2020" class="pub-year-group reveal" data-year="2020">
       <div class="pub-year">2020</div>
 
       <div class="pub-item" data-type="preprint">
@@ -1161,7 +1235,7 @@
     </div><!-- /2020 -->
 
     <!-- ══════════ 2019 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2019">
+    <div id="y2019" class="pub-year-group reveal" data-year="2019">
       <div class="pub-year">2019</div>
 
       <div class="pub-item" data-type="journal">
@@ -1235,7 +1309,7 @@
     </div><!-- /2019 -->
 
     <!-- ══════════ 2018 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2018">
+    <div id="y2018" class="pub-year-group reveal" data-year="2018">
       <div class="pub-year">2018</div>
 
       <div class="pub-item" data-type="software">
@@ -1292,7 +1366,7 @@
     </div><!-- /2018 -->
 
     <!-- ══════════ 2017 ══════════ -->
-    <div class="pub-year-group reveal" data-year="2017">
+    <div id="y2017" class="pub-year-group reveal" data-year="2017">
       <div class="pub-year">2017</div>
 
       <div class="pub-item" data-type="journal">
@@ -1334,7 +1408,7 @@
   </div><!-- /.section-inner -->
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER
 <footer>
   <p>Network Psychometrics</p>
   <div class="footer-links">
@@ -1345,6 +1419,7 @@
     <a href="#">Privacy</a>
   </div>
 </footer>
+-->
 
 <script>
 // ─── MOBILE NAV TOGGLE ───
@@ -1474,7 +1549,7 @@ themeToggle.addEventListener('click', () => {
       const hi = a.central || b.central;
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
       ctx.strokeStyle = hi ? `rgba(13,148,136,${alpha * 2})`
-        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 1.5})`;
+        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 2.5})`;
       ctx.lineWidth = hi ? 1 : 0.5;
       ctx.stroke();
     }
@@ -1674,6 +1749,28 @@ memberItems.forEach(item => {
     applyFilters();
   });
 });
+
+// ─── YEAR SECTION QUICK-LINKS ACTIVE STATE ───
+(function () {
+  const yearIds  = ['y2026','y2025','y2024','y2023','y2022','y2021','y2020','y2019','y2018','y2017'];
+  const navLinks = document.querySelectorAll('.section-nav a');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => {
+          a.classList.toggle('sn-active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  yearIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+})();
 </script>
 </body>
 </html>

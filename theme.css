@@ -26,13 +26,13 @@
 }
 
 :root.light {
-  --ink:    #f0ede6;
+  --ink:    #ffffff;
   --paper:  #1a1f2e;
   --teal:   #0d9488;
   --amber:  #d97706;
   --yellow: #f59e0b;
   --muted:  #4b5563;
-  --dim:    #e5e1d8;
+  --dim:    #f0f0f0;
   --border: rgba(13, 148, 136, 0.2);
 }
 
@@ -186,7 +186,7 @@ nav {
 }
 
 :root.light nav {
-  background: rgba(240, 237, 230, 0.75);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .logo {
@@ -377,7 +377,7 @@ section {
 
 :root.light .pub-section,
 :root.light .team-section {
-  background: rgba(225, 220, 210, 0.35);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* ─── FORM ELEMENTS ─── */
@@ -420,7 +420,7 @@ footer {
   background:      rgba(7, 10, 16, 0.8);
 }
 
-:root.light footer { background: rgba(240, 237, 230, 0.85); }
+:root.light footer { background: rgba(255, 255, 255, 0.85); }
 
 footer p {
   font-size:      0.75rem;
@@ -712,8 +712,8 @@ footer p {
 
 /* ─── LIGHT MODE SECTION OVERRIDES ─── */
 :root.light body        { background: var(--ink); color: var(--paper); }
-:root.light #about      { background: rgba(225, 220, 210, 0.50); }
-:root.light #applications { background: rgba(225, 220, 210, 0.35); }
+:root.light #about      { background: rgba(0, 0, 0, 0.04); }
+:root.light #applications { background: rgba(0, 0, 0, 0.04); }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
@@ -736,7 +736,7 @@ footer p {
   }
   nav.nav-open ul { display: flex; }
   nav ul li a     { display: block; padding: 0.85rem 1.5rem; font-size: 1.0rem; }
-  :root.light nav.nav-open ul { background: rgba(240, 237, 230, 0.97); }
+  :root.light nav.nav-open ul { background: rgba(255, 255, 255, 0.97); }
 
   .section-inner { padding: 5rem 1.5rem; }
   .page-header            { padding: 8rem 1.5rem 3rem; }

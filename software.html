@@ -188,7 +188,7 @@
     <div class="hero-tag">Tools</div>
     <h1>Open-Source <em>Software</em></h1>
     <p class="hero-sub">
-      R packages and frameworks for network psychometrics, generative AI, and psychological measurement
+      R packages for network psychometrics, generative psychometrics, and psychological measurement
     </p>
   </div>
 </header>
@@ -313,7 +313,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER
 <footer>
   <p>Network Psychometrics</p>
   <div class="footer-links">
@@ -324,6 +324,7 @@
     <a href="#">Privacy</a>
   </div>
 </footer>
+-->
 
 <script>
 // ─── MOBILE NAV TOGGLE ───
@@ -451,7 +452,7 @@ themeToggle.addEventListener('click', () => {
       const hi = a.central || b.central;
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
       ctx.strokeStyle = hi ? `rgba(13,148,136,${alpha * 2})`
-        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 1.5})`;
+        : lm ? `rgba(26,31,46,${alpha * 1.5})` : `rgba(244,240,232,${alpha * 2.5})`;
       ctx.lineWidth = hi ? 1 : 0.5;
       ctx.stroke();
     }
