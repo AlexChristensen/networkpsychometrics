@@ -233,12 +233,62 @@
   :root.light #methods      { background: rgba(220, 216, 207, 0.25); }
 
   /* ─── OUR AIMS ─── */
+  .aims-layout {
+    display:    flex;
+    min-height: 100vh;
+  }
+
+  .aims-figure {
+    flex:       0 0 30%;
+    margin:     0;
+    overflow:   hidden;
+    border-right: 1px solid var(--border);
+    display:    flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .aims-fig-link {
+    display: block;
+    cursor:  pointer;
+  }
+
+  .aims-figure img {
+    width:      100%;
+    display:    block;
+    opacity:    0.9;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .aims-fig-link:hover img,
+  .aims-fig-link:focus-visible img {
+    transform: scale(1.04);
+  }
+
+  .aims-content {
+    flex:    1;
+    padding: 8rem 3rem;
+    min-width: 0;
+  }
+
   .aims-intro {
     max-width:   55ch;
     font-size:   1.0rem;
     line-height: 1.95;
     color:       var(--muted);
     margin-bottom: 4rem;
+  }
+
+  @media (max-width: 1024px) {
+    .aims-layout    { flex-direction: column; }
+    .aims-figure    { flex: 0 0 auto; height: 50vh; border-right: none; border-bottom: 1px solid var(--border); }
+    .aims-content   { padding: 5rem 2.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .aims-figure  { height: 40vh; }
+    .aims-content { padding: 5rem 1.5rem; }
   }
 
   .aims-grid {
@@ -634,41 +684,51 @@
      OUR AIMS
 ══════════════════════════════════════════ -->
 <section id="aims">
-  <div class="section-inner">
-    <p class="section-tag">Aims</p>
-    <div class="reveal">
-      <h2>Our Mission</h2>
-      <p class="aims-intro">
-        Build a psychometrics that matches the complexity of psychology &ndash; moving from variables as mirrors of latent causes to actors in dynamic, interacting systems.
-      </p>
+  <div class="aims-layout">
+
+    <figure class="aims-figure reveal">
+      <a href="https://doi.org/10.1177/08902070251352590" target="_blank" rel="noopener" aria-label="Read article: Taxonomic graph analysis" class="aims-fig-link">
+        <img src="figures/taxonomic-graph-analysis.png" alt="Taxonomic graph analysis diagram">
+      </a>
+    </figure>
+
+    <div class="aims-content">
+      <p class="section-tag">Aims</p>
+      <div class="reveal">
+        <h2>Our Mission</h2>
+        <p class="aims-intro">
+          Build a psychometrics that matches the complexity of psychology &ndash; moving from variables as mirrors of latent causes to actors in dynamic, interacting systems.
+        </p>
+      </div>
+      <div class="aims-grid">
+
+        <div class="aim-card reveal">
+          <div class="aim-number">01</div>
+          <h3 class="aim-title"><em>Reconceiving</em><br>Constructs</h3>
+          <p class="aim-body">
+            Model personality and psychopathology constructs as complex, dynamic systems that emerge from interactions between variables &ndash; not passive reflections of hidden latent causes.
+          </p>
+        </div>
+
+        <div class="aim-card reveal">
+          <div class="aim-number">02</div>
+          <h3 class="aim-title"><em>Building</em><br>Rigorous Methods</h3>
+          <p class="aim-body">
+            Develop and validate network-based approaches to estimation, dimensionality, item selection, and construct validity &ndash; grounded in statistical theory and stress-tested via large-scale Monte Carlo simulation.
+          </p>
+        </div>
+
+        <div class="aim-card reveal">
+          <div class="aim-number">03</div>
+          <h3 class="aim-title"><em>Distributing</em><br>Open Software</h3>
+          <p class="aim-body">
+            Translate methods into freely available R software packages &ndash; enabling researchers everywhere to apply state-of-the-art network psychometric techniques to their own data.
+          </p>
+        </div>
+
+      </div>
     </div>
-    <div class="aims-grid">
 
-      <div class="aim-card reveal">
-        <div class="aim-number">01</div>
-        <h3 class="aim-title"><em>Reconceiving</em><br>Constructs</h3>
-        <p class="aim-body">
-          Model personality and psychopathology constructs as complex, dynamic systems that emerge from interactions between variables &ndash; not passive reflections of hidden latent causes.
-        </p>
-      </div>
-
-      <div class="aim-card reveal">
-        <div class="aim-number">02</div>
-        <h3 class="aim-title"><em>Building</em><br>Rigorous Methods</h3>
-        <p class="aim-body">
-          Develop and validate network-based approaches to estimation, dimensionality, item selection, and construct validity &ndash; grounded in statistical theory and stress-tested via large-scale Monte Carlo simulation.
-        </p>
-      </div>
-
-      <div class="aim-card reveal">
-        <div class="aim-number">03</div>
-        <h3 class="aim-title"><em>Distributing</em><br>Open Software</h3>
-        <p class="aim-body">
-          Translate methods into freely available R software packages &ndash; enabling researchers everywhere to apply state-of-the-art network psychometric techniques to their own data.
-        </p>
-      </div>
-
-    </div>
   </div>
 </section>
 
