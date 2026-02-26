@@ -378,10 +378,29 @@
     transition:  border-color 0.3s, background 0.3s;
   }
 
-  .method-card:hover {
-    border-left-color: var(--teal);
-    background:        rgba(45, 212, 191, 0.03);
+  .method-links {
+    display:    flex;
+    gap:        1.5rem;
+    margin-top: 1.25rem;
   }
+
+  .method-link {
+    font-family:     'DM Mono', monospace;
+    font-size:       0.72rem;
+    letter-spacing:  0.16em;
+    text-transform:  uppercase;
+    text-decoration: none;
+    color:           var(--muted);
+    border:          1px solid var(--border);
+    padding:         0.4rem 0.9rem;
+    display:         inline-block;
+    transition:      border-color 0.3s, color 0.3s;
+  }
+
+  .method-link:hover { border-color: var(--teal); color: var(--teal); }
+
+  :root.light .method-link       { border-color: rgba(26,31,46,0.2); }
+  :root.light .method-link:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
 
   .method-tag {
     font-size:      0.72rem;
@@ -752,10 +771,14 @@
         <div class="method-tag">Dimensionality</div>
         <div class="method-name">Exploratory Graph Analysis</div>
         <p class="method-desc">
-          A network-based framework for estimating the number of latent
+          A network-based framework for estimating the number of
           dimensions in multivariate psychological data, using community
           detection on regularized partial correlation networks.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.1371/journal.pone.0174035" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://r-ega.net/reference/EGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
       <div class="method-card reveal">
@@ -763,19 +786,27 @@
         <div class="method-name">Bootstrap EGA</div>
         <p class="method-desc">
           A resampling framework that evaluates the structural stability
-          and replicability of EGA-estimated dimensions, quantifying
-          confidence in both community assignments and item membership.
+          and generalizability of EGA-estimated dimensions, quantifying
+          confidence in the number and content of communities.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.3390/psych3030032" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://r-ega.net/reference/bootEGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
       <div class="method-card reveal">
         <div class="method-tag">Selection</div>
         <div class="method-name">Network Loadings</div>
         <p class="method-desc">
-          Factor-loading analogues derived directly from network topology,
-          enabling direct quantitative comparison between network psychometric
-          and traditional factor-analytic findings.
+          Loading analogs derived directly from network topology,
+          offering insights into how much nodes contribute to the
+          emergence of coherent dimension.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.3758/s13428-025-02640-3" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://r-ega.net/reference/net.loads.html" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
       <div class="method-card reveal">
@@ -783,9 +814,13 @@
         <div class="method-name">Total Entropy Fit Index</div>
         <p class="method-desc">
           An information-theoretic fit index evaluating how well a proposed
-          network structure accounts for observed data, applicable across
-          SEM, factor, and network frameworks.
+          dimensional structure accounts for the number and content of dimensions
+          in the observed data, applicable across SEM, factor, and network frameworks.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.1080/00273171.2020.1779642" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://r-ega.net/reference/tefi.html" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
       <div class="method-card reveal">
@@ -793,19 +828,27 @@
         <div class="method-name">Dynamic EGA</div>
         <p class="method-desc">
           An extension of EGA to time-series and intensive longitudinal data,
-          recovering idiographic psychological structure that evolves
+          recovering idiographic psychological structures that evolve
           dynamically within individual people over time.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.1007/s11336-021-09820-y" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://r-ega.net/reference/dynEGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
       <div class="method-card reveal">
         <div class="method-tag">AI</div>
         <div class="method-name">Generative Psychometrics</div>
         <p class="method-desc">
-          Leveraging large language model embeddings and network community
-          detection to automatically generate, evaluate, and validate
+          Leveraging large language model embeddings and network
+          psychomerics to automatically generate, evaluate, and validate
           psychological scale items at scale.
         </p>
+        <div class="method-links">
+          <a href="https://doi.org/10.31234/osf.io/fgbj4" class="method-link" target="_blank" rel="noopener">Paper</a>
+          <a href="https://github.com/laralee/AI-GENIE" class="method-link" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
 
     </div>
