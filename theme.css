@@ -199,7 +199,8 @@ nav {
   text-decoration: none;
 }
 
-:root.light .logo { color: #000000; }
+:root.light .logo       { color: #000000; }
+:root.light .logo:hover { color: var(--teal); }
 
 .logo span {
   color:   var(--teal);

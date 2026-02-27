@@ -19,7 +19,7 @@
     .faculty-groups {
       display:               grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows:    auto auto;
+      grid-template-rows:    auto auto auto;
       gap:                   2px;
       background:            var(--border);
     }
@@ -134,9 +134,21 @@
     }
 
 
+    /* ─── STUDENT CARD DIVIDER ─── */
+    .student-card + .student-card,
+    .student-card + .student-card-blank {
+      border-top: 2px solid var(--border);
+    }
+
+    /* ─── BLANK ROW FILLER ─── */
+    .student-card-blank {
+      background: var(--ink);
+    }
+
     /* ─── LIGHT MODE ─── */
-    :root.light .faculty-card   { background: transparent; }
-    :root.light .student-card   { background: transparent; }
+    :root.light .faculty-card        { background: transparent; }
+    :root.light .student-card        { background: transparent; }
+    :root.light .student-card-blank  { background: var(--ink); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
@@ -186,7 +198,7 @@
     <div class="faculty-groups reveal">
 
       <!-- ══════════ ALEXANDER P. CHRISTENSEN ══════════ -->
-      <div class="faculty-group">
+      <div class="faculty-group" style="grid-row: span 3;">
         <div class="faculty-card">
           <div class="faculty-monogram">
             <img src="team/alexander-christensen.jpg" alt="Alexander P. Christensen" style="object-position: center 60%;">
@@ -200,6 +212,9 @@
           </div>
         </div>
         <div class="student-card">
+          <div class="faculty-monogram">
+            <img src="team/jeongwon-choi.jpg" alt="Jeongwon Choi" style="object-position: center 20%;">
+          </div>
           <div class="student-name">Jeongwon Choi</div>
 		  <div class="student-label">PhD Student</div>
           <div class="member-links" style="margin-top:0.9rem;">
@@ -207,10 +222,11 @@
             <a class="member-link" href="https://scholar.google.com/citations?user=khxoz0wAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
+        <div class="student-card-blank"></div>
       </div>
 
       <!-- ══════════ HUDSON GOLINO ══════════ -->
-      <div class="faculty-group">
+      <div class="faculty-group" style="grid-row: span 3;">
         <div class="faculty-card">
           <div class="faculty-monogram">
             <img src="team/hudson-golino.jpg" alt="Hudson Golino" style="object-position: center 8%;">
@@ -224,6 +240,7 @@
           </div>
         </div>
         <div class="student-card">
+          <div class="faculty-monogram">LR</div>
           <div class="student-name">Lara Russell-Lasalandra</div>
           <div class="student-label">PhD Student</div>
           <div class="member-links" style="margin-top:0.9rem;">
@@ -231,10 +248,15 @@
             <a class="member-link" href="https://scholar.google.com/citations?user=yKbSyg8AAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
+        <div class="student-card">
+          <div class="faculty-monogram">KC</div>
+          <div class="student-name">Kate Chu</div>
+          <div class="student-label">PhD Student</div>
+        </div>
       </div>
 
       <!-- ══════════ LUIS EDUARDO GARRIDO ══════════ -->
-      <div class="faculty-group">
+      <div class="faculty-group" style="grid-row: span 3;">
         <div class="faculty-card">
           <div class="faculty-monogram">
             <img src="team/luis-eduardo-garrido.png" alt="Luis Eduardo Garrido" style="object-position: center 25%;">
@@ -253,6 +275,7 @@
           <div class="student-name">Leuny Ortiz-González</div>
 		  <div class="student-label">PhD Student</div>
         </div>
+        <div class="student-card-blank"></div>
       </div>
 
     </div><!-- /faculty-groups -->
