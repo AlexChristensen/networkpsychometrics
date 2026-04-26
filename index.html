@@ -16,634 +16,110 @@
 <!-- Shared site theme -->
 <link rel="stylesheet" href="theme.css">
 <style>
-  /* ══════════════════════════════════════════
-     INDEX-SPECIFIC STYLES
-     Shared tokens, nav, footer, buttons, etc.
-     are all in theme.css
-  ══════════════════════════════════════════ */
-
-  /* ─── SCROLL SNAP ─── */
-  html {
-    scroll-snap-type: y mandatory;
+  body {
+    margin: 0;
+    overflow: hidden;
   }
 
-  #hero, #aims, #methods, #latest-work {
-    scroll-snap-align: start;
+  #canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
   }
 
-  /* ─── HERO (index-specific) ─── */
-  #hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
+  #under-construction {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 0 10vw;
-  }
-
-  /* ─── COMPLEX STACK EFFECT ─── */
-  #hero h2 {
-    display:        flex;
-    flex-direction: column;
-    align-items:    flex-start;
-  }
-
-  #hero h2 > span:first-child {
-    transform: translateY(0.45em);
-  }
-
-  #hero h2 > span:last-child {
-    transform: translateY(-0.45em);
-  }
-
-  .complex-stack {
-    position: relative;
-    display: inline-block;
-    color:       var(--teal);
-    font-style:  normal;
-  }
-
-  .complex-spacer {
-    visibility: hidden;
-  }
-
-  .complex-stack::before,
-  .complex-stack::after {
-    content: 'Complex';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-
-    font-family:    'Cormorant Garamond', serif;
-    font-size:      1em;
-    font-weight:    300;
-    color:          rgba(255, 255, 255, 0.24);
     pointer-events: none;
-    user-select:    none;
   }
 
-  :root.light .complex-stack::before,
-  :root.light .complex-stack::after {
-    color: rgba(7, 10, 16, 0.12);
-  }
-
-  .complex-stack::before {
-    bottom: 60%;
-  }
-
-  .complex-stack::after {
-    top: 60%;
-  }
-
-  .hero-tag {
-    font-size: 0.95rem;
-    letter-spacing: 0.2em;
-    color: var(--teal);
+  .uc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.3s ease forwards;
+    color: var(--teal, #2dd4bf);
+    opacity: 0.7;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.8s 0.3s ease both;
   }
 
-  .hero-tag::before {
+  .uc-label::before {
     content: '//';
     margin-right: 0.6rem;
     opacity: 0.5;
   }
 
-  .hero-sub {
-    margin-top: 2rem;
-    max-width: 50ch;
-    font-size: 1.4rem;
-    line-height: 1.9;
-    color: var(--muted);
-    opacity: 0;
-    animation: fadeUp 0.9s 0.7s ease forwards;
-  }
-
-  .hero-actions {
-    margin-top: 2.8rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.9s ease forwards;
-  }
-
-  .hero-metrics {
-    position: absolute;
-    bottom: 3rem;
-    right: 10vw;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 1.1s ease forwards;
-  }
-
-  .metric {
-    text-align: right;
-  }
-
-  .metric-val {
+  .uc-heading {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
+    font-size: clamp(3rem, 10vw, 7rem);
     font-weight: 300;
-    color: var(--amber);
+    color: var(--teal, #2dd4bf);
+    letter-spacing: -0.02em;
     line-height: 1;
+    margin: 0;
+    animation: fadeUp 0.9s 0.5s ease both;
   }
 
-  .metric-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: 0.2rem;
-  }
-
-  /* ─── SCROLL INDICATOR ─── */
-  .scroll-hint {
-    position: absolute;
-    bottom: 3rem;
-    left: 10vw;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: var(--teal);
-    font-size: 0.95rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 0.9s 1.3s ease forwards;
-  }
-
-  .scroll-line {
-    width: 80px;
-    height: 1.5px;
-    background: var(--teal);
-    color: var(--dim);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scroll-line::after {
-    content: '';
-    position: absolute;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--dim);
-    animation: scanline 2.5s 2.5s infinite;
-  }
-
-  /* ─── TABLET ─── */
-  @media (max-width: 1024px) {
-    .hero-sub { font-size: 1.2rem; }
-  }
-
-  /* ─── MOBILE ─── */
-  @media (max-width: 768px) {
-    #hero         { padding: 0 1.5rem; padding-top: 6rem; min-height: 100svh; }
-    .hero-sub     { font-size: 1.1rem; }
-    .hero-actions { flex-direction: column; align-items: flex-start; }
-  }
-
-  /* ══════════════════════════════════════════
-     SECTION BACKGROUNDS (index-specific)
-  ══════════════════════════════════════════ */
-  #aims {
-    background:      rgba(7, 10, 16, 0.05);
-    backdrop-filter: blur(5px);
-  }
-  #methods {
-    background:        rgba(7, 10, 16, 0.05);
-    backdrop-filter:   blur(5px);
-    border-top:        1px solid var(--border);
-    border-bottom:     1px solid var(--border);
-    scroll-margin-top: 2px;
-  }
-  #latest-work {
-    background:      rgba(7, 10, 16, 0.05);
-    backdrop-filter: blur(5px);
-  }
-
-  :root.light #aims,
-  :root.light #latest-work { background: rgba(240, 237, 230, 0.10); }
-  :root.light #methods      { background: rgba(220, 216, 207, 0.25); }
-
-  /* ─── OUR AIMS ─── */
-  .aims-layout {
-    display:    flex;
-    min-height: 100vh;
-  }
-
-  .aims-figure {
-    flex:       0 0 30%;
-    margin:     0;
-    overflow:   hidden;
-    border-right: 1px solid var(--border);
-    display:    flex;
-    align-items: center;
-    justify-content: center;
+  /* ─── THEME TOGGLE (top-right) ─── */
+  #theme-toggle {
+    position: fixed;
+    top: 1.4rem;
+    right: 1.8rem;
+    z-index: 100;
     background: transparent;
-  }
-
-  .aims-fig-link {
-    display: block;
-    cursor:  pointer;
-  }
-
-  .aims-figure img {
-    width:      100%;
-    display:    block;
-    opacity:    0.9;
-    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .aims-fig-link:hover img,
-  .aims-fig-link:focus-visible img {
-    transform: scale(1.04);
-  }
-
-  .aims-content {
-    flex:    1;
-    padding: 8rem 3rem;
-    min-width: 0;
-  }
-
-  .aims-intro {
-    max-width:   55ch;
-    font-size:   1.0rem;
-    line-height: 1.95;
-    color:       var(--muted);
-    margin-bottom: 4rem;
-  }
-
-  @media (max-width: 1024px) {
-    .aims-layout    { flex-direction: column; }
-    .aims-figure    { flex: 0 0 auto; height: 50vh; border-right: none; border-bottom: 1px solid var(--border); }
-    .aims-content   { padding: 5rem 2.5rem; }
-  }
-
-  @media (max-width: 768px) {
-    .aims-figure  { height: 40vh; }
-    .aims-content { padding: 5rem 1.5rem; }
-  }
-
-  .aims-grid {
-    display:               grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:                   2px;
-    background:            var(--border);
-  }
-
-  .aim-card {
-    background: var(--ink);
-    padding:    3rem 2.5rem 2.75rem;
-    position:   relative;
-    overflow:   hidden;
-    transition: background 0.4s;
-  }
-
-  .aim-card::before {
-    content:          '';
-    position:         absolute;
-    top: 0; left: 0; right: 0;
-    height:           2px;
-    background:       var(--teal);
-    transform:        scaleX(0);
-    transform-origin: left;
-    transition:       transform 0.75s ease;
-  }
-
-  .aim-card.visible::before { transform: scaleX(1); }
-
-  .aim-number {
-    font-family:    'Cormorant Garamond', serif;
-    font-size:      7rem;
-    font-weight:    300;
-    color:          var(--teal);
-    opacity:        0.21;
-    line-height:    1;
-    margin-bottom:  -2.4rem;
-    letter-spacing: -0.04em;
-    user-select:    none;
-    pointer-events: none;
-  }
-
-  .aim-title {
-    font-family:   'Cormorant Garamond', serif;
-    font-size:     1.9rem;
-    font-weight:   400;
-    line-height:   1.22;
-    color:         var(--paper);
-    margin-bottom: 1.1rem;
-  }
-
-  .aim-body {
-    font-size:   0.92rem;
-    line-height: 1.95;
-    color:       var(--muted);
-  }
-
-  /* ─── METHODS ─── */
-  .methods-header {
-    display:         flex;
-    justify-content: space-between;
-    align-items:     flex-end;
-    gap:             3rem;
-    margin-bottom:   3.5rem;
-  }
-
-  .methods-sub {
-    font-size:   0.95rem;
-    line-height: 1.9;
-    color:       var(--muted);
-    max-width:   52ch;
-    text-align:  right;
-  }
-
-  .methods-grid {
-    display:               grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:                   1px;
-    background:            var(--border);
-  }
-
-  .method-card {
-    background:  var(--ink);
-    padding:     2rem 2rem 2.25rem;
-    border-left: 2px solid transparent;
-    transition:  border-color 0.3s, background 0.3s;
-  }
-
-  .method-links {
-    display:    flex;
-    gap:        1.5rem;
-    margin-top: 1.25rem;
-  }
-
-  .method-link {
-    font-family:     'DM Mono', monospace;
-    font-size:       0.72rem;
-    letter-spacing:  0.16em;
-    text-transform:  uppercase;
-    text-decoration: none;
-    color:           var(--muted);
-    border:          1px solid var(--border);
-    padding:         0.4rem 0.9rem;
-    display:         inline-block;
-    transition:      border-color 0.3s, color 0.3s;
-  }
-
-  .method-link:hover { border-color: var(--teal); color: var(--teal); }
-
-  :root.light .method-link       { border-color: rgba(26,31,46,0.2); }
-  :root.light .method-link:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
-
-  .method-tag {
-    font-size:      0.72rem;
-    letter-spacing: 0.26em;
-    color:          var(--teal);
-    text-transform: uppercase;
-    margin-bottom:  0.65rem;
-    opacity:        0.72;
-  }
-
-  .method-name {
-    font-family:   'Cormorant Garamond', serif;
-    font-size:     1.6rem;
-    font-weight:   400;
-    color:         var(--paper);
-    margin-bottom: 0.75rem;
-    line-height:   1.3;
-  }
-
-  .method-desc {
-    font-size:   0.9rem;
-    line-height: 1.9;
-    color:       var(--muted);
-  }
-
-  /* ─── LATEST WORK ─── */
-  .latest-header {
-    display:         flex;
-    justify-content: space-between;
-    align-items:     flex-end;
-    margin-bottom:   3rem;
-  }
-
-  .work-grid {
-    display:               grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:                   2px;
-    background:            var(--border);
-  }
-
-  .work-card {
-    background:     var(--ink);
-    display:        flex;
-    flex-direction: column;
-    transition:     background 0.3s;
-  }
-
-  .work-card:hover { background: var(--ink); }
-
-  .work-fig {
-    margin:          0;
-    padding:         0;
-    border-bottom:   1px solid var(--border);
-    background:      #fff;
-    aspect-ratio:    4 / 3;
-    display:         flex;
-    align-items:     center;
-    justify-content: center;
-    overflow:        hidden;
-  }
-
-  .work-fig svg { width: 100%; height: 100%; }
-
-  .work-fig img {
-    width:      100%;
-    height:     100%;
-    object-fit: contain;
-    display:    block;
-    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .work-fig-link {
-    display: block;
-    overflow: hidden;
-  }
-
-  .work-fig-link:hover .work-fig img,
-  .work-fig-link:focus-visible .work-fig img {
-    transform: scale(1.12);
-  }
-
-  .work-fig embed {
-    width:   100%;
-    height:  100%;
-    border:  none;
-    display: block;
-  }
-
-  .work-fig figcaption { display: none; }
-
-  .work-body {
-    padding:        1.75rem 1.75rem 2rem;
-    display:        flex;
-    flex-direction: column;
-    flex:           1;
-  }
-
-  .work-badge {
-    display:        inline-block;
-    font-size:      0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding:        0.18rem 0.55rem;
-    margin-bottom:  0.85rem;
-    border:         1px solid;
-    align-self:     flex-start;
-  }
-
-  .work-badge.journal  { border-color: rgba(45,212,191,0.35);  color: var(--teal);  }
-  .work-badge.preprint { border-color: rgba(245,158,11,0.35);  color: var(--amber); }
-
-  .work-title {
-    font-family:   'Cormorant Garamond', serif;
-    font-size:     1.4rem;
-    font-weight:   400;
-    line-height:   1.45;
-    color:         var(--paper);
-    margin-bottom: 0.9rem;
-    flex:          1;
-  }
-
-  .work-authors {
-    font-size:     0.85rem;
-    color:         var(--muted);
-    letter-spacing: 0.03em;
-    margin-bottom: 0.28rem;
-  }
-
-  .work-journal {
-    font-family:   'Cormorant Garamond', serif;
-    font-size:     1.1rem;
-    font-style:    italic;
-    color:         var(--teal);
-    margin-bottom: 1.25rem;
-  }
-
-  .work-link {
-    font-size:       0.82rem;
-    letter-spacing:  0.14em;
-    text-transform:  uppercase;
-    text-decoration: none;
-    color:           var(--muted);
-    display:         inline-flex;
-    align-items:     center;
-    gap:             0.45rem;
-    transition:      color 0.3s;
-  }
-
-  .work-link:hover   { color: var(--teal); }
-  .work-link::after  { content: '→'; font-size: 0.8rem; }
-
-  /* ─── LIGHT MODE OVERRIDES ─── */
-  :root.light .aim-card,
-  :root.light .method-card,
-  :root.light .work-card  { background: var(--dim); }
-  :root.light .work-fig   { background: #fff; }
-
-  /* ─── NEW SECTIONS: RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    .aims-grid,
-    .methods-grid,
-    .work-grid      { grid-template-columns: 1fr; }
-    .methods-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    .methods-sub    { text-align: left; }
-  }
-
-  @media (max-width: 768px) {
-    .latest-header  { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    .aim-card       { padding: 2.25rem 1.75rem 2rem; }
-    .method-card    { padding: 1.75rem 1.5rem 2rem; }
-    .work-fig       { aspect-ratio: 16 / 9; }
-  }
-
-  /* ─── SECTION QUICK-LINKS ─── */
-  .section-nav {
-    position:        fixed;
-    right:           2rem;
-    top:             50%;
-    transform:       translateY(-50%);
-    z-index:         50;
-    display:         flex;
-    flex-direction:  column;
-    gap:             1.6rem;
-    pointer-events:  auto;
-  }
-
-  .section-nav a {
-    display:         flex;
-    align-items:     center;
-    justify-content: flex-end;
-    gap:             0.7rem;
-    text-decoration: none;
-    cursor:          pointer;
-  }
-
-  .section-nav .sn-label {
-    font-size:      0.68rem;
+    border: 1px solid rgba(45,212,191,0.35);
+    color: var(--teal, #2dd4bf);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color:          var(--teal);
-    opacity:        1;
-    transform:      translateX(0);
-    transition:     color 0.25s ease;
-    white-space:    nowrap;
-    pointer-events: none;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.3s, color 0.3s;
   }
 
-  .section-nav .sn-dot {
-    width:         6px;
-    height:        6px;
-    border-radius: 50%;
-    border:        1.5px solid var(--teal);
-    background:    var(--teal);
-    transition:    background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    flex-shrink:   0;
+  #theme-toggle:hover {
+    border-color: var(--teal, #2dd4bf);
+    color: var(--teal, #2dd4bf);
+    opacity: 0.8;
   }
 
-  /* hover: subtle brighten */
-  .section-nav a:hover .sn-label { color: var(--teal); opacity: 0.8; }
-  .section-nav a:hover .sn-dot   { transform: scale(1.2); }
-
-  /* active section */
-  .section-nav a.sn-active .sn-dot {
-    background:   var(--amber);
-    border-color: var(--amber);
-    transform:    scale(1.4);
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0);    }
   }
-  .section-nav a.sn-active .sn-label {
-    color: var(--amber);
-  }
-
-  @media (max-width: 768px) {
-    .section-nav { display: none; }
-  }
-
 </style>
 </head>
 <body>
 
 <canvas id="canvas"></canvas>
 
-<!-- NAV -->
+<!-- ══════════════════════════════════════════
+     UNDER CONSTRUCTION
+══════════════════════════════════════════ -->
+<button id="theme-toggle" aria-label="Toggle light/dark mode">
+  <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
+</button>
+
+<div id="under-construction">
+  <p class="uc-label">Network Psychometrics</p>
+  <h1 class="uc-heading">Coming Soon</h1>
+</div>
+
+<!-- ══════════════════════════════════════════
+     COMMENTED OUT: NAV
+══════════════════════════════════════════ -->
+<!--
 <nav>
   <a href="index.html" class="logo">Network<span>Psychometrics</span></a>
   <ul>
@@ -656,28 +132,24 @@
     <span id="theme-icon">☀</span> <span id="theme-label">Light</span>
   </button>
 </nav>
+-->
 
-<!-- SECTION QUICK-LINKS -->
+<!-- ══════════════════════════════════════════
+     COMMENTED OUT: SECTION QUICK-LINKS
+══════════════════════════════════════════ -->
+<!--
 <aside class="section-nav" aria-label="Page sections">
-  <a href="#hero">
-    <span class="sn-label">Home</span>
-    <span class="sn-dot"></span>
-  </a>
-  <a href="#aims">
-    <span class="sn-label">Aims</span>
-    <span class="sn-dot"></span>
-  </a>
-  <a href="#methods">
-    <span class="sn-label">Methods</span>
-    <span class="sn-dot"></span>
-  </a>
-  <a href="#latest-work">
-    <span class="sn-label">Latest</span>
-    <span class="sn-dot"></span>
-  </a>
+  <a href="#hero"><span class="sn-label">Home</span><span class="sn-dot"></span></a>
+  <a href="#aims"><span class="sn-label">Aims</span><span class="sn-dot"></span></a>
+  <a href="#methods"><span class="sn-label">Methods</span><span class="sn-dot"></span></a>
+  <a href="#latest-work"><span class="sn-label">Latest</span><span class="sn-dot"></span></a>
 </aside>
+-->
 
-<!-- HERO -->
+<!-- ══════════════════════════════════════════
+     COMMENTED OUT: HERO
+══════════════════════════════════════════ -->
+<!--
 <section id="hero">
   <div class="hero-tag">Psychology is complex. Your models should be too.</div>
   <h2>
@@ -692,249 +164,39 @@
     <a href="team.html" class="btn-ghost">Meet the Team</a>
     <a href="publications.html" class="btn-ghost">Explore Publications</a>
   </div>
-
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     Scroll to discover
   </div>
-
 </section>
+-->
 
 <!-- ══════════════════════════════════════════
-     OUR AIMS
+     COMMENTED OUT: OUR AIMS
 ══════════════════════════════════════════ -->
+<!--
 <section id="aims">
-  <div class="aims-layout">
-
-    <figure class="aims-figure reveal">
-      <a href="https://doi.org/10.1177/08902070251352590" target="_blank" rel="noopener" aria-label="Read article: Taxonomic graph analysis" class="aims-fig-link">
-        <img src="figures/taxonomic-graph-analysis.png" alt="Taxonomic graph analysis diagram">
-      </a>
-    </figure>
-
-    <div class="aims-content">
-      <p class="section-tag">Aims</p>
-      <div class="reveal">
-        <h2>Our Mission</h2>
-        <p class="aims-intro">
-          Build a psychometrics that matches the complexity of psychology &ndash; moving from variables as mirrors of latent causes to actors in dynamic, interacting systems.
-        </p>
-      </div>
-      <div class="aims-grid">
-
-        <div class="aim-card reveal">
-          <div class="aim-number">01</div>
-          <h3 class="aim-title"><em>Reconceiving</em><br>Constructs</h3>
-          <p class="aim-body">
-            Model personality and psychopathology constructs as complex, dynamic systems that emerge from interactions between variables &ndash; not passive reflections of hidden latent causes.
-          </p>
-        </div>
-
-        <div class="aim-card reveal">
-          <div class="aim-number">02</div>
-          <h3 class="aim-title"><em>Building</em><br>Rigorous Methods</h3>
-          <p class="aim-body">
-            Develop and validate network-based approaches to estimation, dimensionality, item selection, and construct validity &ndash; grounded in statistical theory and stress-tested via large-scale Monte Carlo simulation.
-          </p>
-        </div>
-
-        <div class="aim-card reveal">
-          <div class="aim-number">03</div>
-          <h3 class="aim-title"><em>Distributing</em><br>Open Software</h3>
-          <p class="aim-body">
-            Translate methods into freely available R software packages &ndash; enabling researchers everywhere to apply state-of-the-art network psychometric techniques to their own data.
-          </p>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
+  ...
 </section>
+-->
 
 <!-- ══════════════════════════════════════════
-     METHODS
+     COMMENTED OUT: METHODS
 ══════════════════════════════════════════ -->
+<!--
 <section id="methods">
-  <div class="section-inner">
-    <p class="section-tag">Approach</p>
-    <div class="methods-header reveal">
-      <h2>Methods</h2>
-      <p class="methods-sub">
-        Our toolkit spans dimensionality assessment, structural modeling,
-        and generative AI — all grounded in the mathematics of networks
-        and validated through large-scale simulation.
-      </p>
-    </div>
-    <div class="methods-grid">
-
-      <div class="method-card reveal">
-        <div class="method-tag">Dimensionality</div>
-        <div class="method-name">Exploratory Graph Analysis</div>
-        <p class="method-desc">
-          A network-based framework for estimating the number of
-          dimensions in multivariate psychological data, using community
-          detection on regularized partial correlation networks.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.1371/journal.pone.0174035" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://r-ega.net/reference/EGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="method-card reveal">
-        <div class="method-tag">Stability</div>
-        <div class="method-name">Bootstrap EGA</div>
-        <p class="method-desc">
-          A resampling framework that evaluates the structural stability
-          and generalizability of EGA-estimated dimensions, quantifying
-          confidence in the number and content of communities.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.3390/psych3030032" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://r-ega.net/reference/bootEGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="method-card reveal">
-        <div class="method-tag">Selection</div>
-        <div class="method-name">Network Loadings</div>
-        <p class="method-desc">
-          Loading analogs derived directly from network topology,
-          offering insights into how much nodes contribute to the
-          emergence of coherent dimension.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.3758/s13428-025-02640-3" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://r-ega.net/reference/net.loads.html" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="method-card reveal">
-        <div class="method-tag">Fit</div>
-        <div class="method-name">Total Entropy Fit Index</div>
-        <p class="method-desc">
-          An information-theoretic fit index evaluating how well a proposed
-          dimensional structure accounts for the number and content of dimensions
-          in the observed data, applicable across SEM, factor, and network frameworks.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.1080/00273171.2020.1779642" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://r-ega.net/reference/tefi.html" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="method-card reveal">
-        <div class="method-tag">Longitudinal</div>
-        <div class="method-name">Dynamic EGA</div>
-        <p class="method-desc">
-          An extension of EGA to time-series and intensive longitudinal data,
-          recovering idiographic psychological structures that evolve
-          dynamically within individual people over time.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.1007/s11336-021-09820-y" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://r-ega.net/reference/dynEGA.html" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="method-card reveal">
-        <div class="method-tag">AI</div>
-        <div class="method-name">Generative Psychometrics</div>
-        <p class="method-desc">
-          Leveraging large language model embeddings and network
-          psychomerics to automatically generate, evaluate, and validate
-          psychological scale items at scale.
-        </p>
-        <div class="method-links">
-          <a href="https://doi.org/10.31234/osf.io/fgbj4" class="method-link" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/laralee/AI-GENIE" class="method-link" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  ...
 </section>
+-->
 
 <!-- ══════════════════════════════════════════
-     LATEST WORK
+     COMMENTED OUT: LATEST WORK
 ══════════════════════════════════════════ -->
+<!--
 <section id="latest-work">
-  <div class="section-inner">
-    <p class="section-tag">Research</p>
-    <div class="latest-header reveal">
-      <h2>Latest</h2>
-      <a href="publications.html" class="btn-ghost">View All Publications</a>
-    </div>
-    <div class="work-grid">
-
-      <!-- ── Card 1: SBM / Network accuracy ── -->
-      <article class="work-card reveal">
-        <a class="work-fig-link" href="https://doi.org/10.31234/osf.io/9d4nm_v2" target="_blank" rel="noopener" aria-label="Read paper: Network accuracy across local, mesoscale, and global structures">
-          <figure class="work-fig">
-            <img src="figures/christensen-latest.png" alt="Network accuracy across local, mesoscale, and global structures - Christensen & Choi (2026)">
-            <figcaption>Network accuracy across local, mesoscale, and global structures using Stochastic Block Models — Christensen &amp; Choi (2026)</figcaption>
-          </figure>
-        </a>
-        <div class="work-body">
-          <span class="work-badge preprint">Preprint</span>
-          <h3 class="work-title">Network accuracy across local, mesoscale, and global structures using Stochastic Block Models</h3>
-          <p class="work-authors">Christensen, A. P., &amp; Choi, J. (2026)</p>
-          <p class="work-journal">PsyArXiv</p>
-          <a href="https://doi.org/10.31234/osf.io/9d4nm_v2" class="work-link" target="_blank" rel="noopener">Read Paper</a>
-        </div>
-      </article>
-
-      <!-- ── Card 2: EGA dimensionality / generative psychometrics ── -->
-      <article class="work-card reveal">
-        <a class="work-fig-link" href="https://doi.org/10.31234/osf.io/2s7pw_v1" target="_blank" rel="noopener" aria-label="Read paper: Estimating dimensional structure in generative psychometrics">
-          <figure class="work-fig">
-            <img src="figures/garrido-latest.png" alt="Estimating dimensional structure in generative psychometrics — Garrido et al. (2026)">
-            <figcaption>Estimating dimensional structure in generative psychometrics — Garrido et al. (2026)</figcaption>
-          </figure>
-        </a>
-        <div class="work-body">
-          <span class="work-badge preprint">Preprint</span>
-          <h3 class="work-title">Estimating dimensional structure in generative psychometrics: Comparing PCA and network methods using large language model item embeddings</h3>
-          <p class="work-authors">Garrido, L. E., Russell-Lasalandra, L. L., &amp; Golino, H. (2026)</p>
-          <p class="work-journal">PsyArXiv</p>
-          <a href="https://doi.org/10.31234/osf.io/2s7pw_v1" class="work-link" target="_blank" rel="noopener">Read Paper</a>
-        </div>
-      </article>
-
-      <!-- ── Card 3: LLM embeddings / Monte Carlo ── -->
-      <article class="work-card reveal">
-        <a class="work-fig-link" href="https://arxiv.org/abs/2601.17010" target="_blank" rel="noopener" aria-label="Read paper: Optimizing LLM embeddings with Dynamic EGA">
-          <figure class="work-fig">
-            <img src="figures/golino-latest.png" alt="Optimizing LLM embeddings with Dynamic EGA for generative psychometrics — Golino (2026)">
-            <figcaption>Optimizing LLM embeddings with Dynamic EGA for generative psychometrics — Golino (2026)</figcaption>
-          </figure>
-        </a>
-        <div class="work-body">
-          <span class="work-badge preprint">Preprint</span>
-          <h3 class="work-title">Optimizing the landscape of LLM embeddings with Dynamic Exploratory Graph Analysis for generative psychometrics: A Monte Carlo study</h3>
-          <p class="work-authors">Golino, H. (2026)</p>
-          <p class="work-journal">arXiv</p>
-          <a href="https://arxiv.org/abs/2601.17010" class="work-link" target="_blank" rel="noopener">Read Paper</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
+  ...
 </section>
-
-<!-- FOOTER
-<footer>
-  <p>Network Psychometrics</p>
-  <div class="footer-links">
-    <a href="#">Documentation</a>
-    <a href="https://github.com/AlexChristensen">GitHub</a>
-    <a href="https://scholar.google.com/citations?user=RbatznQAAAAJ&hl=en">Google Scholar</a>
-    <a href="publications.html">Publications</a>
-    <a href="#">Privacy</a>
-  </div>
-</footer>
- -->
+-->
 
 <script>
 // ─── NETWORK CANVAS ANIMATION ───
@@ -943,13 +205,13 @@ const ctx = canvas.getContext('2d');
 
 let W, H, nodes = [], edges = [];
 const NODE_COUNT = 100;
-const TEAL = '#2dd4bf';
+const TEAL  = '#2dd4bf';
 const AMBER = '#f59e0b';
 const YELLOW = '#f7b801';
 const PAPER = '#f4f0e8';
 
 function resize() {
-  W = canvas.width = window.innerWidth;
+  W = canvas.width  = window.innerWidth;
   H = canvas.height = window.innerHeight;
 }
 
@@ -959,23 +221,21 @@ function initNodes() {
   for (let i = 0; i < NODE_COUNT; i++) {
     const isCentral = i < 7;
     nodes.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-      r: isCentral ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
-      color: isCentral ? TEAL : (Math.random() < 0.30 ? AMBER : YELLOW),
+      x:       Math.random() * W,
+      y:       Math.random() * H,
+      vx:      (Math.random() - 0.5) * 0.2,
+      vy:      (Math.random() - 0.5) * 0.2,
+      r:       isCentral ? 5 + Math.random() * 4 : 2 + Math.random() * 2.5,
+      color:   isCentral ? TEAL : (Math.random() < 0.30 ? AMBER : YELLOW),
       central: isCentral,
-      pulse: Math.random() * Math.PI * 2,
+      pulse:   Math.random() * Math.PI * 2,
     });
   }
-
-  // Create edges based on proximity
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const d = dist(nodes[i], nodes[j]);
       if (d < 500 && Math.random() < 1) {
-        edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5});
+        edges.push({ a: i, b: j, w: (1 - d / 220) * 0.5 });
       }
     }
   }
@@ -988,7 +248,6 @@ function dist(a, b) {
 function tick(t) {
   ctx.clearRect(0, 0, W, H);
 
-  // Draw edges
   for (const e of edges) {
     const a = nodes[e.a], b = nodes[e.b];
     const d = dist(a, b);
@@ -999,16 +258,15 @@ function tick(t) {
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
     const lightMode = document.documentElement.classList.contains('light');
-ctx.strokeStyle = isHighlight
-  ? `rgba(13,148,136,${alpha * 2})`
-  : lightMode
-    ? `rgba(26,31,46,${alpha * 1.5})`
-    : `rgba(244,240,232,${alpha * 2.5})`;
+    ctx.strokeStyle = isHighlight
+      ? `rgba(13,148,136,${alpha * 2})`
+      : lightMode
+        ? `rgba(26,31,46,${alpha * 1.5})`
+        : `rgba(244,240,232,${alpha * 2.5})`;
     ctx.lineWidth = isHighlight ? 1 : 0.5;
     ctx.stroke();
   }
 
-  // Draw nodes
   for (const n of nodes) {
     n.pulse += 0.02;
     const glow = n.central ? (1 + Math.sin(n.pulse) * 0.3) : 1;
@@ -1026,19 +284,16 @@ ctx.strokeStyle = isHighlight
     ctx.beginPath();
     ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
     const lightMode = document.documentElement.classList.contains('light');
-const alpha = n.central ? 1.0 : 0.65;
-ctx.fillStyle = n.color === TEAL ? `rgba(13,148,136,${alpha})`
-              : n.color === AMBER ? `rgba(245,158,11,${alpha})`
-              : lightMode
-                ? `rgba(26,31,46,${alpha * 0.75})`
-                : `rgba(244,240,232,${alpha * 0.75})`;
+    const alpha = n.central ? 1.0 : 0.65;
+    ctx.fillStyle = n.color === TEAL  ? `rgba(13,148,136,${alpha})`
+                  : n.color === AMBER ? `rgba(245,158,11,${alpha})`
+                  : lightMode
+                    ? `rgba(26,31,46,${alpha * 0.75})`
+                    : `rgba(244,240,232,${alpha * 0.75})`;
     ctx.fill();
 
-    // Update position
     n.x += n.vx;
     n.y += n.vy;
-
-    // Bounce
     if (n.x < 0 || n.x > W) n.vx *= -1;
     if (n.y < 0 || n.y > H) n.vy *= -1;
   }
@@ -1093,7 +348,7 @@ document.addEventListener('mousemove', (e) => {
   for (const n of nodes) {
     const dx = e.clientX - n.x;
     const dy = e.clientY - n.y;
-    const d = Math.hypot(dx, dy);
+    const d  = Math.hypot(dx, dy);
     if (d < 120) {
       n.vx -= dx / d * 0.04;
       n.vy -= dy / d * 0.04;
@@ -1115,16 +370,13 @@ function syncThemeButton() {
   return light;
 }
 
-// Sync button on initial load (early script may have already applied .light)
 let isLight = syncThemeButton();
 
-// Re-sync on bfcache restore (back/forward navigation)
 window.addEventListener('pageshow', (e) => {
   if (e.persisted) {
     try {
       const saved = localStorage.getItem('npTheme');
-      const shouldBeLight = saved === 'light';
-      document.documentElement.classList.toggle('light', shouldBeLight);
+      document.documentElement.classList.toggle('light', saved === 'light');
     } catch(e) {}
     isLight = syncThemeButton();
   }
@@ -1136,82 +388,6 @@ themeToggle.addEventListener('click', () => {
   syncThemeButton();
   try { localStorage.setItem('npTheme', isLight ? 'light' : 'dark'); } catch(e) {}
 });
-
-// ─── SCROLL HINT FADE ───
-(function () {
-  const hint = document.querySelector('.scroll-hint');
-  if (!hint) return;
-  const line = hint.querySelector('.scroll-line');
-  function onScroll() {
-    const progress = Math.max(0, 1 - window.scrollY / 200);
-    hint.style.opacity = progress;
-    if (line) line.style.width = (80 * progress) + 'px';
-  }
-  hint.addEventListener('animationend', function handler() {
-    hint.removeEventListener('animationend', handler);
-    hint.style.animation = 'none';
-    hint.style.opacity = '1';
-    hint.style.transform = 'translateY(0)';
-    hint.style.transition = 'opacity 0.4s ease';
-    window.addEventListener('scroll', onScroll, { passive: true });
-  });
-})();
-
-// ─── SCROLL REVEAL ───
-(function () {
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = `${i * 0.06}s`;
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => io.observe(el));
-})();
-
-// ─── SECTION QUICK-LINKS ACTIVE STATE ───
-(function () {
-  const sectionIds = ['hero', 'aims', 'methods', 'latest-work'];
-  const navLinks = document.querySelectorAll('.section-nav a');
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(a => {
-          a.classList.toggle('sn-active', a.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-
-  sectionIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) io.observe(el);
-  });
-})();
-
-// ─── MOBILE NAV TOGGLE ───
-(function () {
-  var btn = document.getElementById('nav-toggle');
-  var nav = document.querySelector('nav');
-  btn.addEventListener('click', function () {
-    var open = nav.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded', open);
-    btn.textContent = open ? '\u2715' : '\u2630';
-  });
-  nav.querySelectorAll('ul a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      nav.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = '\u2630';
-    });
-  });
-})();
-
 </script>
 </body>
 </html>
